@@ -1,0 +1,618 @@
+mam na studiach kurs z HCI (human computer interaction) w języku polskim. Jestem studentem informatyki. Muszę przygotować na ostatnie zajęcia prezentację multimedialną podsumowujacą pracę zrealizowaną w ciągu całego semestru, oraz zawierającą prezentację ostatecznej wersji projektu UI systemu, który jest produktem kolejnych kroków procesu projektowego przeprowadzanego na zajęciach. Ponizej zapisuję kroki które były kolejno wykonywane na zajęciach:
+
+1. Wstępne rozpoznanie problemu:
+"Informator o przerwach w dostawach usług oraz mediów"
+
+2. Rozwiniecie definicji problemu:
+
+2.1 Pytania do potencjalnych użytkowników: (kolejne myślniki pod pytaniem to odpowiedzi kolejnych osób)
+
+1. Kiedy ostatnio zdarzyło się że zabrakło usługi która była ci potrzebna?
+- We wrześniu - brak prądu i internetu;
+- Przedwczoraj, o 22:00 - system PKP;
+- W wakacje - brak prądu w hotelu;
+- Miesiąc temu - awaria internetu internet;
+- Mniej więcej miesiąc temu - nieplanowane wyłączenie prądu, bez uprzedzenia;
+- Pół roku temu - planowane odcięcie wody, o którym wiedziałem dzięki karteczce na klatce;
+
+2. Co zwykle robisz jako pierwszą czynność w przypadku braku medium/usługi?
+- Sprawdzam na stronie dostawcy;
+- Nic (ten przypadek) - zmiana na alternatywe;
+- Próbuję uzyskać informacje od innego człowieka;
+- Pytam współlokatora - sprawdza strone dostawcy;
+- Chwilowo czekam, chyba że awaria/brak mediów się przeciąga to dopiero sprawdzam;
+- Szukam w Google czy coś wiadomo o awarii/wyłączeniu;
+
+3. Jakie usługi powinny być do informacji (o czym chcesz być informowany/informowana)?
+- Podstawowe zamkniete drogi, pogoda, alerty rcb;
+- Podstawowe, komunikacja publiczna (zamknięcia, awarie);
+- Podstawowe;
+- Podstawowe;
+- Strony i media - w przypadku stron głównie te najbardziej niezbędne typu USOS czy biznesowe;
+- Media oraz strony (z możliwością podawania własnego linka);
+
+4. Jaki zakres informacji cię interesuje? (w przypadku komunikacji, innych usług)
+- Częste miejsca;
+- Zaznaczane opcje (line, przystanki itd);
+
+5. Jakie informacje chcesz otrzymywać w przypadku przerwy w dostawie?
+- Jak długo potrwa, postępy napraw;
+- Przyczyna, ETA;
+- Przyczyna, ETA;
+- Od, ETA, czy planowane;
+- Najważniejszy jest czas trwania awarii, obszar jest mało ważny (poza przypadkami gdzie informacja pojawia się z wyprzedzeniem); powód awarii/wyłączenia nieważny;
+- Najważniejszy jest czas trwania awarii (okno czasowe), powód też ważny, a obszar mało mnie interesuje;
+
+6. Na jakiej platformie chciałbyś aby system był dostępny?
+- SMS, aplikacja mobilna;
+- Aplikacja z powiadomieniami PUSH;
+- Aplikacja mobilna;
+- SMS - powiadomienia PUSH;
+- Chyba aplikacja mobilna, bo na stronę trzeba specjalnie wchodzić;
+- Aplikacja mobilna;
+
+7. Czy chcesz otrzymywać powiadomienia tylko o swojej lokalizacji, czy też o innych miejscach?
+- Tak, wybrane lokalizacje;
+- Ręcznie wybranych kilka lokalizacji;
+- Moja lokalizacja i dodatkowe interesujące;
+- Nie obchodzi mine;
+- Określić obszar, parę lokalizacji, ale te które mnie nie dotyczą sa nieważne;
+- Wystarczą tylko informacje o mojej lokacji, ale też fajne jakby można bylo dodawać ręcznie lokalizacje (multiple);
+
+8. Co byłoby najważniejsze w takiej aplikacji? Czego nie może zabraknąć?
+- Powiadomienia;
+- Powiadomienia;
+- Wybieranie powiadomień (bez spamu), powiadomienia;
+- Powiadomienia;
+
+9. Czy chesz miec opcje podawania informacji? Czy wierzysz informacje podawane przez innych użytkowników?
+- Tak; wierzę użytkownikom;
+- Tak, pod warunkiem że dużo użytkowników będzie zgłaszać (forum i distinction);
+- Nie, nie potrzebuję infomacji;
+- Tak;
+- W przypadku awarii / nieplanowanych przerw fajnie byłoby wiedzieć czy problem jest szerszy czy dotyczy tylko mnie;
+- Nie chciałoby mi się zgłaszać, ale funkcja ważna, bo fajnie wiedzieć czy awaria to faktycznie awaria;
+
+2.2 Wnioski z wywiadu:
+
+Potencjalna grupa odbiorców: 
+- Ludzie używający zewnętrznych dostawców usług
+
+Charakteryzacja:
+- Zajęci (aktywnie nie sprawdzają często)
+
+Forma aplikacji: 
+- aplikacja mobilna - powiadomienia push.
+
+Preferencje klientów - wnioski:
+- Klienci chcą dostawać powiadomienia o podstawowych usługach (prąd, gaz, woda, internet), komunikacji miejskiej i drogach, pogodzie;
+- Klienci chcą zaznaczać ile chcą dostawać informacji (np. czy całe miasto, czy tylko własna droga);
+- Klientów obchodzi przyczyna przerwy, szacowany czas napraw, czy przerwa jest awarią czy przerwą konserwacyjną;
+- Klienci chcą mieć opcje otrzymywania informacji o wielu miejscach poza swojej aktualnej lokalizacji;
+- Klienci nie chcą aktywnie musieć sprawdzać aplikacji - chcą otrzymywac powiadomienia o usługach;
+- Większość użytkowników chce miec możliwość wypełniania formy w przypadku awarii i mieć wgląd czy inni użytkownicy tez doświadczają problemu;
+
+
+3. Analiza Konkurencji (poprzez heurestyki nielsena):
+
+3.1. DownDetector (Ookla):
+
+1. Pokazuj status systemu:
+- System reaguje w większości prawidłowo. Niektóre klikalne przyciski nie powodują widocznych zmian w stronie - ich funkcjonalność jest nieznana.
+
+2. Zachowaj zgodność pomiędzy systemem a rzeczywistością:
+- System opisany jest w zrozumiały sposób. Większość pól posiada opis w języku naturalnym wyjaśniający rolę fragmentu strony.
+- Niektóre pola nie sa wystarczająco opisane. Np. w polu zgłaszania awarii na media społecznościowe lub stronę nie jest opisane czy zgłoszenie jest do strony DownDetector czy strony dostawcy.
+
+3. Daj użytkownikowi pełną kontrolę:
+- System poprawnie cofa do wcześniejszych podstron. W przypadku zmiany analizowanego kraju sytsem przełącza na inną instancję strony, mogąc wprowadzić niejasność.
+- Przy kliknięciu w link “Dla biznesu” system przęłącza się automatycznie do strony anglojęzycznej nie tworząc nowej instancji co jest niezgodne z wcześniej ustalonym standardem strony
+
+4. Trzymaj się standardów i zachowaj spójność:
+- System trzyma się ustalonego w stronie stylu. Wszystkie funkcjonalności pomiędzy stronami pozostają takie same. Pomiędzy językami i różnymi podstronami (główna funkcjonalność, podstrona dla biznesu) szata graficzna nie zmienia się drastycznie.
+
+5. Zapobiegaj błędom:
+- System zapobiega błędom - nie było możliwości przypadkowego zgłoszenia awarii lub komentarza, wszystkie opcje posiadają opisy i sa intuicyjne.
+
+6. Pozwalaj wybierać zamiast zmuszać do pamiętania:
+- System (Strona internetowa) pokazuje wszystkie informacje dotyczące danego serwisu. System nie posiada funkcjonalności ‘przypominania’ o danych usługach, więc jeśli zainteresuje użytkownika znowu musi się do niej cofnąć.
+- W aplikacji (mobilnej i desktopowej) po założeniu konta użytkownik ma możliwośc ustalić o których serwisach chce otrzymywać powiadomienia.
+
+7. Zapewnij elastyczność i efektywność:
+- System nie posiada żadnych możliwości personalizacji.
+
+8. Dbaj o estetykę i umiar:
+- Strona jest dość przepełniona. Wiele lini zawiera co najmniej 2 pola z informacjami. Niektóre elementy są za małe, ograniczając widoczność (np. strona facebook strony zajmuje mało miejsca- obrazki są za duże a tekst za mały lub odcinany). System nie używa pełnej strony - prawa część ekranu zawiera mniej informacji i jest częso pusta.
+
+9. Zapewnij skuteczną obsługę błędów:
+- Przy wyszukaniu np. nieobsługiwanej obsługi dostarczony jest opis błędu oraz link do listy obsługiwanych usług
+
+10. Zadbaj o pomoc i dokumentację:
+- System nie posiada łatwo dostępnej dokumentacji.
+- Forma do kontaktu jest ukryta w stopie strony i jest dość niewidoczna.
+- Strona nie ma dostępnych materiałów pomocniczych (jak np. odpowiedzi na częste pytania lub postępowań w trakcie często napotkywanych błedów)
+
+3.2 IsItDownRightNow.com:
+
+1. Pokazuj status systemu:
+- System informuje o ostatnim znanym stanie usług sieciowych, wraz z czasem (wyrażonym w minutach), który upłynął od ostatniej kontroli.
+- Możliwe jest sprawdzenie stanu dowolnej usługi ręcznie, co pozwala uzyskać najbardziej aktualną informację
+- Nie ma możliwości monitorowania stanu usług w czasie rzeczywistym w ramach strony
+
+2. Zachowaj zgodność pomiędzy systemem a rzeczywistością:
+- Główny ekran systemu wyrażna stan usług w prosty, zorzumiały sposób - możliwe są dwa stany “Down” (usługa nie działa) oraz “Up” (usługa działa).
+- W przypadku ręcznego sprawdzenia stanu usługi przez użytkownika, system przedstawia szereg dość technicznych informacji w ramach sekcji “website status history”, np. wykres śr. czasu reakcji strony na przestrzeni ostatnich godzin (wyrażony w ms), listę ostatnich prób PING wraz z ich znacznikami czasowymi. Informacje te mogą być niezrozumiałe lub nieprzydatne dla użytkowników o mniejszej wiedzy technicznej.
+- Dla wielu stron może występować niespójność między faktycznym stanem strony z perspektywy/lokalizacji użytkownika, a stanem przestawionym na witrynie. Brakuje informacji, w jakim regionie dokonywana jest kontrola, przez co użytkownik może otrzymać nieprecyzyjną informację.
+
+3. Daj użytkownikowi pełną kontrolę:
+- Większość operacji na stronie jest w pełni odwracalna i nie niesie za sobą żadnych konsekwencji.
+- Wyjątkiem jest opcja dodawania komentarzy na stronie ze szegółowym widokiem danej usługi. Sekcja komentarzy jest obsługiwana za pomocą kont Facebook. Brakuje tu możliwości usunięcia dodanego już komentarza.
+
+4. Trzymaj się standardów i zachowaj spójność:
+- Witryna korzysta z powtarzalnych komponentów o jasnym znaczeniu. Ich układ na wszystkich podstronach jest również spójny.
+
+5. Zapobiegaj błędom:
+- W przypadku ręcznego sprawdzenia stanu usługi możliwe jest wprowadzenie adresu nieistniejącej witryny/usługi sieciowej.
+
+6. Pozwalaj wybierać zamiast zmuszać do pamiętania:
+- System ma prostą strukturę i pozwala na ograniczoną interakcję; wszelkie operacje są zwykle dostępne na każdej z podstron, z wyłączeniem pola ręcznego wyszukiwania stanu usługi - jest ono widoczne tylko na stronie głównej.
+
+7. Zapewnij elastyczność i efektywność:
+- Usługa ma charakter całkowicie użytkowy – nie oferuje żadnych opcji personalizacji/dostosowywania.
+
+8. Dbaj o estetykę i umiar:
+- Styl witryny jest minimalistyczny, korzysta z dość prostego stylowania CSS, przez co zachowuje czytelność, responsywność oraz szybkie ładowanie w przypadku wolnego łącza internetowego.
+
+9. Zapewnij skuteczną obsługę błędów:
+- Zachowanie w przypadku wprowadzenia nieistniejącego adresu sieciowego zależy od formatu wprowadzonego ciagu znaków:
+- Jeśli adres kończy się na istniejącej domenie TLD, system dokona próby sprawdzenia stanu, po czym zwróci informacje że usługa nie działa. Może być to mylące dla użytkownika w przypadku gdy użytkownik nie zauważy, że błędnie wprowdził adres interesującej go usługi.
+- Jeśli adres nie jest dopuszczalnym adresem WWW (np nieistniejąca TLD lub brak podziału ciągu znaków za pomocą kropki) system odświeży stronę i wyczyści pole wprowadzania adresu.
+
+10. Zadbaj o pomoc i dokumentację:
+- System nie zawiera pomocy ani dokumentacji; warto jednak wspomnieć, że każdy element strony jest szczegółowo i zrozumiale opisany.
+
+
+4. Definicja Person:
+
+4.1. Dziecko:
+wiek: 10-19
+m. zamieszkania: Miasto, wieś
+edukacja: Podstawowa, wyższa
+zatrudnienie: brak
+stan cywilny: kawaler/panna
+
+Cytat: "Irytuje mnie gdy gry nie działają"
+Charakterystyka: Po powrocie ze szkoły ma wolny czas który spędza na swoich zainteresowaniach. Często używa internetu aby
+komunikować sie z przyjaciółmi/ grać w gry.
+
+Zaznajomienie z technologią:
+Internet: 10/10
+Software: 3/10
+Aplikacje mobilne: 10/10
+Sieci społecznościowe: 10/10
+
+Potrzeby:
+- Dostęp do popularnych usług. (np.: gry, platformy
+społecznościowe)
+- Natychmiastowy dostęp do informacji (klient nie
+będzie czekał jeśli aplikacja nie będzie
+responsywna)
+- Prosta nawigacja po systemie (symbole zamiast
+słów
+
+Wartości:
+- Zrozumiałość
+- Ilość informacji (klient wie kiedy jest przerwa,
+chce wiedzieć kiedy się skończy, dlaczego się to
+dzieje)
+
+Kryteria sukcesu:
+- Powiadomienia jedynie o interesujących rzeczach.
+Klienta nie obchodzi większość funkcjonalności, chce
+się tylko dowiedzieć o detalach specyficznej usługi.
+
+Wants (zachcianki):
+- Interesująca szata graficzna
+- Możliwość kustomizowania własnego
+profilu/aplikacji
+- Dzielić się swoimi problemami
+
+Fears:
+- Skomplikowane słowa
+- Niepokojące wiadomości (np. ataki
+terrorystyczne, polityka)
+- Brak internetu
+
+4.2. Student:
+wiek: 19-25
+m. zamieszkania: Akademik/ wynajmowane mieszkanie
+edukacja: Student
+zatrudnienie: Pół etatu
+stan cywilny: Mieszany / związek partnerski
+
+Cytat: "Musze mieć ciągły dostęp do usług ponieważ korzystam z nich w różnych okresach"
+Charakterystyka: Student jest poza domem w różnych czasach między dniami/tygodniami. Częściej korzysta z usług ponieważ musi przesyłać/odbierać materiały oraz podróżować.
+
+Zaznajomienie z technologią:
+Internet: 9/10
+Software: 8/10
+Aplikacje mobilne: 6/10
+Sieci społecznościowe: 9/10
+
+Potrzeby:
+- Powiadomienia przed przerwą w dostawie (gdy
+możliwe co najmniej 1 dzień)
+- Informacje o trwaniu przerwy
+- Dostęp do informacji o wielu miejscach (np.: dom,
+uczelnia, wnajmowane mieszkanie)
+
+Wartości:
+- Terminowość informacji
+- Wiarygodność informacji (poprzez np.: opinie
+innych użytkowników)
+
+Kryteria sukcesu:
+- Wczesne powiadamianie aby móc zaplanować
+wcześniej sposób postępowania.
+
+Wants (zachcianki):
+- Dowód przerwy (historia, link do informacji
+dostawcy)
+- Otrzymywać informacje bez sprawdzania aplikacji
+- Propozycje alternatyw do usług
+
+Fears:
+- Niespodziewane przerwy w niewygodnych
+godzinach
+- Obwinianie go o czynniki poza jego kontrolą
+
+4.3. Młody dorosły:
+wiek: 25-35
+m. zamieszkania: Miasto
+edukacja: Wykształcenie wyższe
+zatrudnienie: Projektant UI/UX
+stan cywilny: Wynajmuje mieszkanie z partnerką
+
+Cytat: "Jeśli coś przestaje działać, chcę o tym wiedzieć od razu — a nie po przejrzeniu pięciu wątków na Reddicie"
+Charakterystyka: Prowadzi dynamiczny, połączony styl życia skupiony na pracy, życiu towarzyskim i wygodzie cyfrowej. Codziennie korzysta z wielu aplikacji i oczekuje płynnego dostępu do usług. Kiedy pojawiają się zakłócenia, natychmiast sprawdza informacje w Internecie, ceni sobie aktualizacje w czasie rzeczywistym i oczekuje szybkiej, przejrzystej komunikacji
+
+Zaznajomienie z technologią:
+Internet: 10/10
+Software: 8/10
+Aplikacje mobilne: 9/10
+Sieci społecznościowe: 6/10
+
+Potrzeby:
+- Natychmiastowe, dokładne powiadomienia o
+awariach i problemach z usługami
+- Obsługa przede wszystkim na urządzeniach
+mobilnych z powiadomieniami push
+- Możliwość personalizacji powiadomień i
+śledzonych usług
+- Przejrzystość informacji o przyczynach awarii i
+czasie przywrócenia usług
+- Obsługa wielu usług (media, usługi online,
+transport)
+
+Wartości:
+- Szybkość – chce mieć natychmiastowy dostęp do
+informacji
+- Przejrzystość – preferuje otwarte dane i
+uczciwość dostawców
+- Personalizacja – ceni sobie kontrolę nad tym, co
+widzi
+- Zaufanie społeczności – ceni sobie zbiorowe
+potwierdzenie
+- Prostota – oczekuje płynnych doświadczeń
+cyfrowych
+
+Kryteria sukcesu:
+- Otrzymuje powiadomienia w czasie rzeczywistym o
+awariach lub zakłóceniach
+- Szybko dowiaduje się, czy problem ma charakter
+indywidualny, czy powszechny
+- Ma dostęp do jasnych informacji o przewidywanym
+czasie przywrócenia działania i przyczynie przestoju
+- Otrzymuje aktualizacje dotyczące zarówno usług
+cyfrowych, jak i fizycznych (internet, zasilanie,
+aplikacje)
+
+Wants (zachcianki):
+- Raporty społecznościowe z przyciskami reakcji („u
+mnie też”)
+- Tryb ciemny i nowoczesna estetyka interfejsu
+użytkownika
+ Integracja z mediami społecznościowymi lub
+urządzeniami inteligentnymi
+- Analizy lub historia awarii zapewniająca
+przejrzystość
+- Grywalizowane funkcje przekazywania opinii lub
+uczestnictwa
+
+Fears:
+- Brak informacji w przypadku awarii kluczowych
+usług
+- Powolne lub zawodne powiadomienia
+- Przeładowane lub przestarzałe interfejsy
+- Dezinformacja rozprzestrzeniająca się szybciej niż
+oficjalne aktualizacje
+- Poczucie, że aplikacja powoduje więcej
+zamieszania zamiast zapewniać przejrzystość
+
+4.4. Dorosły:
+wiek: 30-60
+m. zamieszkania: Duże miasto
+edukacja: Wyższe
+zatrudnienie: Specjalista ds. marketingu cyfrowego
+stan cywilny: W związku, mieszka z partnerem
+
+Cytat: "Nie potrzebuję dziesięciu różnych aplikacji, które informują mnie o tym, co się dzieje — chcę tylko jednego niezawodnego miejsca, które powiadamia mnie, gdy coś ważnego przestaje działać"
+Charakterystyka: Prowadzą uporządkowane życie, równoważąc obowiązki zawodowe, rodzinne i domowe. Ich dzień kręci się wokół niezawodnych mediów i dostępu do technologii cyfrowych, a gdy coś zawodzi, oczekują szybkich i jasnych informacji. Są praktyczni i dbają o czas, dlatego cenią sobie proste, niezawodne narzędzia, które nie wymagają od nich nadmiernej uwagi
+
+Zaznajomienie z technologią:
+Internet: 6/10
+Software: 6/10
+Aplikacje mobilne: 5/10
+Sieci społecznościowe: 4/10
+
+Potrzeby:
+- Wiarygodne, zweryfikowane informacje o
+awariach aktualizowane w czasie rzeczywistym
+- Powiadomienia push lub SMS o zakłóceniach w
+wybranych obszarach
+- Przejrzystość informacji o czasie trwania awarii
+(ETA) i aktualnym statusie
+ Możliwość wyboru monitorowanych lokalizacji
+(np. dom, praca, rodzina)
+- Prosty, intuicyjny interfejs mobilny z minimalną
+liczbą elementów
+
+Wartości:
+- Wiarygodność – chce mieć pewność, że
+informacje są poprawne
+- Wydajność – nie lubi tracić czasu na sprawdzanie
+wielu źródeł
+- Przejrzystość – woli krótkie, jasne komunikaty
+zamiast długich wyjaśnień
+- Gotowość – woli wiedzieć z wyprzedzeniem o
+planowanych przerwach w dostawie
+- Potwierdzenie społeczności – ceni potwierdzenia
+pochodzące od społeczności, gdy brakuje
+oficjalnych informacji
+
+Kryteria sukcesu:
+- Szybko sprawdź, czy awaria ma charakter lokalny
+czy ogólny
+- Otrzymuj wiarygodne, zwięzłe powiadomienia bez
+zbędnego spamu
+- Uzyskaj dostęp do wszystkich aktualizacji statusu
+usług (internet, prąd, woda, transport publiczny,
+media internetowe) w jednym miejscu
+- Uzyskaj jasne informacje o przewidywanym czasie
+przywrócenia i przyczynie awarii, jeśli to możliwe
+
+Wants (zachcianki):
+- Raporty użytkowników i weryfikacja
+społecznościowa („Czy to tylko ja, czy wszyscy?”)
+- Personalizacja monitorowanych usług, w tym
+stron internetowych lub aplikacji
+- Dane historyczne dotyczące awarii lub
+wizualizacja trendów
+- Spersonalizowane alerty (np. powiadomienia
+tylko w przypadku długich awarii)
+- Integracja z inteligentnymi asystentami
+domowymi (np. Alexa/Google)
+
+Fears:
+- Brak informacji podczas poważnej awarii
+- Brak ważnych alertów dotyczących jej obszaru.
+- Otrzymywanie zbyt wielu nieistotnych
+powiadomień
+- Sprzeczne lub wprowadzające w błąd informacje z
+nieoficjalnych źródeł
+- Uzależnienie od jednego niewiarygodnego
+dostawcy aktualnych informacji
+
+5. Historyjki użytkownika:
+
+5.1. Dziecko:
+- Chcę móc sprawdzać informacje bez spędzania długiego czasu w aplikacji, żeby się nie nudzić
+- Chcę mieć więcej informacji o usłudze (czas trwania, powód) aby nie czekać na aplikacje podczas długich przerw
+- Nie chce widzieć niektórych informacji (np.: wypadków) aby się nie martwić
+
+5.2. Student:
+- Jako student chcę otrzymywać powiadomienia z wyprzedzeniem, żeby móc zaplanować swój dzień
+- Jako student chcę móc sprawdzać mniej popularne strony (takie jak strona uczelni albo personalne projekty)
+- Jako student chce mieć dostęp do alternatyw niektórych usług (np.: komunikacja miejska) żeby móc spełnić swoje obowiązki
+- Jako student chcę mieć dostęp do wyłączania powiadomień o danych usługach, aby nie otrzymywać spamu.
+
+5.3. Młody dorosły:
+- Jako młody dorosły chcę wiedzieć, czy przerwa wynika z awarii, konserwacji czy problemu lokalnego aby móc podjąć szybkie decyzje (np. zmiana planu dnia, zgłoszenie błędu).
+- Jako młody dorosły chcę ustawić, które usługi i jakie obszary mnie interesują aby dostawać tylko te powiadomienia, które są dla mnie istotne.
+- Jako młody dorosły który nie chce tracić czasu, chcę móc jednym przyciskiem zgłosić „u mnie też nie działa” aby szybko wesprzeć społeczność i zwiększyć dokładność raportu awarii.
+
+5.4. Dorosły:
+- Jako dorosły chcę mieć jedno miejsce, w którym sprawdzę status usług aby nie tracić czasu na przeszukiwanie kilku aplikacji i stron.
+- Jako dorosły, który nie lubi spamu chcę otrzymywać powiadomienia tylko o przerwach, które dotyczą moich lokalizacji i usług aby nie rozpraszać się zbędnymi informacjami.
+- Jako dorosły chcę widzieć, czy przerwa dotyczy tylko mojego mieszkania, czy całej okolicy aby wiedzieć, czy problem zgłosić, czy po prostu poczekać.
+- Jako dorosły użytkownik chcę mieć pewność, że informacje w aplikacji pochodzą z oficjalnych i sprawdzonych źródeł aby uniknąć nieporozumień i paniki.
+- Jako dorosły chcę otrzymywać informację o planowanych wyłączeniach prądu, wody czy internetu z wyprzedzeniem aby móc się przygotować i nie zostać zaskoczonym.
+
+5.5. Wspólne:
+- Jako [student / młody dorosły] chcę otrzymywać natychmiastowe powiadomienia push o przerwach w działaniu usług aby nie musieć samodzielnie sprawdzać, co się stało, i od razu wiedzieć, że coś jest nie tak.
+- Jako [dziecko / młody dorosły / dorosły] chcę mieć więcej informacji o usłudze (czas trwania, powód) aby nie czekać na aplikacje podczas długich przerw.
+- Jako [student / młody dorosły / dorosły] chcę widzieć, ile osób w pobliżu zgłasza ten sam problem aby móc odróżnić prawdziwą awarię od problemu po mojej stronie.
+- Jako [młody dorosły / dorosły] który mieszka w jednym miejscu, pracuje w innym i odwiedza rodzinę w jeszcze innym chcę móc śledzić przerwy dla kilku wybranych obszarów aby mieć pełen obraz sytuacji bez zmieniania ustawień.
+- Jako [student / młody dorosły] chcę mieć dostęp do historii przerw i napraw aby móc usprawiedliwić spóźnienie/nieobecność oraz aby sprawdzić wiarygodność dostawców i lepiej planować korzystanie z usług.
+
+6. Przypadki użycia:
+
+6.1. Sprawdzanie awarii:
+
+6.1.1. Primary Actors:
+- Dorosły, Dziecko, Młody dorosły, Student
+
+6.1.2. Included by:
+- Sprawdzanie historii awarii
+
+6.1.3. Sprawdzanie usługi lub serwisu:
+"""
+1. Otworzenie aplikacji
+2. Wpisanie nazwy serwisu lub wybranie go z listy
+3. Program zwraca informacje o aktualnym stanie usługi, jej statusie (brak problemów, awaria, przerwa techniczna, inne), liczba zgłoszeń awarii od użytkowników w przeciągu ostatniej godziny
+3.1. W przypadku statusu innego od [brak problemów]: System zwraca szacowany czas do powrotu usługi do funkcjonalności, oficjalne stwierdzenie dostawcy usługi (jeśli istnieje)
+3.2. W przypadku ustalonej lokalizacji użytkownika: System zwraca porównanie informacji ogólnego stanu usługi ze stanem usługi w podanej lokalizacji
+"""
+
+6.1.4. Sprawdzanie usług publicznych (np. komunikacja miejska):
+"""
+1. Otworzenie aplikacji
+2. Wpisanie nazwy usługi (np. pkp linia 16106) lub wybranie z listy
+3. System zwraca status usługi (brak problemów, spóźniony, problem), map# przystanków/postojów pojazdu, szacowane spóźnienie
+3.1. W przypadku zaznaczenia jednego z przystanków i ustalonej lokalizacji użytkownika: System zwraca alternatywny dojazd na podany przystanek, porównanie czasu
+"""
+
+6.1.5. Sprawdzanie 'swoich' usług:
+"""
+1. Otworzenie aplikacji
+2. Wejście w zakładkę 'moje usługi'
+2.1. System wyświetli grupę ustawioną jako 'Główną' w zakładce grupy
+"""
+
+6.2. Sprawdzanie historii awarii:
+
+6.2.1. Primary Actors: 
+- Młody dorosły, Student
+
+6.2.2. Include:
+- Sprawdzanie awarii
+
+6.2.3. Sprawdzanie historii awarii:
+"""
+1. Otworzenie aplikacji
+2. Wpisanie nazwy serwisu lub wybranie go z listy
+3. Wejście w zakładkę 'Historia'
+4. System zwraca:
+4.1. List# znanych przerw, ich trwania i powodów
+4.2. Wykres ilości zgłoszeń awarii przez użytkowników w przeciągu ostatniego tygodnia/miesiąca/3 miesięcy
+"""
+
+6.3. Ustalanie powiadomień:
+
+6.3.1. Primary Actors:
+- Dorosły, Młody dorosły, Student
+
+6.3.2. Ustalanie powiadomień:
+"""
+1. Otworzenie aplikacji
+2. Wejście w zakładkę "Powiadomienia"
+3. Wybranie usługi
+3.1. Zaznaczenie opcji "Chcę otrzymywać powiadomienia"
+3.2. Dodanie do grupy powiadomień (ustalane przez użytkownika, np.: 'Dom', 'Praca')
+"""
+
+6.3.3. Scenariusz alternatywny: Zarządzanie grupą:
+"""
+1. Otworzenie aplikacji
+2. Wejście w zakładkę "Powiadomienia"
+3. Wejście w zakładkę "Moje grupy"
+4. Wybranie grupy
+4.1. Wyłączenie powiadomień wszystkich usług w tej grupie
+4.2. Zmiana lokalizacji grupy
+4.3. Usunięcie grupy
+4.4. Usunięcie danej usługi z grupy
+"""
+
+6.4. Zgłaszanie awarii:
+
+6.4.1. Primary Actors:
+- Dorosły, Młody dorosły
+
+6.4.2. Zgłaszanie awarii:
+"""
+1. Otworzenie aplikacji
+2. Wejście w zakładkę "Zgłoś awarię"
+3. Wypełnienie formy:
+3.1. Wyszukanie danej usługi
+3.2. Zgłoszenie czasu awarii (np.: "od 30 minut", "od 1 godziny")
+3.3. Opcjonalnie: podanie aktualnej lokalizacji)
+4. Zgłoszenie formy
+5. System doda zgłoszenie do puli danej usługi
+"""
+
+7. Prototyp papierowy:
+// NOTE: TU mi przygotuj slajd/slajdy do wklejenia zdjęcia zdjęć szkiców
+
+8. Definicja testów interfejsu:
+
+8.1 Wyszukaj Netię w liście usług, zobacz historię jej awarii. (ekran wyszukiwania usług)
+8.2 Zgłoś awarię usługi GryGry2. (ekran usług)
+8.3 Włącz powiadomienia dla grupy ‘Twoja grupa’
+8.4 Wyłącz lokalizację, włącz powiadomienia, wyklucz z wyszukiwania tag ‘Droga’.
+8.5 Dodaj usługę do 'Twoja grupa'. (ekran wyszukiwania)
+8.6 Zobacz listę usług w grupie Dom (ekran grup)
+8.7 Stwórz nową grupę (nie nazywaj jej)
+
+
+9. Prototyp cyfrowy:
+// NOTE: Podobnie jak wyżej, sam wkleję zrzuty ekranu z Figmy
+
+10. Wykonanie testów z udziałem użytkowników (moderowane): 
+
+10.1 Wyniki:
+
+// Kolejne myślniki przy uzytkownikach to wyniki kolejnych testów z listy z pkt 8.
+Użytkownik 1:
+- ok
+- Użytkownik chciał zgłosić awarie guzikiem plus
+- Użytkownik nie mógł znaleźć guzika powiadomień. wszedł do domu- guzik może być dzwoneczkiem
+- ok
+- ok
+- ok
+- ok
+
+Użytkownik 2
+- ok
+- Użytkownik próbował dodać do grupy. po tym ok
+- Użytkownik wszedł do grupy
+- ok
+- ok
+- ok
+- ok
+
+Użytkownik 3
+- oczekiwanie na pokazywanie że które ulice/heatmapa wpływają awarie
+- ok
+-próbował dodać do grupy. poza tym ok
+- ok
+- ok
+- ok
+- ok
+- ok
+
+Użytkownik 4
+- ok
+- nie mógł znaleźć
+- ok
+- ok
+- ok
+- ok
+- ok
+
+Użytkownik 5
+- ok
+- ok, ale plus mylący na ekranie search
+- dzwonek za mało sugestywny
+- ok
+- ok
+- ok
+- ok
+
+10.2 Wnioski:
+- Przycisk powiadomień jest za mało jasny w użyciu - zostaje dodany toggle aby dać sugestie użytkownikom.
+- Użytkownicy klikali w blok usług zamiast w przycisk detali - przejście do detali zmienione na kliknięcie na blok powiązanej z nimi usługi.
+- Użytkownicy mieli problem ze zgłaszaniem awarii - dodany zostaje dodatkowy guzik do zgłaszania awarii
+- Użytkownicy nie wiedzieli co znaczy przycisk “szukaj” - nazwa zmieniona na “usługi”
+
+
+Przygotuj mi slajdy wraz z ich treścią. Robię w PowerPoint. Tam gdzie jest NOTE to zrób jak napisane. Prezentacja dla dwóch osób, max na 30 min, ale chcę koło 20-25 minut prezentacji.

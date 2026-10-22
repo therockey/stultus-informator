@@ -1,0 +1,46 @@
+Dziecko: 
+Chcę móc sprawdzać informacje bez spędzania długiego czasu w aplikacji, żeby się nie nudzić
+
+Chcę mieć więcej informacji o usłudze (czas trwania, powód) aby nie czekać na aplikacje podczas długich przerw
+
+Nie chce widzieć niektórych informacji (np.: wypadków) aby się nie martwić
+
+Student:
+Jako student chcę otrzymywać powiadomienia z wyprzedzeniem, żeby móc zaplanować swój dzień
+
+Jako student chcę móc sprawdzać mniej popularne strony (takie jak strona uczelni albo personalne projekty)
+
+Jako student chce mieć dostęp do alternatyw niektórych usług (np.: komunikacja miejska) żeby móc spełnić swoje obowiązki
+
+Jako student chcę mieć dostęp do wyłączania powiadomień o danych usługach, aby nie otrzymywać spamu.
+
+Młody dorosły:
+
+Jako młody dorosły chcę wiedzieć, czy przerwa wynika z awarii, konserwacji czy problemu lokalnego aby móc podjąć szybkie decyzje (np. zmiana planu dnia, zgłoszenie błędu).
+
+Jako młody dorosły chcę ustawić, które usługi i jakie obszary mnie interesują aby dostawać tylko te powiadomienia, które są dla mnie istotne.
+
+Jako młody dorosły który nie chce tracić czasu, chcę móc jednym przyciskiem zgłosić „u mnie też nie działa” aby szybko wesprzeć społeczność i zwiększyć dokładność raportu awarii.
+
+Dorosły:
+Jako dorosły chcę mieć jedno miejsce, w którym sprawdzę status usług aby nie tracić czasu na przeszukiwanie kilku aplikacji i stron.
+
+Jako dorosły, który nie lubi spamu chcę otrzymywać powiadomienia tylko o przerwach, które dotyczą moich lokalizacji i usług aby nie rozpraszać się zbędnymi informacjami.
+
+Jako dorosły chcę widzieć, czy przerwa dotyczy tylko mojego mieszkania, czy całej okolicy aby wiedzieć, czy problem zgłosić, czy po prostu poczekać.
+
+Jako dorosły użytkownik chcę mieć pewność, że informacje w aplikacji pochodzą z oficjalnych i sprawdzonych źródeł aby uniknąć nieporozumień i paniki.
+
+Jako dorosły chcę otrzymywać informację o planowanych wyłączeniach prądu, wody czy internetu z wyprzedzeniem aby móc się przygotować i nie zostać zaskoczonym.
+
+
+WSPÓLNE:
+Jako [student / młody dorosły] chcę otrzymywać natychmiastowe powiadomienia push o przerwach w działaniu usług aby nie musieć samodzielnie sprawdzać, co się stało, i od razu wiedzieć, że coś jest nie tak.
+
+Jako [dziecko / młody dorosły / dorosły] chcę mieć więcej informacji o usłudze (czas trwania, powód) aby nie czekać na aplikacje podczas długich przerw.
+
+Jako [student / młody dorosły / dorosły] chcę widzieć, ile osób w pobliżu zgłasza ten sam problem aby móc odróżnić prawdziwą awarię od problemu po mojej stronie.
+
+Jako [młody dorosły / dorosły] który mieszka w jednym miejscu, pracuje w innym i odwiedza rodzinę w jeszcze innym chcę móc śledzić przerwy dla kilku wybranych obszarów aby mieć pełen obraz sytuacji bez zmieniania ustawień.
+
+Jako [student / młody dorosły] chcę mieć dostęp do historii przerw i napraw aby móc usprawiedliwić spóźnienie/nieobecność oraz aby sprawdzić wiarygodność dostawców i lepiej planować korzystanie z usług.

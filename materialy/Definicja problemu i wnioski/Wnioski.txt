@@ -1,0 +1,23 @@
+Potencjalna grupa odbiorców: Ludzie używający zewnętrznych dostawców usług
+
+Charakteryzacja:
+
+Zajęci (aktywnie nie sprawdzają często)
+
+ 
+
+Forma aplikacji: aplikacja mobilna - powiadomienia push.
+
+Preferencje klientów - wnioski:
+
+Klienci chcą dostawać powiadomienia o podstawowych usługach (prąd, gaz, woda, internet), komunikacji miejskiej i drogach, pogodzie
+
+Klienci chcą zaznaczać ile chcą dostawać informacji (np. czy całe miasto, czy tylko własna droga)
+
+Klientów obchodzi przyczyna przerwy, szacowany czas napraw, czy przerwa jest awarią czy przerwą konserwacyjną
+
+Klienci chcą mieć opcje otrzymywania informacji o wielu miejscach poza swojej aktualnej lokalizacji
+
+Klienci nie chcą aktywnie musieć sprawdzać aplikacji - chcą otrzymywac powiadomienia o usługach
+
+Większość użytkowników chce miec możliwość wypełniania formy w przypadku awarii i mieć wgląd czy inni użytkownicy tez doświadczają problemu

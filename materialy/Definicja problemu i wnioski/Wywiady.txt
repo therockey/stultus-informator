@@ -1,0 +1,113 @@
+1. Kiedy ostatnio zdarzyło się że zabrakło usługi która była ci potrzebna?
+
+We wrześniu - brak prądu i internetu
+
+Przedwczoraj, o 22:00 - system PKP
+
+W wakacje - brak prądu w hotelu
+
+Miesiąc temu - awaria internetu internet
+
+Mniej więcej miesiąc temu - nieplanowane wyłączenie prądu, bez uprzedzenia
+
+Pół roku temu - planowane odcięcie wody, o którym wiedziałem dzięki karteczce na klatce
+
+2. Co zwykle robisz jako pierwszą czynność w przypadku braku medium/usługi?
+
+Sprawdzam na stronie dostawcy
+
+Nic (ten przypadek) - zmiana na alternatywe
+
+Próbuję uzyskać informacje od innego człowieka
+
+Pytam współlokatora - sprawdza strone dostawcy
+
+Chwilowo czekam, chyba że awaria/brak mediów się przeciąga to dopiero sprawdzam
+
+Szukam w Google czy coś wiadomo o awarii/wyłączeniu
+
+3. Jakie usługi powinny być do informacji (o czym chcesz być informowany/informowana)?
+
+Podstawowe zamkniete drogi, pogoda, alerty rcb
+
+Podstawowe, komunikacja publiczna (zamknięcia, awarie)
+
+Podstawowe
+
+Podstawowe
+
+Strony i media - w przypadku stron głównie te najbardziej niezbędne typu USOS czy biznesowe
+
+Media oraz strony (z możliwością podawania własnego linka)
+
+4. Jaki zakres informacji cię interesuje? (w przypadku komunikacji, innych usług)
+
+Częste miejsca
+
+Zaznaczane opcje (line, przystanki itd)
+
+5. Jakie informacje chcesz otrzymywać w przypadku przerwy w dostawie?
+
+Jak długo potrwa, postępy napraw
+
+Przyczyna, ETA
+
+Przyczyna, ETA
+
+Od, ETA, czy planowane
+
+Najważniejszy jest czas trwania awarii, obszar jest mało ważny (poza przypadkami gdzie informacja pojawia się z wyprzedzeniem); powód awarii/wyłączenia nieważny
+
+Najważniejszy jest czas trwania awarii (okno czasowe), powód też ważny, a obszar mało mnie interesuje
+
+6. Na jakiej platformie chciałbyś aby system był dostępny?
+
+SMS, aplikacja mobilna
+
+Aplikacja z powiadomieniami PUSH
+
+Aplikacja mobilna
+
+SMS - powiadomienia PUSH
+
+Chyba aplikacja mobilna, bo na stronę trzeba specjalnie wchodzić
+
+Aplikacja mobilna
+
+7. Czy chcesz otrzymywać powiadomienia tylko o swojej lokalizacji, czy też o innych miejscach?
+
+Tak, wybrane lokalizacje
+
+Ręcznie wybranych kilka lokalizacji
+
+Moja lokalizacja i dodatkowe interesujące
+
+Nie obchodzi mine
+
+Określić obszar, parę lokalizacji, ale te które mnie nie dotyczą sa nieważne
+
+Wystarczą tylko informacje o mojej lokacji, ale też fajne jakby można bylo dodawać ręcznie lokalizacje (multiple)
+
+8. Co byłoby najważniejsze w takiej aplikacji? Czego nie może zabraknąć?
+
+Powiadomienia
+
+Powiadomienia
+
+Wybieranie powiadomień (bez spamu), powiadomienia
+
+Powiadomienia
+
+9. Czy chesz miec opcje podawania informacji? Czy wierzysz informacje podawane przez innych użytkowników?
+
+Tak; wierzę użytkownikom
+
+Tak, pod warunkiem że dużo użytkowników będzie zgłaszać (forum i distinction)
+
+Nie, nie potrzebuję infomacji
+
+Tak
+
+W przypadku awarii / nieplanowanych przerw fajnie byłoby wiedzieć czy problem jest szerszy czy dotyczy tylko mnie
+
+Nie chciałoby mi się zgłaszać, ale funkcja ważna, bo fajnie wiedzieć czy awaria to faktycznie awaria
