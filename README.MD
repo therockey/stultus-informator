@@ -1,3 +1,8 @@
+## Dokumentacja
+
+[`dokumentacja-projektu.md`](dokumentacja-projektu.md) — główna, oficjalna dokumentacja projektu (wersja 1.0).
+[`AGENTS.md`](AGENTS.md) — wytyczne i kontekst projektu dla asystentów AI oraz nowych osób w zespole.
+
 ## Figma
 
 [link](https://www.figma.com/design/BKapbe0Dh1nDWRA3MGd26I/ICK-Informator?node-id=0-1&t=g6e6qhKL1YYunO6x-1)
