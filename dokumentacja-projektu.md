@@ -16,9 +16,9 @@ Projekt realizowany w tym semestrze jest **redesignem**, a nie budową aplikacji
 
 Podstawową metodą były **wywiady częściowo ustrukturyzowane** z potencjalnymi użytkownikami. Badania prowadzono w dwóch turach. Tura archiwalna zrealizowana została dwa semestry temu, na wcześniejszym kursie, i objęła sześć osób; jej wynikiem są notatki z odpowiedziami przypisanymi do pytań, bez metryczek rozmówców. Tura bieżąca jest prowadzona w tym semestrze, a jej uczestnicy są scharakteryzowani w tabeli zamieszczonej dalej w tym punkcie. Obie tury wykorzystują ten sam scenariusz, obejmujący dziewięć pytań: o ostatnią sytuację braku usługi, o pierwszą reakcję, o oczekiwany zakres informowanych usług, o rodzaj informacji potrzebnej w trakcie przerwy, o preferowaną platformę, o liczbę obserwowanych lokalizacji, o najważniejszą cechę aplikacji oraz o gotowość do zgłaszania awarii i zaufanie do danych pochodzących od innych użytkowników. Wywiady prowadzono indywidualnie, a odpowiedzi zapisywano w formie notatek.
 
-*TODO — uzupełnić metryki rozmówców tury archiwalnej, w tym jawny podział na osoby technicznie zaawansowane i „laików”, oraz opisać brakujące wywiady tury bieżącej. Notatki archiwalne zawierają wyłącznie odpowiedzi, bez danych o rozmówcach.*
+*TODO - uzupełnić metryki rozmówców tury archiwalnej, w tym jawny podział na osoby technicznie zaawansowane i „laików”, oraz opisać brakujące wywiady tury bieżącej. Notatki archiwalne zawierają wyłącznie odpowiedzi, bez danych o rozmówcach.*
 
-Tura archiwalna przyniosła odpowiedzi sześciu osób. Najczęściej opisywaną sytuacją był brak prądu — trzy wskazania, w tym jedno wyłączenie nieplanowane i bez uprzedzenia oraz jedno w hotelu — a następnie awaria internetu, wskazana dwa razy; po jednym razie wymieniono niedziałający system sprzedaży biletów PKP oraz planowane odcięcie wody. Tylko ta ostatnia sytuacja była zapowiedziana z wyprzedzeniem, i to kartką na klatce schodowej, co oznacza, że w pięciu z sześciu przypadków informacja nie dotarła do użytkownika przed zdarzeniem. Pierwsza reakcja była za każdym razem inna: sprawdzenie strony dostawcy, zmiana na rozwiązanie alternatywne bez szukania informacji, próba uzyskania informacji od innego człowieka, pytanie współlokatora sprawdzającego stronę dostawcy, odłożone sprawdzenie stanu dopiero po przeciągnięciu się przerwy oraz szukanie w wyszukiwarce doniesień o awarii. Żadna z odpowiedzi nie wskazywała jednego miejsca, w którym można sprawdzić stan wszystkich swoich usług, a połowa opisanych reakcji opierała się na pośredniku — innym człowieku albo wyszukiwarce — zamiast na źródle dostawcy.
+Tura archiwalna przyniosła odpowiedzi sześciu osób. Najczęściej opisywaną sytuacją był brak prądu - trzy wskazania, w tym jedno wyłączenie nieplanowane i bez uprzedzenia oraz jedno w hotelu - a następnie awaria internetu, wskazana dwa razy; po jednym razie wymieniono niedziałający system sprzedaży biletów PKP oraz planowane odcięcie wody. Tylko ta ostatnia sytuacja była zapowiedziana z wyprzedzeniem, i to kartką na klatce schodowej, co oznacza, że w pięciu z sześciu przypadków informacja nie dotarła do użytkownika przed zdarzeniem. Pierwsza reakcja była za każdym razem inna: sprawdzenie strony dostawcy, zmiana na rozwiązanie alternatywne bez szukania informacji, próba uzyskania informacji od innego człowieka, pytanie współlokatora sprawdzającego stronę dostawcy, odłożone sprawdzenie stanu dopiero po przeciągnięciu się przerwy oraz szukanie w wyszukiwarce doniesień o awarii. Żadna z odpowiedzi nie wskazywała jednego miejsca, w którym można sprawdzić stan wszystkich swoich usług, a połowa opisanych reakcji opierała się na pośredniku - innym człowieku albo wyszukiwarce - zamiast na źródle dostawcy.
 
 Oczekiwany zakres informacji obejmował przede wszystkim media podstawowe, czyli prąd, gaz, wodę i internet, wymienione w czterech z sześciu odpowiedzi, a obok nich komunikację miejską wraz z zamknięciami i awariami, zamknięte drogi, pogodę i alerty RCB. Dwie osoby rozszerzyły ten zakres na usługi cyfrowe, wskazując strony uczelniane oraz serwisy biznesowe jako te, o których chcą wiedzieć najwcześniej, i jedna z nich zaproponowała możliwość dodania własnego adresu. Szczegółowość w obrębie komunikacji miejskiej określono tylko w dwóch odpowiedziach: jako obserwację najczęściej używanych miejsc oraz jako wybór konkretnych linii i przystanków. Pozostałe osoby tego wątku nie rozwinęły.
 
@@ -32,14 +32,14 @@ Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer
 
 | Pytanie | Osoba | Odpowiedź |
 | :---- | :---- | :---- |
-| 1. Kiedy ostatnio zabrakło usługi, która była potrzebna? | 1 | wrzesień — brak prądu i internetu |
-|  | 2 | przedwczoraj, godz. 22:00 — awaria systemu PKP |
-|  | 3 | wakacje — brak prądu w hotelu |
-|  | 4 | miesiąc temu — awaria internetu |
-|  | 5 | miesiąc temu — nieplanowane wyłączenie prądu, bez uprzedzenia |
-|  | 6 | pół roku temu — planowane odcięcie wody, zapowiedziane kartką na klatce schodowej |
+| 1. Kiedy ostatnio zabrakło usługi, która była potrzebna? | 1 | wrzesień - brak prądu i internetu |
+|  | 2 | przedwczoraj, godz. 22:00 - awaria systemu PKP |
+|  | 3 | wakacje - brak prądu w hotelu |
+|  | 4 | miesiąc temu - awaria internetu |
+|  | 5 | miesiąc temu - nieplanowane wyłączenie prądu, bez uprzedzenia |
+|  | 6 | pół roku temu - planowane odcięcie wody, zapowiedziane kartką na klatce schodowej |
 | 2. Co zwykle robisz jako pierwszą czynność w przypadku braku medium lub usługi? | 1 | sprawdzenie strony dostawcy |
-|  | 2 | nic — zmiana na rozwiązanie alternatywne |
+|  | 2 | nic - zmiana na rozwiązanie alternatywne |
 |  | 3 | próba uzyskania informacji od innego człowieka |
 |  | 4 | pytanie współlokatora, który sprawdza stronę dostawcy |
 |  | 5 | chwilowe czekanie, sprawdzenie dopiero gdy przerwa się przeciąga |
@@ -52,7 +52,7 @@ Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer
 |  | 6 | media oraz strony, z możliwością podania własnego adresu |
 | 4. Jaki zakres informacji cię interesuje, na przykład w przypadku komunikacji miejskiej? | 1 | najczęściej używane miejsca |
 |  | 2 | możliwość zaznaczenia opcji, takich jak linie i przystanki |
-|  | — | *Pozostałe osoby tego pytania nie omówiły.* |
+|  | - | *Pozostałe osoby tego pytania nie omówiły.* |
 | 5. Jakie informacje chcesz otrzymywać w przypadku przerwy w dostawie? | 1 | jak długo potrwa przerwa, postępy naprawy |
 |  | 2 | przyczyna, szacowany czas zakończenia |
 |  | 3 | przyczyna, szacowany czas zakończenia |
@@ -75,7 +75,7 @@ Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer
 |  | 2 | powiadomienia |
 |  | 3 | możliwość wyboru powiadomień bez nadmiaru, powiadomienia |
 |  | 4 | powiadomienia |
-|  | — | *Pozostałe dwie osoby tego pytania nie omówiły.* |
+|  | - | *Pozostałe dwie osoby tego pytania nie omówiły.* |
 | 9. Czy chcesz mieć możliwość podawania informacji? Czy wierzysz informacjom podawanym przez innych użytkowników? | 1 | tak, ufa użytkownikom |
 |  | 2 | tak, pod warunkiem że zgłoszeń będzie dużo, wraz z rozróżnieniem sposobu ich potwierdzania |
 |  | 3 | nie, nie potrzebuje takich informacji |
@@ -83,7 +83,7 @@ Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer
 |  | 5 | przy awarii lub przerwie nieplanowanej warto wiedzieć, czy problem jest szerszy, czy dotyczy tylko tej osoby |
 |  | 6 | sam nie chciałby zgłaszać, ale funkcja jest ważna, aby wiedzieć, czy awaria rzeczywiście jest awarią |
 
-Z tury archiwalnej wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji — powiadomienie było jedynym elementem wskazanym we wszystkich czterech odpowiedziach na pytanie o cechę niezbędną. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych — informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, a obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia, nawet jeśli sami nie chcą wypełniać formularza.
+Z tury archiwalnej wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji - powiadomienie było jedynym elementem wskazanym we wszystkich czterech odpowiedziach na pytanie o cechę niezbędną. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych - informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, a obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia, nawet jeśli sami nie chcą wypełniać formularza.
 
 Tura bieżąca objęła trzy osoby różniące się trybem życia i sposobem korzystania z usług; zestawienie odpowiedzi przedstawia tabela.
 
@@ -102,13 +102,13 @@ Wywiady tury bieżącej potwierdzają część ustaleń archiwalnych i w dwóch 
 
 Korekta dotyczy także pierwszej reakcji, platformy i liczby miejsc. Dwie z trzech osób deklarują przeczekanie, a nie poszukiwanie informacji, i tylko jedna szuka rozwiązania zastępczego, co oznacza, że przerwa musi trwać wystarczająco długo, aby użytkownik w ogóle sięgnął po informację. Jedna osoba wskazała komputer, jedna stronę internetową w telefonie, a jedna aplikację mobilną, przy czym dwie z trzech chcą śledzić wyłącznie własną lokalizację. Obserwowanie wielu miejsc pozostaje zatem potrzebne, ale nie jest uniwersalne, a powiadomienie push nie jest jedynym oczekiwanym kanałem dotarcia. Nowym wątkiem, którego tura archiwalna nie zawierała, jest oczekiwanie rozwiązań alternatywnych w trakcie przerwy oraz potwierdzenia, że awaria jest już znana dostawcy.
 
-Zestawienie obu tur daje wspólny rdzeń wymagań: powiadomienie zamiast sprawdzania, czas trwania i szacowany czas naprawy jako najważniejsza treść komunikatu, kontrola nad zakresem obserwowanych usług i miejsc oraz informacja o tym, czy problem dotyczy tylko jednej osoby. Różnice — wiarygodność źródła, rozwiązania alternatywne i kanał dotarcia — zawężają ten rdzeń i uzasadniają podział funkcjonalności przyjęty w rozdziale 3.
+Zestawienie obu tur daje wspólny rdzeń wymagań: powiadomienie zamiast sprawdzania, czas trwania i szacowany czas naprawy jako najważniejsza treść komunikatu, kontrola nad zakresem obserwowanych usług i miejsc oraz informacja o tym, czy problem dotyczy tylko jednej osoby. Różnice - wiarygodność źródła, rozwiązania alternatywne i kanał dotarcia - zawężają ten rdzeń i uzasadniają podział funkcjonalności przyjęty w rozdziale 3.
 
 Uzupełniającym źródłem wiedzy jest **analiza dwóch serwisów konkurencyjnych** przeprowadzona metodą przeglądu heurystycznego oraz **testy moderowane makiety cyfrowej** z pięcioma użytkownikami i siedmioma zadaniami, wykonane dwa semestry temu, na etapie projektowania makiety. Testy ujawniły między innymi, że przycisk powiadomień był zbyt mało czytelny, użytkownicy klikali w blok usługi zamiast w przycisk detali, mieli trudność ze znalezieniem funkcji zgłaszania awarii, a nazwa zakładki „Szukaj” nie kojarzyła się z listą usług. Wnioski te stanowią uzasadnienie zakresu poszczególnych funkcjonalności w rozdziale 3 oraz podstawę poprawek interfejsu.
 
 ### 2.2 Cel aplikacji
 
-Celem aplikacji jest dostarczenie użytkownikowi w jednym miejscu aktualnej informacji o przerwach w dostawach mediów i usług oraz o zakłóceniach w działaniu usług cyfrowych i komunikacyjnych, w sposób, który nie wymaga od niego systematycznego sprawdzania stanu. Aplikacja ma odpowiadać na trzy pytania zadawane w momencie awarii: czy to dotyczy mnie, jak długo to potrwa i co mogę zrobić w zamian. Odpowiedź na pierwsze pytanie budowana jest z danych o lokalizacji i zasięgu przerwy, na drugie — z okna czasowego, szacowanego czasu naprawy i historii podobnych zdarzeń, na trzecie — z propozycji alternatyw dla usług komunikacyjnych oraz z informacji o usługach, które w danej chwili działają prawidłowo.
+Celem aplikacji jest dostarczenie użytkownikowi w jednym miejscu aktualnej informacji o przerwach w dostawach mediów i usług oraz o zakłóceniach w działaniu usług cyfrowych i komunikacyjnych, w sposób, który nie wymaga od niego systematycznego sprawdzania stanu. Aplikacja ma odpowiadać na trzy pytania zadawane w momencie awarii: czy to dotyczy mnie, jak długo to potrwa i co mogę zrobić w zamian. Odpowiedź na pierwsze pytanie budowana jest z danych o lokalizacji i zasięgu przerwy, na drugie - z okna czasowego, szacowanego czasu naprawy i historii podobnych zdarzeń, na trzecie - z propozycji alternatyw dla usług komunikacyjnych oraz z informacji o usługach, które w danej chwili działają prawidłowo.
 
 Cel drugi, równie istotny, wynika z wariantu redesignu: aplikacja ma być zrozumiała także dla użytkowników o niskim zaznajomieniu z technologią oraz dla dzieci, których nie interesują techniczne szczegóły, a które potrzebują krótkiej i spokojnej informacji. Oznacza to ograniczenie liczby elementów na ekranie, rezygnację z żargonu na rzecz słownika pojęć oraz możliwość ukrycia treści, które mogą niepokoić.
 
@@ -120,7 +120,7 @@ Do zadań obsługiwanych dodatkowo należą: dodanie do katalogu usługi spoza b
 
 ### 2.4 Docelowa grupa użytkowników
 
-Grupą docelową są osoby korzystające z usług zewnętrznych dostawców: energii elektrycznej, gazu, wody, internetu, komunikacji miejskiej, dróg oraz usług cyfrowych. Wspólną cechą tej grupy jest brak czasu i niechęć do aktywnego monitorowania stanu usług — wszyscy rozmówcy z wywiadów deklarowali, że sprawdzają informacje dopiero wtedy, gdy coś przestanie działać.
+Grupą docelową są osoby korzystające z usług zewnętrznych dostawców: energii elektrycznej, gazu, wody, internetu, komunikacji miejskiej, dróg oraz usług cyfrowych. Wspólną cechą tej grupy jest brak czasu i niechęć do aktywnego monitorowania stanu usług - wszyscy rozmówcy z wywiadów deklarowali, że sprawdzają informacje dopiero wtedy, gdy coś przestanie działać.
 
 W obrębie grupy wyróżniono cztery profile: dzieci i młodzież w wieku szkolnym, studentów, młodych dorosłych oraz dorosłych, w tym osoby starsze. Wymaganie instrukcji, aby potencjalnymi użytkownikami były dzieci i/lub osoby starsze, jest spełnione przez profil dziecka i nastolatka, a dodatkowo aplikacja jest projektowana dla osób dorosłych o niskim zaznajomieniu z technologią, do których w praktyce należą osoby starsze. Konsekwencją jest wymaganie dostępności opisane w rozdziale 3 jako funkcjonalność F8, a także rezygnacja z gęstych ekranów analitycznych na rzecz krótkich komunikatów.
 
@@ -138,11 +138,11 @@ Rozdział opisuje, kim są użytkownicy, w jakim środowisku będą pracować z 
 
 #### 3.1.1 Cechy użytkowników
 
-Cechą wspólną wszystkich profili jest ograniczona uwaga poświęcana usługom dostawców: użytkownik sięga po informację dopiero pod wpływem zdarzenia, najczęściej w sytuacji, gdy brakuje prądu, wody, internetu albo połączenia. Wiedza techniczna jest bardzo zróżnicowana — od uczniów biegle poruszających się w aplikacjach mobilnych po dorosłych, którzy deklarują przeciętne lub niskie zaznajomienie z oprogramowaniem. Wszyscy badani oczekują informacji krótkiej i jednoznacznej, a nadmiar szczegółów technicznych uznają za obciążenie. Istotną cechą jest też mobilność: część użytkowników przebywa w ciągu dnia w kilku miejscach (dom, uczelnia lub praca, miejsce zamieszkania rodziny), dlatego informacja przypisana wyłącznie do bieżącej lokalizacji jest niewystarczająca.
+Cechą wspólną wszystkich profili jest ograniczona uwaga poświęcana usługom dostawców: użytkownik sięga po informację dopiero pod wpływem zdarzenia, najczęściej w sytuacji, gdy brakuje prądu, wody, internetu albo połączenia. Wiedza techniczna jest bardzo zróżnicowana - od uczniów biegle poruszających się w aplikacjach mobilnych po dorosłych, którzy deklarują przeciętne lub niskie zaznajomienie z oprogramowaniem. Wszyscy badani oczekują informacji krótkiej i jednoznacznej, a nadmiar szczegółów technicznych uznają za obciążenie. Istotną cechą jest też mobilność: część użytkowników przebywa w ciągu dnia w kilku miejscach (dom, uczelnia lub praca, miejsce zamieszkania rodziny), dlatego informacja przypisana wyłącznie do bieżącej lokalizacji jest niewystarczająca.
 
 #### 3.1.2 Elementy i aspekty środowiska użycia
 
-Środowisko użycia jest zmienne i często nieprzyjazne. Przerwa w dostawie internetu oznacza, że aplikacja działa w warunkach ograniczonej łączności, co nakłada wymaganie pracy na danych ostatnio pobranych i czytelnego oznaczenia informacji nieaktualnej. Przerwa w dostawie prądu wiąże się z kolei z rozładowanym telefonem, więc czas do informacji musi być krótki. Użytkownik sprawdza status w pośpiechu — w drodze, przed wyjściem z domu, w trakcie dojazdu — często jedną ręką i w złych warunkach oświetleniowych, co uzasadnia duże cele dotykowe i wysoki kontrast. Część sytuacji ma charakter społeczny: informacja bywa potrzebna do usprawiedliwienia spóźnienia wobec wykładowcy lub pracodawcy, co czyni wiarygodność i możliwość udokumentowania przerwy osobnym wymaganiem. W tle występuje też kontekst emocjonalny: użytkownicy, zwłaszcza dzieci, deklarują niechęć do treści alarmujących, dlatego środowisko użycia obejmuje także potrzebę ograniczenia bodźców niepokojących.
+Środowisko użycia jest zmienne i często nieprzyjazne. Przerwa w dostawie internetu oznacza, że aplikacja działa w warunkach ograniczonej łączności, co nakłada wymaganie pracy na danych ostatnio pobranych i czytelnego oznaczenia informacji nieaktualnej. Przerwa w dostawie prądu wiąże się z kolei z rozładowanym telefonem, więc czas do informacji musi być krótki. Użytkownik sprawdza status w pośpiechu - w drodze, przed wyjściem z domu, w trakcie dojazdu - często jedną ręką i w złych warunkach oświetleniowych, co uzasadnia duże cele dotykowe i wysoki kontrast. Część sytuacji ma charakter społeczny: informacja bywa potrzebna do usprawiedliwienia spóźnienia wobec wykładowcy lub pracodawcy, co czyni wiarygodność i możliwość udokumentowania przerwy osobnym wymaganiem. W tle występuje też kontekst emocjonalny: użytkownicy, zwłaszcza dzieci, deklarują niechęć do treści alarmujących, dlatego środowisko użycia obejmuje także potrzebę ograniczenia bodźców niepokojących.
 
 #### 3.1.3 Persony
 
@@ -192,27 +192,27 @@ Wybór zakresu opiera się na trzech przesłankach: historyjkach użytkownika z 
 
 #### 3.3.1 Obszar: przeglądanie usług
 
-**F1 — Katalog i wyszukiwanie usług.** 
+**F1 - Katalog i wyszukiwanie usług.** 
 
 * Osoba odpowiedzialna: Natalia Suda
 
-Funkcjonalność obejmuje ekran „Usługi”, na którym użytkownik wyszukuje dostawcę lub usługę, przegląda kafle kategorii (Media, Internet, Komunikacja, Drogi, Usługi online) i widzi sekcje „Ostatnio sprawdzane” oraz „Twoje usługi”. Zmiana polega na poprawie tego, co w testach okazało się nieczytelne — nazwa zakładki „Szukaj” zostaje zastąpiona nazwą „Usługi”, a wyniki wyszukiwania pozwalają od razu dodać usługę do grupy — oraz na rozszerzeniu zakresu o ukrywanie wybranych kategorii, wyszukiwanie odporne na literówki i dodawanie usług spoza katalogu przez adres URL. Rozszerzenie odpowiada historyjkom o dostępie do mniej popularnych stron, takich jak strona uczelni czy projekt personalny, oraz potrzebie ograniczenia treści nieistotnych. Kryterium akceptacji zakłada znalezienie usługi w czasie do piętnastu sekund i skuteczność na poziomie dziewięćdziesięciu procent.
+Funkcjonalność obejmuje ekran „Usługi”, na którym użytkownik wyszukuje dostawcę lub usługę, przegląda kafle kategorii (Media, Internet, Komunikacja, Drogi, Usługi online) i widzi sekcje „Ostatnio sprawdzane” oraz „Twoje usługi”. Zmiana polega na poprawie tego, co w testach okazało się nieczytelne - nazwa zakładki „Szukaj” zostaje zastąpiona nazwą „Usługi”, a wyniki wyszukiwania pozwalają od razu dodać usługę do grupy - oraz na rozszerzeniu zakresu o ukrywanie wybranych kategorii, wyszukiwanie odporne na literówki i dodawanie usług spoza katalogu przez adres URL. Rozszerzenie odpowiada historyjkom o dostępie do mniej popularnych stron, takich jak strona uczelni czy projekt personalny, oraz potrzebie ograniczenia treści nieistotnych. Kryterium akceptacji zakłada znalezienie usługi w czasie do piętnastu sekund i skuteczność na poziomie dziewięćdziesięciu procent.
 
-**F2 — Karta statusu i skala przerwy.**
+**F2 - Karta statusu i skala przerwy.**
 
 * Osoba odpowiedzialna: Natalia Suda
 
-Funkcjonalność obejmuje ekran szczegółów usługi: status w jednym z trzech stanów (działa, przerwa, problem lokalny) opisany jednocześnie tekstem, ikoną i kolorem, przyczynę przerwy, okno czasowe, szacowany czas naprawy, postęp prac, informację o źródle danych oraz zasięg przerwy. Zmiana naprawia problem ujawniony w testach, w których użytkownicy klikali w blok usługi zamiast w przycisk detali — teraz kliknięcie w blok otwiera szczegóły. Rozszerzeniem jest skala przerwy: liczba zgłoszeń w okolicy z ostatniej godziny oraz mapa z zaznaczonymi ulicami objętymi awarią, z przełącznikiem między widokiem lokalnym a widokiem całej usługi. To rozszerzenie odpowiada wprost na oczekiwanie zgłoszone przez jednego z uczestników testów oraz na historyjki o rozróżnieniu problemu lokalnego od powszechnego.
+Funkcjonalność obejmuje ekran szczegółów usługi: status w jednym z trzech stanów (działa, przerwa, problem lokalny) opisany jednocześnie tekstem, ikoną i kolorem, przyczynę przerwy, okno czasowe, szacowany czas naprawy, postęp prac, informację o źródle danych oraz zasięg przerwy. Zmiana naprawia problem ujawniony w testach, w których użytkownicy klikali w blok usługi zamiast w przycisk detali - teraz kliknięcie w blok otwiera szczegóły. Rozszerzeniem jest skala przerwy: liczba zgłoszeń w okolicy z ostatniej godziny oraz mapa z zaznaczonymi ulicami objętymi awarią, z przełącznikiem między widokiem lokalnym a widokiem całej usługi. To rozszerzenie odpowiada wprost na oczekiwanie zgłoszone przez jednego z uczestników testów oraz na historyjki o rozróżnieniu problemu lokalnego od powszechnego.
 
 #### 3.3.2 Obszar: docieranie do informacji
 
-**F3 — Powiadomienia i reguły alertów.**
+**F3 - Powiadomienia i reguły alertów.**
 
 * Osoba odpowiedzialna: Hubert Tański
 
-Funkcjonalność obejmuje konfigurację powiadomień dla usług i grup oraz reguły określające, kiedy powiadomienie ma zostać wysłane: tylko przerwy planowane lub tylko awarie, próg czasu trwania, wyprzedzenie dla przerw planowanych (dwie godziny lub jeden dzień) i ciche godziny. Użytkownik wybiera też kanał — powiadomienie push lub SMS. Zmiana dotyczy czytelności: w miejsce mało sugestywnego dzwonka pojawia się jawny przełącznik widoczny na karcie usługi i na liście grupy, a powiadomieniami można sterować zbiorczo dla całej grupy bez usuwania z niej usług. Rozszerzenie wynika z historyjek o unikaniu spamu i o powiadomieniach z wyprzedzeniem; kryterium akceptacji zakłada, że wszyscy uczestnicy testu wskażą przełącznik w ciągu pięciu sekund, a konfiguracja reguły zajmie nie więcej niż dziewięćdziesiąt sekund.
+Funkcjonalność obejmuje konfigurację powiadomień dla usług i grup oraz reguły określające, kiedy powiadomienie ma zostać wysłane: tylko przerwy planowane lub tylko awarie, próg czasu trwania, wyprzedzenie dla przerw planowanych (dwie godziny lub jeden dzień) i ciche godziny. Użytkownik wybiera też kanał - powiadomienie push lub SMS. Zmiana dotyczy czytelności: w miejsce mało sugestywnego dzwonka pojawia się jawny przełącznik widoczny na karcie usługi i na liście grupy, a powiadomieniami można sterować zbiorczo dla całej grupy bez usuwania z niej usług. Rozszerzenie wynika z historyjek o unikaniu spamu i o powiadomieniach z wyprzedzeniem; kryterium akceptacji zakłada, że wszyscy uczestnicy testu wskażą przełącznik w ciągu pięciu sekund, a konfiguracja reguły zajmie nie więcej niż dziewięćdziesiąt sekund.
 
-**F4 — Lokalizacje i grupy usług.**
+**F4 - Lokalizacje i grupy usług.**
 
 * Osoba odpowiedzialna: Hubert Tański
 
@@ -220,27 +220,27 @@ Funkcjonalność obejmuje ekran „Moje grupy” wraz z zarządzaniem lokalizacj
 
 #### 3.3.3 Obszar: zaufanie i społeczność
 
-**F5 — Zgłaszanie i potwierdzanie awarii.**
+**F5 - Zgłaszanie i potwierdzanie awarii.**
 
 * Osoba odpowiedzialna: Kacper Tomczyk
 
-Funkcjonalność obejmuje formularz zgłoszenia dostępny na jednym ekranie — z usługą wstępnie wypełnioną, presetami czasu trwania (piętnaście, trzydzieści, sześćdziesiąt minut) i opcjonalną lokalizacją — a także tryb potwierdzenia cudzego zgłoszenia jednym przyciskiem „u mnie też nie działa”, bez wypełniania formularza. Do funkcjonalności należy też widoczność liczby zgłoszeń w okolicy, próg uznania zgłoszenia za potwierdzone przez społeczność, oznaczenie zgłoszeń niepotwierdzonych oraz limit i możliwość wycofania własnego zgłoszenia. Zmiana dotyczy dostępności funkcji: w testach użytkownicy nie potrafili jej znaleźć, dlatego wejście do zgłoszenia pojawia się w trzech miejscach — na karcie usługi, na liście usług i w powiadomieniu. Kryterium akceptacji zakłada samodzielne znalezienie funkcji przez dziewięćdziesiąt procent uczestników i czas zgłoszenia do dwudziestu sekund.
+Funkcjonalność obejmuje formularz zgłoszenia dostępny na jednym ekranie - z usługą wstępnie wypełnioną, presetami czasu trwania (piętnaście, trzydzieści, sześćdziesiąt minut) i opcjonalną lokalizacją - a także tryb potwierdzenia cudzego zgłoszenia jednym przyciskiem „u mnie też nie działa”, bez wypełniania formularza. Do funkcjonalności należy też widoczność liczby zgłoszeń w okolicy, próg uznania zgłoszenia za potwierdzone przez społeczność, oznaczenie zgłoszeń niepotwierdzonych oraz limit i możliwość wycofania własnego zgłoszenia. Zmiana dotyczy dostępności funkcji: w testach użytkownicy nie potrafili jej znaleźć, dlatego wejście do zgłoszenia pojawia się w trzech miejscach - na karcie usługi, na liście usług i w powiadomieniu. Kryterium akceptacji zakłada samodzielne znalezienie funkcji przez dziewięćdziesiąt procent uczestników i czas zgłoszenia do dwudziestu sekund.
 
-**F6 — Historia przerw i wiarygodność dostawcy.**
+**F6 - Historia przerw i wiarygodność dostawcy.**
 
 * Osoba odpowiedzialna: Kacper Tomczyk
 
-Funkcjonalność rozwija ekran historii awarii, który w makiecie istniał w szczątkowej formie. Użytkownik widzi listę przerw z datą, czasem trwania, przyczyną, typem (planowana lub nieplanowana) i źródłem, wykres zgłoszeń w zakresach siedmiu dni, trzydziestu dni i trzech miesięcy z nałożonymi oficjalnymi przerwami, a także wskaźnik niezawodności dostawcy obejmujący liczbę przerw, średni czas trwania i udział przerw planowanych. Nowym elementem jest „dowód przerwy” — generowane podsumowanie z datą, godzinami i nazwą dostawcy, możliwe do przedstawienia wykładowcy lub pracodawcy. Rozszerzenie wynika z historyjki o usprawiedliwieniu spóźnienia i z potrzeby oceny wiarygodności dostawcy; w prototypie dane historyczne są demonstracyjne i oznaczone jako przykładowe.
+Funkcjonalność rozwija ekran historii awarii, który w makiecie istniał w szczątkowej formie. Użytkownik widzi listę przerw z datą, czasem trwania, przyczyną, typem (planowana lub nieplanowana) i źródłem, wykres zgłoszeń w zakresach siedmiu dni, trzydziestu dni i trzech miesięcy z nałożonymi oficjalnymi przerwami, a także wskaźnik niezawodności dostawcy obejmujący liczbę przerw, średni czas trwania i udział przerw planowanych. Nowym elementem jest „dowód przerwy” - generowane podsumowanie z datą, godzinami i nazwą dostawcy, możliwe do przedstawienia wykładowcy lub pracodawcy. Rozszerzenie wynika z historyjki o usprawiedliwieniu spóźnienia i z potrzeby oceny wiarygodności dostawcy; w prototypie dane historyczne są demonstracyjne i oznaczone jako przykładowe.
 
 #### 3.3.4 Obszar: mobilność i dostępność
 
-**F7 — Komunikacja miejska i alternatywne połączenia.**
+**F7 - Komunikacja miejska i alternatywne połączenia.**
 
 * Osoba odpowiedzialna: Jakub Borsuk
 
-Funkcjonalność obejmuje ekran linii i przystanku: status (punktualnie, opóźnienie, objazd, awaria), mapę przystanków na trasie oraz — co stanowi właściwe rozszerzenie — propozycję alternatywnego połączenia na wybrany przystanek wraz z porównaniem czasu i liczby przesiadek. Alternatywa jest dostępna w najwyżej dwóch krokach od statusu linii. Linię można dodać do grupy i objąć regułami powiadomień, co spina tę funkcjonalność z F3 i F4. Rozszerzenie odpowiada historyjce studenta, który potrzebuje alternatywy, aby wywiązać się z obowiązków; dotychczasowy wątek komunikacji kończył się na statusie i opóźnieniu.
+Funkcjonalność obejmuje ekran linii i przystanku: status (punktualnie, opóźnienie, objazd, awaria), mapę przystanków na trasie oraz - co stanowi właściwe rozszerzenie - propozycję alternatywnego połączenia na wybrany przystanek wraz z porównaniem czasu i liczby przesiadek. Alternatywa jest dostępna w najwyżej dwóch krokach od statusu linii. Linię można dodać do grupy i objąć regułami powiadomień, co spina tę funkcjonalność z F3 i F4. Rozszerzenie odpowiada historyjce studenta, który potrzebuje alternatywy, aby wywiązać się z obowiązków; dotychczasowy wątek komunikacji kończył się na statusie i opóźnieniu.
 
-**F8 — Tryb uproszczony i dostępność.**
+**F8 - Tryb uproszczony i dostępność.**
 
 * Osoba odpowiedzialna: Jakub Borsuk
 
@@ -294,7 +294,7 @@ potrzeby wspólne (punkt 3.2.1) oraz wynikające z testów makiety i z instrukcj
 powiązania oceniono w skali 9 (silne), 3 (średnie), 1 (słabe); puste pole oznacza brak powiązania. Ważność
 charakterystyki jest sumą iloczynów wag i siły powiązań.
 
-*TODO — zweryfikować wagi na podstawie ocen ważności zebranych w wywiadach.*
+*TODO - zweryfikować wagi na podstawie ocen ważności zebranych w wywiadach.*
 
 **Wymagania użytkowników (WHAT)**
 
@@ -367,7 +367,7 @@ na wymaganie dostępności, dlatego nie podlega redukcji.
 
 *TODO.*
 
-## 6. Poprawa interfejsu i implementacja
+## 6. Poprawa interfejsu
 
 *TODO.*
 

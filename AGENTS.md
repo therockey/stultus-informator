@@ -52,7 +52,21 @@ wspólne dla obu wariantów instrukcji, rozgałęzienie następuje od etapu 4.
 
 Głównym artefaktem jest **`dokumentacja-projektu.md`** — oficjalna dokumentacja projektu, którą użytkownik
 dostarcza prowadzącej w coraz nowszych wersjach; każda wersja odpowiada kolejnemu etapowi. Dokument prowadzi
-ciągłą numerację rozdziałów 1–10, odpowiadających kolejno punktom instrukcji `projekt_pdu_redesign.pdf`.
+ciągłą numerację rozdziałów **1–9**, odpowiadających kolejno dziewięciu punktom instrukcji
+`projekt_pdu_redesign.pdf`:
+
+1. Temat i cel projektu
+2. Specyfikacja projektu
+3. Kontekst i przypadki użycia
+4. Scenariusze badań
+5. Badania użyteczności
+6. Poprawa interfejsu
+7. Ponowne badania z użytkownikami
+8. Ocena użyteczności przez użytkowników
+9. Ocena użyteczności
+
+Tytuły rozdziałów powtarzają brzmienie punktów instrukcji — nie rozbudowuj ich i nie dodawaj rozdziałów
+spoza tej listy.
 Dokument jest przeznaczony wyłącznie dla prowadzącej: nie umieszczaj w nim metryki, spisu treści, tabel
 mapowania na instrukcję, historii wersji, odnośników do plików roboczych ani notatek o organizacji pracy.
 
@@ -67,8 +81,8 @@ mapowania na instrukcję, historii wersji, odnośników do plików roboczych ani
 | `README.MD` | odnośniki do makiety w Figmie i tablicy Trello |
 | `materialy/` | informacje zbierane na bieżąco w tym semestrze: notatki z badań, nowe wywiady, materiały z zajęć, uzgodnienia zespołu |
 | `materialy/archival/` | archiwum sprzed dwóch semestrów, z pierwotnej pracy nad projektem na wcześniejszym kursie (zakres kończył się na makiecie interaktywnej): `prompt ICK.txt` (cały ówczesny przebieg prac — analiza konkurencji, persony, historyjki, przypadki użycia, prototyp, scenariusze i wyniki testów), wywiady i wnioski (`Definicja problemu i wnioski/`), `historyjki.txt`, `REQUIREMENTS.md` |
-| `projekt_pdu.pdf` | instrukcja projektu dla wariantu NOWY PROJEKT (etapy 1–3 identyczne) — tylko do odczytu |
-| `../projekt_pdu_redesign.pdf` | instrukcja projektu dla wariantu REDESIGN — tylko do odczytu |
+| `projekt_pdu_redesign.pdf` | instrukcja projektu dla wariantu REDESIGN, czyli właściwa dla tego projektu — tylko do odczytu |
+| `projekt_pdu.pdf` | instrukcja projektu dla wariantu NOWY PROJEKT (punkty 1–3 identyczne z REDESIGN, różnice od punktu 4) — tylko do odczytu, nie jest podstawą tego projektu |
 | `../wyklady/wNN.pdf` | materiały z wykładów, pojawiają się na bieżąco — tylko do odczytu |
 | `../raporty/NN_nazwa-etapu/` | raporty etapowe w LaTeX, tworzone według zasad z `../AGENT.md` |
 
@@ -109,11 +123,13 @@ i nic więcej. Lepiej zostawić uczciwe TODO niż wiarygodnie wyglądającą fik
 
 ## 5. Struktura dokumentacji i zasady jej rozwoju
 
-Rozdziały 1–4 są wypełnione treścią. Punkty 3.7, 3.8 oraz rozdziały 5–10 zawierają wyłącznie kursywny
-znacznik `*TODO.*`, ponieważ odpowiadają etapom, które dopiero będą realizowane — nie dopisuj do nich opisów
-planu, metod ani zapowiedzi. Rozwijając dokument, uzupełniaj istniejące rozdziały zamiast dopisywać nowe na
-końcu; struktura jest odwzorowaniem instrukcji i nie powinna dryfować. Podział odpowiedzialności znajduje
-się w punkcie 4.7, a nie w dodatku.
+Rozdziały 1–3 są wypełnione treścią, a rozdziały 4–9 zawierają wyłącznie kursywny znacznik `*TODO.*`,
+ponieważ odpowiadają etapom, które dopiero będą realizowane — nie dopisuj do nich opisów planu, metod ani
+zapowiedzi. Rozwijając dokument, uzupełniaj istniejące rozdziały zamiast dopisywać nowe na końcu; struktura
+jest odwzorowaniem dziewięciu punktów instrukcji i nie powinna dryfować. Po wypełnieniu rozdziału odtwórz
+w nim numerację podpunktów z instrukcji (4.1–4.4, 5.1–5.2, 6.1 z podpunktami a–c, 6.2, 6.3, 7.1–7.2,
+8.1–8.2, 9.1–9.2), aby każdy wymóg instrukcji miał swoje miejsce. Podział odpowiedzialności jest podany przy
+funkcjonalnościach w punkcie 3.3, a nie w dodatku.
 
 Dokument opisuje wyłącznie to, co zespół faktycznie wykonał. Wyniki badań, miary i wnioski nigdy nie są
 pisane z wyprzedzeniem.
@@ -146,10 +162,10 @@ instrukcji odpowiada rozdział dokumentu.
 Nie zmieniaj wariantu projektu na „nowy projekt” i nie proponuj rozwiązań zakładających budowę aplikacji
 od zera; punktem wyjścia jest zawsze istniejąca makieta i jej wyniki badań.
 
-Nie usuwaj rozdziałów 5–10 tylko dlatego, że zawierają `TODO`; są one kontraktem wobec kolejnych etapów.
+Nie usuwaj rozdziałów 4–9 tylko dlatego, że zawierają `TODO`; są one kontraktem wobec kolejnych etapów.
 
-Nie dodawaj funkcji spoza zakresu z rozdziału 4.6 (asystenci domowi, grywalizacja, funkcje społecznościowe,
-płatności, automatyczne zgłoszenia do dostawców) bez decyzji zespołu.
+Nie dodawaj funkcji spoza zakresu opisanego w punkcie 3.3.6 (asystenci domowi, grywalizacja, funkcje
+społecznościowe, płatności, automatyczne zgłoszenia do dostawców) bez decyzji zespołu.
 
 Nie twórz plików „na zapas” ani nie zmieniaj nazw istniejących plików bez zgody użytkownika.
 
