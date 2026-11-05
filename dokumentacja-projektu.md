@@ -14,9 +14,78 @@ Projekt realizowany w tym semestrze jest **redesignem**, a nie budową aplikacji
 
 ### 2.1 Metody zbierania potrzeb i wnioski z badań
 
-Podstawową metodą były **wywiady częściowo ustrukturyzowane** z potencjalnymi użytkownikami. Scenariusz obejmował dziewięć pytań: o ostatnią sytuację braku usługi, o pierwszą reakcję, o oczekiwany zakres informowanych usług, o rodzaj informacji potrzebnej w trakcie przerwy, o preferowaną platformę, o liczbę obserwowanych lokalizacji, o najważniejszą cechę aplikacji oraz o gotowość do zgłaszania awarii i zaufanie do danych pochodzących od innych użytkowników. Wywiady prowadzono indywidualnie, a odpowiedzi zapisywano w formie notatek.
+Podstawową metodą były **wywiady częściowo ustrukturyzowane** z potencjalnymi użytkownikami. Badania prowadzono w dwóch turach. Tura archiwalna zrealizowana została dwa semestry temu, na wcześniejszym kursie, i objęła sześć osób; jej wynikiem są notatki z odpowiedziami przypisanymi do pytań, bez metryczek rozmówców. Tura bieżąca jest prowadzona w tym semestrze, a jej uczestnicy są scharakteryzowani w tabeli zamieszczonej dalej w tym punkcie. Obie tury wykorzystują ten sam scenariusz, obejmujący dziewięć pytań: o ostatnią sytuację braku usługi, o pierwszą reakcję, o oczekiwany zakres informowanych usług, o rodzaj informacji potrzebnej w trakcie przerwy, o preferowaną platformę, o liczbę obserwowanych lokalizacji, o najważniejszą cechę aplikacji oraz o gotowość do zgłaszania awarii i zaufanie do danych pochodzących od innych użytkowników. Wywiady prowadzono indywidualnie, a odpowiedzi zapisywano w formie notatek.
 
-*TODO — uzupełnić brakujące wywiady oraz opisy rozmówców. Wprost napisać o poprzednich wywiadach - jawny podział między wywiadami z grupą technicznie zaawansowaną i “laikową”*
+*TODO — uzupełnić metryki rozmówców tury archiwalnej, w tym jawny podział na osoby technicznie zaawansowane i „laików”, oraz opisać brakujące wywiady tury bieżącej. Notatki archiwalne zawierają wyłącznie odpowiedzi, bez danych o rozmówcach.*
+
+Tura archiwalna przyniosła odpowiedzi sześciu osób. Najczęściej opisywaną sytuacją był brak prądu — trzy wskazania, w tym jedno wyłączenie nieplanowane i bez uprzedzenia oraz jedno w hotelu — a następnie awaria internetu, wskazana dwa razy; po jednym razie wymieniono niedziałający system sprzedaży biletów PKP oraz planowane odcięcie wody. Tylko ta ostatnia sytuacja była zapowiedziana z wyprzedzeniem, i to kartką na klatce schodowej, co oznacza, że w pięciu z sześciu przypadków informacja nie dotarła do użytkownika przed zdarzeniem. Pierwsza reakcja była za każdym razem inna: sprawdzenie strony dostawcy, zmiana na rozwiązanie alternatywne bez szukania informacji, próba uzyskania informacji od innego człowieka, pytanie współlokatora sprawdzającego stronę dostawcy, odłożone sprawdzenie stanu dopiero po przeciągnięciu się przerwy oraz szukanie w wyszukiwarce doniesień o awarii. Żadna z odpowiedzi nie wskazywała jednego miejsca, w którym można sprawdzić stan wszystkich swoich usług, a połowa opisanych reakcji opierała się na pośredniku — innym człowieku albo wyszukiwarce — zamiast na źródle dostawcy.
+
+Oczekiwany zakres informacji obejmował przede wszystkim media podstawowe, czyli prąd, gaz, wodę i internet, wymienione w czterech z sześciu odpowiedzi, a obok nich komunikację miejską wraz z zamknięciami i awariami, zamknięte drogi, pogodę i alerty RCB. Dwie osoby rozszerzyły ten zakres na usługi cyfrowe, wskazując strony uczelniane oraz serwisy biznesowe jako te, o których chcą wiedzieć najwcześniej, i jedna z nich zaproponowała możliwość dodania własnego adresu. Szczegółowość w obrębie komunikacji miejskiej określono tylko w dwóch odpowiedziach: jako obserwację najczęściej używanych miejsc oraz jako wybór konkretnych linii i przystanków. Pozostałe osoby tego wątku nie rozwinęły.
+
+W pytaniu o treść komunikatu w trakcie przerwy czas trwania i szacowany czas naprawy wymienili wszyscy rozmówcy. Przyczyna pojawiła się w dwóch odpowiedziach, jedna osoba uznała ją za nieistotną, a jedna pytała w tym miejscu o charakter zdarzenia, czyli o rozróżnienie awarii i przerwy planowanej. Zasięg przerwy dwie osoby wprost określiły jako mało ważny i zastrzegły, że zaczyna mieć znaczenie tylko wtedy, gdy informacja dociera z wyprzedzeniem; jedna osoba oczekiwała ponadto informowania o postępach naprawy.
+
+Aplikację mobilną wskazało pięć z sześciu osób, przy czym w dwóch odpowiedziach obok aplikacji pojawił się SMS, a jedna osoba uzasadniła wybór tym, że stronę internetową trzeba odwiedzać celowo. Potrzebę obserwowania wielu miejsc zgłosiło pięć osób, w tym dwie chciały połączyć bieżącą lokalizację z miejscami dodanymi ręcznie, a jedna uznała informację o lokalizacji za nieistotną. Na pytanie o element niezbędny odpowiedziały cztery osoby i wszystkie wskazały powiadomienia, jedna z nich dodając warunek, aby nie były nadmiarowe i aby można było wybrać ich kategorie.
+
+Stosunek do treści pochodzących od innych użytkowników był przeważnie pozytywny: trzy odpowiedzi deklarowały zaufanie lub gotowość korzystania z takiej funkcji, jedna uzależniała je od dużej liczby zgłoszeń i od rozróżnienia sposobu ich potwierdzania, a jedna nie zgłaszała takiej potrzeby. Najbardziej użyteczny powód pojawił się w odpowiedzi, w której wartość funkcji polega nie na samym raportowaniu, lecz na możliwości odróżnienia awarii powszechnej od usterki dotyczącej jednego mieszkania.
+
+Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer osoby oznacza pozycję odpowiedzi w notatkach, a nie tożsamość rozmówcy, ponieważ notatki nie zawierają metryczek.
+
+| Pytanie | Osoba | Odpowiedź |
+| :---- | :---- | :---- |
+| 1. Kiedy ostatnio zabrakło usługi, która była potrzebna? | 1 | wrzesień — brak prądu i internetu |
+|  | 2 | przedwczoraj, godz. 22:00 — awaria systemu PKP |
+|  | 3 | wakacje — brak prądu w hotelu |
+|  | 4 | miesiąc temu — awaria internetu |
+|  | 5 | miesiąc temu — nieplanowane wyłączenie prądu, bez uprzedzenia |
+|  | 6 | pół roku temu — planowane odcięcie wody, zapowiedziane kartką na klatce schodowej |
+| 2. Co zwykle robisz jako pierwszą czynność w przypadku braku medium lub usługi? | 1 | sprawdzenie strony dostawcy |
+|  | 2 | nic — zmiana na rozwiązanie alternatywne |
+|  | 3 | próba uzyskania informacji od innego człowieka |
+|  | 4 | pytanie współlokatora, który sprawdza stronę dostawcy |
+|  | 5 | chwilowe czekanie, sprawdzenie dopiero gdy przerwa się przeciąga |
+|  | 6 | szukanie w wyszukiwarce informacji o awarii lub wyłączeniu |
+| 3. Jakie usługi powinny być objęte informacją? | 1 | usługi podstawowe, zamknięte drogi, pogoda, alerty RCB |
+|  | 2 | usługi podstawowe, komunikacja publiczna (zamknięcia, awarie) |
+|  | 3 | usługi podstawowe |
+|  | 4 | usługi podstawowe |
+|  | 5 | strony i media, przede wszystkim strony niezbędne, na przykład USOS lub serwisy biznesowe |
+|  | 6 | media oraz strony, z możliwością podania własnego adresu |
+| 4. Jaki zakres informacji cię interesuje, na przykład w przypadku komunikacji miejskiej? | 1 | najczęściej używane miejsca |
+|  | 2 | możliwość zaznaczenia opcji, takich jak linie i przystanki |
+|  | — | *Pozostałe osoby tego pytania nie omówiły.* |
+| 5. Jakie informacje chcesz otrzymywać w przypadku przerwy w dostawie? | 1 | jak długo potrwa przerwa, postępy naprawy |
+|  | 2 | przyczyna, szacowany czas zakończenia |
+|  | 3 | przyczyna, szacowany czas zakończenia |
+|  | 4 | od kiedy trwa, szacowany czas zakończenia, czy przerwa jest planowana |
+|  | 5 | najważniejszy czas trwania; zasięg mało istotny poza przypadkami zapowiedzianymi z wyprzedzeniem; przyczyna nieistotna |
+|  | 6 | najważniejsze okno czasowe; przyczyna również istotna; zasięg mało istotny |
+| 6. Na jakiej platformie chciałbyś, aby system był dostępny? | 1 | SMS, aplikacja mobilna |
+|  | 2 | aplikacja z powiadomieniami push |
+|  | 3 | aplikacja mobilna |
+|  | 4 | SMS i powiadomienia push |
+|  | 5 | aplikacja mobilna, ponieważ stronę internetową trzeba odwiedzać celowo |
+|  | 6 | aplikacja mobilna |
+| 7. Czy chcesz otrzymywać powiadomienia tylko o swojej lokalizacji, czy też o innych miejscach? | 1 | tak, wybrane lokalizacje |
+|  | 2 | kilka lokalizacji wybranych ręcznie |
+|  | 3 | własna lokalizacja oraz dodatkowe interesujące miejsca |
+|  | 4 | nie ma to znaczenia |
+|  | 5 | określony obszar i kilka lokalizacji, pozostałe są nieistotne |
+|  | 6 | wystarczy własna lokalizacja, ale przydałaby się możliwość ręcznego dodawania kolejnych |
+| 8. Co byłoby najważniejsze w takiej aplikacji? Czego nie może zabraknąć? | 1 | powiadomienia |
+|  | 2 | powiadomienia |
+|  | 3 | możliwość wyboru powiadomień bez nadmiaru, powiadomienia |
+|  | 4 | powiadomienia |
+|  | — | *Pozostałe dwie osoby tego pytania nie omówiły.* |
+| 9. Czy chcesz mieć możliwość podawania informacji? Czy wierzysz informacjom podawanym przez innych użytkowników? | 1 | tak, ufa użytkownikom |
+|  | 2 | tak, pod warunkiem że zgłoszeń będzie dużo, wraz z rozróżnieniem sposobu ich potwierdzania |
+|  | 3 | nie, nie potrzebuje takich informacji |
+|  | 4 | tak |
+|  | 5 | przy awarii lub przerwie nieplanowanej warto wiedzieć, czy problem jest szerszy, czy dotyczy tylko tej osoby |
+|  | 6 | sam nie chciałby zgłaszać, ale funkcja jest ważna, aby wiedzieć, czy awaria rzeczywiście jest awarią |
+
+Z tury archiwalnej wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji — powiadomienie było jedynym elementem wskazanym we wszystkich czterech odpowiedziach na pytanie o cechę niezbędną. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych — informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, a obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia, nawet jeśli sami nie chcą wypełniać formularza.
+
+Tura bieżąca objęła trzy osoby różniące się trybem życia i sposobem korzystania z usług; zestawienie odpowiedzi przedstawia tabela.
 
 | Pytanie | User 1 - student uniwersytetu wrocławskiego | User 2 - osoba z 2 domostwami | User 3 - osoba pracująca |  |
 | :---- | :---- | :---- | :---- | :---- |
@@ -29,9 +98,11 @@ Podstawową metodą były **wywiady częściowo ustrukturyzowane** z potencjalny
 | najważniejszą cechę aplikacji | wiarygodność danych | wiarygodność danych, szczegółowość informacji, powiadomienia | wygoda użycia |  |
 | zaufanie do danych pochodzących od innych użytkowników | pełna | nacisk o informacje pochodzące z bardziej zaufanych źródeł | pełna |  |
 
-*TODO - też rozdzielić wnioski na wyciągnięte z nowych i starych wywiadów*
+Wywiady tury bieżącej potwierdzają część ustaleń archiwalnych i w dwóch miejscach je korygują. Potwierdzają potrzebę powiadomień, znaczenie czasu trwania przerwy i terminu jej zakończenia oraz zainteresowanie informacją o tym, czy problem dotyczy tylko jednej osoby. Najważniejszą cechą aplikacji okazała się jednak wiarygodność danych, wskazana przez dwie z trzech osób, podczas gdy w turze archiwalnej nie pojawiła się ona w żadnej odpowiedzi na pytanie o cechę niezbędną. Zaufanie do treści społecznościowych nie jest bezwarunkowe: dwie osoby darzą je pełnym zaufaniem, a jedna oczekuje wskazania, które źródło jest bardziej wiarygodne, co uzasadnia rozróżnienie w interfejsie informacji oficjalnej i zgłoszenia użytkownika.
 
-Z wywiadów wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji — powiadomienie było najczęściej wymienianym elementem „bez którego aplikacja nie ma sensu”. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych — informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia jednym kliknięciem, nawet jeśli sami nie chcą wypełniać formularza.
+Korekta dotyczy także pierwszej reakcji, platformy i liczby miejsc. Dwie z trzech osób deklarują przeczekanie, a nie poszukiwanie informacji, i tylko jedna szuka rozwiązania zastępczego, co oznacza, że przerwa musi trwać wystarczająco długo, aby użytkownik w ogóle sięgnął po informację. Jedna osoba wskazała komputer, jedna stronę internetową w telefonie, a jedna aplikację mobilną, przy czym dwie z trzech chcą śledzić wyłącznie własną lokalizację. Obserwowanie wielu miejsc pozostaje zatem potrzebne, ale nie jest uniwersalne, a powiadomienie push nie jest jedynym oczekiwanym kanałem dotarcia. Nowym wątkiem, którego tura archiwalna nie zawierała, jest oczekiwanie rozwiązań alternatywnych w trakcie przerwy oraz potwierdzenia, że awaria jest już znana dostawcy.
+
+Zestawienie obu tur daje wspólny rdzeń wymagań: powiadomienie zamiast sprawdzania, czas trwania i szacowany czas naprawy jako najważniejsza treść komunikatu, kontrola nad zakresem obserwowanych usług i miejsc oraz informacja o tym, czy problem dotyczy tylko jednej osoby. Różnice — wiarygodność źródła, rozwiązania alternatywne i kanał dotarcia — zawężają ten rdzeń i uzasadniają podział funkcjonalności przyjęty w rozdziale 3.
 
 Uzupełniającym źródłem wiedzy jest **analiza dwóch serwisów konkurencyjnych** przeprowadzona metodą przeglądu heurystycznego oraz **testy moderowane makiety cyfrowej** z pięcioma użytkownikami i siedmioma zadaniami, wykonane dwa semestry temu, na etapie projektowania makiety. Testy ujawniły między innymi, że przycisk powiadomień był zbyt mało czytelny, użytkownicy klikali w blok usługi zamiast w przycisk detali, mieli trudność ze znalezieniem funkcji zgłaszania awarii, a nazwa zakładki „Szukaj” nie kojarzyła się z listą usług. Wnioski te stanowią uzasadnienie zakresu poszczególnych funkcjonalności w rozdziale 3 oraz podstawę poprawek interfejsu.
 
