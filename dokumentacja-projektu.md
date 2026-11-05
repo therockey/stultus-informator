@@ -231,9 +231,79 @@ Scenariusze te są podstawą scenariuszy badań użyteczności.
 
 *TODO.*
 
-### 3.8 QFD
+### 3.8 QFDWaga wymagania, w skali od 1 do 4, odpowiada liczbie person, których historyjki obejmują daną potrzebę;
+potrzeby wspólne (rozdział 3.4) oraz wynikające z testów makiety i z instrukcji otrzymały wagę 4. Siłę
+powiązania oceniono w skali 9 (silne), 3 (średnie), 1 (słabe); puste pole oznacza brak powiązania. Ważność
+charakterystyki jest sumą iloczynów wag i siły powiązań.
 
-*TODO.*
+*TODO — zweryfikować wagi na podstawie ocen ważności zebranych w wywiadach.*
+
+**Wymagania użytkowników (WHAT)**
+
+| ID | Wymaganie użytkownika | Źródło | Waga |
+|---|---|---|---|
+| W1 | Powiadomienia docierające bez samodzielnego sprawdzania | potrzeba wspólna | 4 |
+| W2 | Czas trwania przerwy i szacowany czas naprawy | potrzeba wspólna | 4 |
+| W3 | Przyczyna i typ przerwy (awaria, konserwacja, planowana) | potrzeba wspólna | 4 |
+| W4 | Rozróżnienie problemu lokalnego od powszechnego, liczba zgłoszeń w okolicy | potrzeba wspólna | 4 |
+| W5 | Potwierdzenie cudzego zgłoszenia jednym kliknięciem | młody dorosły | 1 |
+| W6 | Kontrola nad powiadomieniami, brak spamu, informacja z wyprzedzeniem | student, młody dorosły, dorosły | 3 |
+| W7 | Śledzenie kilku lokalizacji i grup usług bez zmiany ustawień | potrzeba wspólna | 4 |
+| W8 | Krótka, spokojna informacja bez treści niepokojących | dziecko | 1 |
+| W9 | Historia przerw, wiarygodność dostawcy, możliwość udokumentowania przerwy | potrzeba wspólna | 4 |
+| W10 | Alternatywa dla niedziałającej komunikacji miejskiej | student | 1 |
+| W11 | Dostęp do usług spoza katalogu (strona uczelni, projekt personalny) | student | 1 |
+| W12 | Łatwość znalezienia funkcji i przycisków | testy makiety | 4 |
+| W13 | Dostępność dla dzieci i osób o niskim zaznajomieniu z technologią | instrukcja | 4 |
+
+**Charakterystyki techniczne (HOW)**
+
+| ID | Charakterystyka techniczna | Miara | Funkcjonalność |
+|---|---|---|---|
+| H1 | Katalog i wyszukiwanie usług z dodawaniem spoza katalogu | znalezienie usługi do 15 s, skuteczność 90% | F1 |
+| H2 | Kompletność karty statusu (przyczyna, okno czasowe, czas naprawy, źródło, zasięg) | liczba kroków od listy do szczegółów | F2 |
+| H3 | Skala przerwy: liczba zgłoszeń w okolicy i mapa zasięgu | zgłoszenia z ostatniej godziny, widok lokalny i ogólny | F2, F5 |
+| H4 | Reguły i kanały powiadomień | konfiguracja reguły do 90 s, przełącznik wskazany w 5 s | F3 |
+| H5 | Lokalizacje i grupy usług | liczba lokalizacji i grup, zbiorcze sterowanie grupą | F4 |
+| H6 | Zgłaszanie i potwierdzanie awarii | zgłoszenie do 20 s, wejście w trzech miejscach, 90% znajduje funkcję | F5 |
+| H7 | Historia przerw, wskaźnik niezawodności i dowód przerwy | zakresy 7 dni, 30 dni i 3 miesiące | F6 |
+| H8 | Alternatywne połączenia komunikacji miejskiej | najwyżej dwa kroki od statusu linii | F7 |
+| H9 | Tryb uproszczony i ustawienia dostępności | do trzech informacji na ekranie, cele dotykowe co najmniej 48 dp | F8 |
+
+**Macierz powiązań i ważność charakterystyk**
+
+| WHAT \ HOW | Waga | H1 | H2 | H3 | H4 | H5 | H6 | H7 | H8 | H9 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| W1 | 4 | | | | 9 | | | | | |
+| W2 | 4 | | 9 | | | | | 3 | | |
+| W3 | 4 | | 9 | | | | | 3 | | |
+| W4 | 4 | | 3 | 9 | | | 3 | | | |
+| W5 | 1 | | | 3 | | | 9 | | | |
+| W6 | 3 | | | | 9 | 3 | | | | |
+| W7 | 4 | | | | 3 | 9 | | | | |
+| W8 | 1 | | 1 | | | | | | | 9 |
+| W9 | 4 | | 3 | | | | | 9 | | |
+| W10 | 1 | | | | 1 | | | | 9 | |
+| W11 | 1 | 9 | | | | 1 | | | | |
+| W12 | 4 | 3 | 3 | | 3 | | 9 | | | |
+| W13 | 4 | 1 | | | | | | | | 9 |
+| **Ważność** | | 25 | 109 | 39 | 88 | 46 | 57 | 60 | 9 | 45 |
+| **Udział [%]** | | 5,2 | 22,8 | 8,2 | 18,4 | 9,6 | 11,9 | 12,6 | 1,9 | 9,4 |
+
+**Wnioski.** Największą ważność uzyskała kompletność karty statusu (H2, 22,8%), a w dalszej kolejności reguły
+i kanały powiadomień (H4, 18,4%) oraz historia przerw i wiarygodność dostawcy (H7, 12,6%). Wynik potwierdza,
+że rdzeniem aplikacji są informacja o przerwie, jej przyczynie i czasie trwania oraz docieranie tej informacji
+do użytkownika bez jego interwencji, a więc obszary F2 i F3. Wysoką ważność ma także zgłaszanie i potwierdzanie
+awarii (H6, 11,9%), na którą składa się zarówno zaufanie do danych, jak i problem ze znalezieniem funkcji
+wykazany w testach. Najniższą ważność mają alternatywne połączenia (H8, 1,9%), ponieważ odpowiadają potrzebie
+jednej persony; funkcjonalność ta pozostaje w zakresie ze względu na historyjkę studenta i powiązanie z F3 oraz F4,
+natomiast jej niska pozycja uzasadnia ograniczenie zakresu do najwyżej dwóch kroków od statusu linii. Tryb
+uproszczony (H9, 9,4%) ma średnią ważność w skali całego zestawu, lecz jest jedyną charakterystyką odpowiadającą
+na wymaganie dostępności, dlatego nie podlega redukcji.
+
+
+
+
 
 ---
 
