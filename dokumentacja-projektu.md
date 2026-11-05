@@ -33,7 +33,7 @@ Podstawową metodą były **wywiady częściowo ustrukturyzowane** z potencjalny
 
 Z wywiadów wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji — powiadomienie było najczęściej wymienianym elementem „bez którego aplikacja nie ma sensu”. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych — informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia jednym kliknięciem, nawet jeśli sami nie chcą wypełniać formularza.
 
-Uzupełniającym źródłem wiedzy jest **analiza dwóch serwisów konkurencyjnych** przeprowadzona metodą przeglądu heurystycznego oraz **testy moderowane makiety cyfrowej** z pięcioma użytkownikami i siedmioma zadaniami, wykonane dwa semestry temu, na etapie projektowania makiety. Testy ujawniły między innymi, że przycisk powiadomień był zbyt mało czytelny, użytkownicy klikali w blok usługi zamiast w przycisk detali, mieli trudność ze znalezieniem funkcji zgłaszania awarii, a nazwa zakładki „Szukaj” nie kojarzyła się z listą usług. Wnioski te stanowią uzasadnienie zakresu poszczególnych funkcjonalności w rozdziale 4 oraz podstawę poprawek interfejsu.
+Uzupełniającym źródłem wiedzy jest **analiza dwóch serwisów konkurencyjnych** przeprowadzona metodą przeglądu heurystycznego oraz **testy moderowane makiety cyfrowej** z pięcioma użytkownikami i siedmioma zadaniami, wykonane dwa semestry temu, na etapie projektowania makiety. Testy ujawniły między innymi, że przycisk powiadomień był zbyt mało czytelny, użytkownicy klikali w blok usługi zamiast w przycisk detali, mieli trudność ze znalezieniem funkcji zgłaszania awarii, a nazwa zakładki „Szukaj” nie kojarzyła się z listą usług. Wnioski te stanowią uzasadnienie zakresu poszczególnych funkcjonalności w rozdziale 3 oraz podstawę poprawek interfejsu.
 
 ### 2.2 Cel aplikacji
 
@@ -51,7 +51,7 @@ Do zadań obsługiwanych dodatkowo należą: dodanie do katalogu usługi spoza b
 
 Grupą docelową są osoby korzystające z usług zewnętrznych dostawców: energii elektrycznej, gazu, wody, internetu, komunikacji miejskiej, dróg oraz usług cyfrowych. Wspólną cechą tej grupy jest brak czasu i niechęć do aktywnego monitorowania stanu usług — wszyscy rozmówcy z wywiadów deklarowali, że sprawdzają informacje dopiero wtedy, gdy coś przestanie działać.
 
-W obrębie grupy wyróżniono cztery profile: dzieci i młodzież w wieku szkolnym, studentów, młodych dorosłych oraz dorosłych, w tym osoby starsze. Wymaganie instrukcji, aby potencjalnymi użytkownikami były dzieci i/lub osoby starsze, jest spełnione przez profil dziecka i nastolatka, a dodatkowo aplikacja jest projektowana dla osób dorosłych o niskim zaznajomieniu z technologią, do których w praktyce należą osoby starsze. Konsekwencją jest wymaganie dostępności opisane w rozdziale 4 jako funkcjonalność F8, a także rezygnacja z gęstych ekranów analitycznych na rzecz krótkich komunikatów.
+W obrębie grupy wyróżniono cztery profile: dzieci i młodzież w wieku szkolnym, studentów, młodych dorosłych oraz dorosłych, w tym osoby starsze. Wymaganie instrukcji, aby potencjalnymi użytkownikami były dzieci i/lub osoby starsze, jest spełnione przez profil dziecka i nastolatka, a dodatkowo aplikacja jest projektowana dla osób dorosłych o niskim zaznajomieniu z technologią, do których w praktyce należą osoby starsze. Konsekwencją jest wymaganie dostępności opisane w rozdziale 3 jako funkcjonalność F8, a także rezygnacja z gęstych ekranów analitycznych na rzecz krótkich komunikatów.
 
 ### 2.5 Technologia implementacji
 
@@ -63,15 +63,17 @@ W obrębie grupy wyróżniono cztery profile: dzieci i młodzież w wieku szkoln
 
 Rozdział opisuje, kim są użytkownicy, w jakim środowisku będą pracować z aplikacją, jakie zadania realizują oraz jakie czynniki sprzyjają interakcji i jakie jej zagrażają.
 
-### 3.1 Cechy użytkowników
+### 3.1 Cechy użytkowników, środowisko użycia i persony
+
+#### 3.1.1 Cechy użytkowników
 
 Cechą wspólną wszystkich profili jest ograniczona uwaga poświęcana usługom dostawców: użytkownik sięga po informację dopiero pod wpływem zdarzenia, najczęściej w sytuacji, gdy brakuje prądu, wody, internetu albo połączenia. Wiedza techniczna jest bardzo zróżnicowana — od uczniów biegle poruszających się w aplikacjach mobilnych po dorosłych, którzy deklarują przeciętne lub niskie zaznajomienie z oprogramowaniem. Wszyscy badani oczekują informacji krótkiej i jednoznacznej, a nadmiar szczegółów technicznych uznają za obciążenie. Istotną cechą jest też mobilność: część użytkowników przebywa w ciągu dnia w kilku miejscach (dom, uczelnia lub praca, miejsce zamieszkania rodziny), dlatego informacja przypisana wyłącznie do bieżącej lokalizacji jest niewystarczająca.
 
-### 3.2 Elementy i aspekty środowiska użycia
+#### 3.1.2 Elementy i aspekty środowiska użycia
 
 Środowisko użycia jest zmienne i często nieprzyjazne. Przerwa w dostawie internetu oznacza, że aplikacja działa w warunkach ograniczonej łączności, co nakłada wymaganie pracy na danych ostatnio pobranych i czytelnego oznaczenia informacji nieaktualnej. Przerwa w dostawie prądu wiąże się z kolei z rozładowanym telefonem, więc czas do informacji musi być krótki. Użytkownik sprawdza status w pośpiechu — w drodze, przed wyjściem z domu, w trakcie dojazdu — często jedną ręką i w złych warunkach oświetleniowych, co uzasadnia duże cele dotykowe i wysoki kontrast. Część sytuacji ma charakter społeczny: informacja bywa potrzebna do usprawiedliwienia spóźnienia wobec wykładowcy lub pracodawcy, co czyni wiarygodność i możliwość udokumentowania przerwy osobnym wymaganiem. W tle występuje też kontekst emocjonalny: użytkownicy, zwłaszcza dzieci, deklarują niechęć do treści alarmujących, dlatego środowisko użycia obejmuje także potrzebę ograniczenia bodźców niepokojących.
 
-### 3.3 Persony
+#### 3.1.3 Persony
 
 W badaniach wyróżniono cztery profile użytkowników:
 
@@ -83,7 +85,9 @@ W badaniach wyróżniono cztery profile użytkowników:
     
 * **Dorosły**:(30–60 lat, duże miasto, praca w marketingu cyfrowym) chce jednego miejsca, w którym sprawdzi status, powiadomień bez spamu, rozróżnienia problemu lokalnego od powszechnego, potwierdzenia, że informacja pochodzi z oficjalnego źródła, oraz wcześniejszych informacji o wyłączeniach planowanych.
 
-### 3.4 Historyjki użytkownika
+### 3.2 Zadania realizowane przez użytkowników
+
+#### 3.2.1 Historyjki użytkownika
 
 Historyjki spisano dla każdej persony oraz dla potrzeb wspólnych. Dziecko formułuje trzy oczekiwania: chce sprawdzać informacje bez spędzania w aplikacji długiego czasu, chce wiedzieć, jak długo potrwa przerwa i z jakiej wynika przyczyny, oraz nie chce widzieć informacji, które mogłyby je zmartwić. Student chce otrzymywać powiadomienia z wyprzedzeniem, aby zaplanować dzień, chce mieć dostęp do mniej popularnych stron, takich jak strona uczelni czy projekty personalne, chce widzieć alternatywy dla usług, z których nie może skorzystać, oraz chce móc wyłączyć powiadomienia o wybranych usługach, aby nie otrzymywać spamu.
 
@@ -91,7 +95,7 @@ Młody dorosły chce wiedzieć, czy przerwa wynika z awarii, konserwacji czy pro
 
 Potrzeby wspólne ujęto w pięciu historyjkach: natychmiastowe powiadomienia push o przerwach, pełniejsza informacja o usłudze (czas trwania i powód), widoczna liczba osób zgłaszających ten sam problem w pobliżu, możliwość śledzenia przerw w kilku wybranych obszarach bez zmiany ustawień oraz dostęp do historii przerw i napraw, służącej zarówno usprawiedliwieniu spóźnienia, jak i ocenie wiarygodności dostawcy.
 
-### 3.5 Przypadki użycia
+#### 3.2.2 Przypadki użycia
 
 Przypadki użycia uporządkowano w cztery grupy i oznaczono identyfikatorami CU-01 do CU-07, używanymi dalej w całym dokumencie.
 
@@ -103,19 +107,19 @@ Przypadki użycia uporządkowano w cztery grupy i oznaczono identyfikatorami CU-
     
 * **Zgłaszanie awarii** (CU-07, aktorzy: dorosły i młody dorosły) polega na wypełnieniu formularza: użytkownik wyszukuje usługę, podaje czas trwania awarii w formie przedziału („od 30 minut”, „od godziny”), opcjonalnie dodaje lokalizację i wysyła zgłoszenie, które trafia do puli zgłoszeń danej usługi.
 
-### 3.6 Scenariusze
+#### 3.2.3 Scenariusze
 
 Scenariusze opisują przebieg pracy użytkownika w kontekście, a nie w izolacji od niego. Scenariusz studenta rozpoczyna się rano, gdy w akademiku nie działa internet: student otwiera aplikację, widzi grupę „Uczelnia” i status usługi, dowiaduje się, że przerwa jest planowana i potrwa do godziny czternastej, po czym sprawdza, czy zajęcia odbywają się w trybie zdalnym. Scenariusz młodego dorosłego dotyczy awarii nieplanowanej: po powrocie do mieszkania okazuje się, że nie działa prąd, użytkownik potwierdza jednym kliknięciem zgłoszenie sąsiada, widzi, że w promieniu kilometra zgłosiło je kilkadziesiąt osób, i uznaje, że nie ma sensu zgłaszać usterki indywidualnie. Scenariusz dorosłego obejmuje planowane wyłączenie wody, o którym aplikacja informuje dzień wcześniej, co pozwala przygotować zapas wody i przełożyć pranie. Scenariusz dziecka dotyczy platformy gier: użytkownik sprawdza, czy awaria dotyczy tylko jego urządzenia, a następnie odkrywa w słowniku pojęć, czym różni się awaria od konserwacji, i nie napotyka przy tym informacji o wypadkach.
 
 Scenariusze te są podstawą scenariuszy badań użyteczności.
 
-### 3.7 Funkcjonalności aplikacji
+### 3.3 Funkcjonalności aplikacji
 
 Instrukcja wymaga, aby aplikacja zawierała co najmniej dwie główne funkcjonalności dla każdego członka grupy. Zespół liczy cztery osoby, dlatego wyodrębniono **osiem funkcjonalności**, po dwie dla każdej osoby. Podział nie jest przypadkowy: funkcjonalności łączą się w pary tworzące spójne obszary odpowiedzialności, dzięki czemu każdy członek zespołu prowadzi własny wątek od scenariusza badań, przez warianty interfejsu, po ponowne badania.
 
-Wybór zakresu opiera się na trzech przesłankach: historyjkach użytkownika z rozdziału 3.4, wnioskach z wywiadów opisanych w rozdziale 2.1 oraz wynikach testów makiety cyfrowej, które wskazały elementy wymagające poprawy. Każda funkcjonalność ma zamknięty zakres, aby w etapie implementacji nie rozrastała się poza założenia.
+Wybór zakresu opiera się na trzech przesłankach: historyjkach użytkownika z punktu 3.2.1, wnioskach z wywiadów opisanych w rozdziale 2.1 oraz wynikach testów makiety cyfrowej, które wskazały elementy wymagające poprawy. Każda funkcjonalność ma zamknięty zakres, aby w etapie implementacji nie rozrastała się poza założenia.
 
-### 3.8 Obszar: przeglądanie usług
+#### 3.3.1 Obszar: przeglądanie usług
 
 **F1 — Katalog i wyszukiwanie usług.** 
 
@@ -129,7 +133,7 @@ Funkcjonalność obejmuje ekran „Usługi”, na którym użytkownik wyszukuje 
 
 Funkcjonalność obejmuje ekran szczegółów usługi: status w jednym z trzech stanów (działa, przerwa, problem lokalny) opisany jednocześnie tekstem, ikoną i kolorem, przyczynę przerwy, okno czasowe, szacowany czas naprawy, postęp prac, informację o źródle danych oraz zasięg przerwy. Zmiana naprawia problem ujawniony w testach, w których użytkownicy klikali w blok usługi zamiast w przycisk detali — teraz kliknięcie w blok otwiera szczegóły. Rozszerzeniem jest skala przerwy: liczba zgłoszeń w okolicy z ostatniej godziny oraz mapa z zaznaczonymi ulicami objętymi awarią, z przełącznikiem między widokiem lokalnym a widokiem całej usługi. To rozszerzenie odpowiada wprost na oczekiwanie zgłoszone przez jednego z uczestników testów oraz na historyjki o rozróżnieniu problemu lokalnego od powszechnego.
 
-### 3.9 Obszar: docieranie do informacji
+#### 3.3.2 Obszar: docieranie do informacji
 
 **F3 — Powiadomienia i reguły alertów.**
 
@@ -143,7 +147,7 @@ Funkcjonalność obejmuje konfigurację powiadomień dla usług i grup oraz regu
 
 Funkcjonalność obejmuje ekran „Moje grupy” wraz z zarządzaniem lokalizacjami. Użytkownik tworzy grupy o własnych nazwach (na przykład „Dom”, „Uczelnia”, „Rodzina”), przypisuje im lokalizacje i promień, oznacza jedną grupę jako główną oraz zmienia nazwę lub lokalizację, usuwa grupę, a także wyłącza powiadomienia całej grupy. Lokalizacje są wskazywane z mapy albo przez jednorazowe użycie geolokalizacji, bez śledzenia w tle. Zmiana porządkuje to, co w testach było niejasne: użytkownicy próbowali dodawać usługi obok grupy albo wchodzili w grupę zamiast w usługę, a przy tworzeniu grupy bez nazwy nie otrzymywali czytelnego komunikatu. Rozszerzenie o wiele lokalizacji odpowiada historyjce osoby mieszkającej w jednym miejscu, pracującej w drugim i odwiedzającej rodzinę w trzecim.
 
-### 3.10 Obszar: zaufanie i społeczność
+#### 3.3.3 Obszar: zaufanie i społeczność
 
 **F5 — Zgłaszanie i potwierdzanie awarii.**
 
@@ -157,7 +161,7 @@ Funkcjonalność obejmuje formularz zgłoszenia dostępny na jednym ekranie — 
 
 Funkcjonalność rozwija ekran historii awarii, który w makiecie istniał w szczątkowej formie. Użytkownik widzi listę przerw z datą, czasem trwania, przyczyną, typem (planowana lub nieplanowana) i źródłem, wykres zgłoszeń w zakresach siedmiu dni, trzydziestu dni i trzech miesięcy z nałożonymi oficjalnymi przerwami, a także wskaźnik niezawodności dostawcy obejmujący liczbę przerw, średni czas trwania i udział przerw planowanych. Nowym elementem jest „dowód przerwy” — generowane podsumowanie z datą, godzinami i nazwą dostawcy, możliwe do przedstawienia wykładowcy lub pracodawcy. Rozszerzenie wynika z historyjki o usprawiedliwieniu spóźnienia i z potrzeby oceny wiarygodności dostawcy; w prototypie dane historyczne są demonstracyjne i oznaczone jako przykładowe.
 
-### 3.11 Obszar: mobilność i dostępność
+#### 3.3.4 Obszar: mobilność i dostępność
 
 **F7 — Komunikacja miejska i alternatywne połączenia.**
 
@@ -171,15 +175,17 @@ Funkcjonalność obejmuje ekran linii i przystanku: status (punktualnie, opóźn
 
 Funkcjonalność jest nowa i wynika z wymagania, aby użytkownikami były dzieci i/lub osoby starsze. Obejmuje przełączalny tryb uproszczony z maksymalnie trzema informacjami na ekranie, dużą typografią i ikonami opatrzonymi krótkim tekstem, filtr treści niepokojących (wypadki, alerty masowe) domyślnie włączony dla profilu dziecka i przełączalny przez opiekuna, ustawienia dostępności (rozmiar tekstu, kontrast, tryb ciemny, obsługa czytnika ekranu, cele dotykowe o rozmiarze co najmniej 48 dp) oraz słownik pojęć wyjaśniający różnicę między awarią, konserwacją i problemem lokalnym. W ramach tej funkcjonalności powstaje również ekran powitalny z trzema krokami, pełniący rolę alternatywnej formy wsparcia użytkownika. Tryb jest przełączalny, a nie globalny, aby nie odbierać informacji użytkownikom oczekującym szczegółów.
 
-### 3.12 Pokrycie person i historyjek
+#### 3.3.5 Pokrycie person i historyjek
 
-Wszystkie historyjki z rozdziału 3.4 mają przypisanie do funkcjonalności. Dziecko korzysta z F1, F2, F3 i F8; student z F1, F2, F3, F4, F6 i F7; młody dorosły z wszystkich funkcjonalności poza F8; dorosły z wszystkich ośmiu. Każda persona ma zatem pokrycie w co najmniej trzech funkcjonalnościach, a żadna funkcjonalność nie istnieje bez uzasadnienia w historyjce lub w wyniku testów.
+Wszystkie historyjki z punktu 3.2.1 mają przypisanie do funkcjonalności. Dziecko korzysta z F1, F2, F3 i F8; student z F1, F2, F3, F4, F6 i F7; młody dorosły z wszystkich funkcjonalności poza F8; dorosły z wszystkich ośmiu. Każda persona ma zatem pokrycie w co najmniej trzech funkcjonalnościach, a żadna funkcjonalność nie istnieje bez uzasadnienia w historyjce lub w wyniku testów.
 
-### 3.13 Zakres poza redesignem
+#### 3.3.6 Zakres poza redesignem
 
 Poza zakresem pozostają funkcje, które pojawiły się w profilach person jako zachcianki, ale nie wynikają z potrzeb potwierdzonych w wywiadach: integracja z asystentami domowymi, grywalizacja i funkcje społecznościowe polegające na dzieleniu się problemami, automatyczne zgłaszanie awarii bezpośrednio do dostawców oraz płatności. Ich włączenie zaburzyłoby równy podział pracy i rozmyłoby cel aplikacji, jakim jest szybka, wiarygodna informacja o przerwie.
 
-### 3.14 SWOT
+### 3.4 Analiza SWOT i QFD
+
+#### 3.4.1 SWOT
 
 Analiza SWOT pozwala określić mocne i słabe strony projektu, a także szanse i zagrożenia wynikające z jego realizacji oraz sposobu interakcji użytkowników z aplikacją.
 
@@ -210,10 +216,10 @@ Analiza SWOT pozwala określić mocne i słabe strony projektu, a także szanse 
 * Nadmierna liczba powiadomień - zbyt częste alerty mogą powodować irytację i skłaniać użytkowników do wyłączenia powiadomień  
 * Ograniczenia sieciowe - ryzyko braku dostępu do sieci po stronie użytkownika
 
-### 3.15 QFD
+#### 3.4.2 QFD
 
 Waga wymagania, w skali od 1 do 4, odpowiada liczbie person, których historyjki obejmują daną potrzebę;
-potrzeby wspólne (rozdział 3.4) oraz wynikające z testów makiety i z instrukcji otrzymały wagę 4. Siłę
+potrzeby wspólne (punkt 3.2.1) oraz wynikające z testów makiety i z instrukcji otrzymały wagę 4. Siłę
 powiązania oceniono w skali 9 (silne), 3 (średnie), 1 (słabe); puste pole oznacza brak powiązania. Ważność
 charakterystyki jest sumą iloczynów wag i siły powiązań.
 
@@ -290,7 +296,7 @@ na wymaganie dostępności, dlatego nie podlega redukcji.
 
 *TODO.*
 
-## 6. Poprawa interfejsu
+## 6. Poprawa interfejsu i implementacja
 
 *TODO.*
 
@@ -299,5 +305,9 @@ na wymaganie dostępności, dlatego nie podlega redukcji.
 *TODO.*
 
 ## 8. Ocena użyteczności przez użytkowników
+
+*TODO.*
+
+## 9. Ocena użyteczności
 
 *TODO.*
