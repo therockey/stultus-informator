@@ -361,7 +361,50 @@ na wymaganie dostępności, dlatego nie podlega redukcji.
 
 ## 4. Scenariusze badań
 
-*TODO.*
+### 4.3 Miary i kryteria oceny użyteczności
+ 
+Miary użyteczności zdefiniowano zgodnie z podejściem przywoływanym w ISO 9241-210, w którym użyteczność opisuje skuteczność, efektywność i satysfakcja użytkownika w określonym kontekście użycia. Skuteczność oznacza, czy użytkownik osiąga cel zadania i czy robi to poprawnie, efektywność - jakim nakładem czasu i kroków, a satysfakcja - jak użytkownik subiektywnie ocenia łatwość korzystania z aplikacji. Do tych trzech wymiarów dodano czwarty, wynikający z drugiego celu redesignu opisanego w punkcie 2.2 oraz z funkcjonalności F8: dostępność i zrozumiałość interfejsu dla dzieci i osób o niskim zaznajomieniu z technologią. Każda miara ma jedną definicję obowiązującą dla wszystkich funkcjonalności, a progi liczbowe, które zależą od przypadku użycia, zebrano w osobnej tabeli kryteriów.
+ 
+**Miary użyteczności**
+ 
+| ID | Miara | Wymiar | Definicja i sposób pomiaru | Jednostka |
+|---|---|---|---|---|
+| M1 | Wskaźnik ukończenia zadania | skuteczność | Odsetek uczestników, którzy osiągnęli cel zadania samodzielnie. Zadanie ukończone po podpowiedzi moderatora lub porzucone liczy się jako nieukończone. | % (oraz liczebność, np. 4 z 5) |
+| M2 | Liczba błędów na zadanie | skuteczność | Liczba dotknięć elementów niepowiązanych z celem zadania oraz wejść na niewłaściwy ekran, zliczana na podstawie obserwacji i nagrania sesji. | liczba, średnia na uczestnika |
+| M3 | Poprawność odczytu informacji | skuteczność | Odsetek uczestników, którzy w zadaniu odczytowym poprawnie wskazują stan usługi, przyczynę, szacowany czas naprawy i zasięg przerwy (F2) albo parametry przerwy z historii (F6). | % |
+| M4 | Czas wykonania zadania | efektywność | Czas od zakończenia czytania polecenia do osiągnięcia celu, liczony wyłącznie dla zadań ukończonych. | s, mediana |
+| M5 | Liczba kroków | efektywność | Liczba dotknięć ekranu potrzebnych do osiągnięcia celu, zestawiana z liczbą kroków ścieżki optymalnej. | liczba, iloraz do ścieżki optymalnej |
+| M6 | Czas wskazania elementu | efektywność | Czas od polecenia do pierwszego trafnego wskazania właściwego elementu interfejsu, na przykład przełącznika powiadomień albo wejścia do zgłoszenia awarii. | s |
+| M7 | Ocena łatwości zadania (SEQ) | satysfakcja | Jedno pytanie zadawane po każdym zadaniu: jak łatwe lub trudne było jego wykonanie. | skala 1-7, średnia |
+| M8 | Wynik SUS | satysfakcja | Kwestionariusz System Usability Scale, dziesięć pytań wypełnianych po zakończeniu sesji. | 0-100 |
+| M9 | Nasilenie problemu użyteczności | wszystkie | Ocena każdego zaobserwowanego problemu w skali Nielsena, uwzględniająca częstość problemu, jego wpływ na wykonanie zadania i trwałość: 0 - brak problemu, 1 - kosmetyczny, 2 - drobny, 3 - poważny, 4 - katastrofalny. | 0-4 |
+| M10 | Zgodność z wymaganiami dostępności | dostępność | Audyt ekranów trybu uproszczonego: liczba informacji na ekranie oraz odsetek celów dotykowych o rozmiarze co najmniej 48 dp. | liczba, % |
+ 
+Ponieważ badania z użytkownikami obejmują niewielką liczbę uczestników, odsetki są zawsze podawane razem z liczebnościami, a wartości czasu - jako mediany, które są odporne na pojedyncze wyniki odstające. Miary M1-M6 oraz M9 pochodzą z obserwacji sesji, miary M7 i M8 z kwestionariuszy, a miara M10 z audytu projektu interfejsu, niezależnego od udziału użytkowników.
+ 
+**Progi ogólne**
+ 
+| Miara | Kryterium spełnione, gdy | Uzasadnienie progu |
+|---|---|---|
+| M1 | co najmniej 90% uczestników ukończyło zadanie samodzielnie | wartość z kryteriów akceptacji F1 i F5; przy małej liczbie uczestników oznacza w praktyce brak niepowodzeń |
+| M7 | średnia ocena zadania wynosi co najmniej 5,5 | przeciętna wartość SEQ podawana w literaturze |
+| M8 | wynik SUS wynosi co najmniej 68 | przeciętny wynik SUS podawany w literaturze |
+| M9 | nie pozostaje żaden nierozwiązany problem o nasileniu 3 lub 4 | przyjęcie zespołu |
+ 
+Zadanie uznaje się za wykonane poprawnie pod względem użyteczności, gdy spełnia wszystkie progi M1, M4-M6 wskazane dla odpowiadającego mu przypadku użycia oraz próg M7; w przeciwnym razie zadanie wymaga poprawy interfejsu. Całą aplikację ocenia się łącznie, na podstawie progów M8 i M9, tak aby dobre wyniki pojedynczych zadań nie przesłaniały ogólnego odbioru produktu.
+ 
+**Kryteria dla przypadków użycia**
+ 
+| Przypadek użycia | Funkcjonalności | Miary główne | Kryterium |
+|---|---|---|---|
+| CU-01 Sprawdzenie usługi lub serwisu | F1, F2 | M1, M3, M4, M5 | znalezienie usługi w czasie do 15 s; M1 i M3 co najmniej 90%; przejście od listy do szczegółów w jednym kroku |
+| CU-02 Sprawdzenie usług publicznych | F7, F2 | M1, M3, M5 | M1 i M3 co najmniej 90%; alternatywne połączenie w najwyżej dwóch krokach od statusu linii |
+| CU-03 Sprawdzenie „swoich” usług | F4, F2 | M1, M2, M5 | M1 co najmniej 90%; brak błędów polegających na wejściu w grupę zamiast w usługę |
+| CU-04 Sprawdzenie historii awarii | F6 | M1, M3 | M1 i M3 co najmniej 90%, w tym poprawna zmiana zakresu wykresu (7 dni, 30 dni, 3 miesiące) |
+| CU-05 Konfiguracja powiadomień | F3 | M1, M4, M6 | przełącznik wskazany w czasie do 5 s przez wszystkich uczestników; konfiguracja reguły w czasie do 90 s; M1 co najmniej 90% |
+| CU-06 Zarządzanie grupą | F4, F3 | M1, M2 | M1 co najmniej 90%; brak błędów polegających na dodawaniu usług obok grupy |
+| CU-07 Zgłoszenie awarii | F5 | M1, M4, M6 | zgłoszenie w czasie do 20 s; co najmniej 90% uczestników samodzielnie znajduje funkcję |
+| Wszystkie CU w trybie uproszczonym | F8 | M1, M10 | co najwyżej trzy informacje na ekranie; wszystkie cele dotykowe o rozmiarze co najmniej 48 dp; M1 co najmniej 90% wśród uczestników o niskim zaznajomieniu z technologią |
 
 ## 5. Badania użyteczności
 
