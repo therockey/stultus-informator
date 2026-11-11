@@ -361,50 +361,243 @@ na wymaganie dostępności, dlatego nie podlega redukcji.
 
 ## 4. Scenariusze badań
 
+### 4.1 Scenariusze badań według przypadków użycia
+
+Scenariusze badań użyteczności odpowiadają przypadkom użycia CU-01 do CU-07 z punktu 3.2.2. Każdy scenariusz podaje sytuację, listę zadań dla uczestnika oraz oczekiwany rezultat. Numery zadań z list poniżej są używane w kryteriach punktu 4.3.
+
+**Scenariusz 1: CU-01 - Sprawdzenie usługi lub serwisu**
+
+Sytuacja: wracasz do domu i zauważasz, że nie masz dostępu do internetu. Nie wiesz, czy problem dotyczy wyłącznie Twojego mieszkania, czy występuje również u innych mieszkańców okolicy. Chcesz sprawdzić, co się dzieje i kiedy usługa powinna ponownie działać.
+
+Zadania dla uczestnika:
+
+1. Odszukaj w aplikacji usługę internetową wybranego dostawcy.
+2. Sprawdź aktualny status usługi.
+3. Otwórz szczegóły awarii.
+4. Odszukaj informację o przyczynie i przewidywanym czasie zakończenia problemu.
+5. Sprawdź, jaki obszar obejmuje awaria i ile osób zgłosiło podobny problem.
+
+Oczekiwany rezultat: użytkownik samodzielnie odnajduje usługę, rozpoznaje jej status oraz potrafi wskazać przyczynę, przewidywany czas naprawy i zasięg awarii.
+
+**Scenariusz 2: CU-02 - Sprawdzenie usług publicznych**
+
+Sytuacja: jesteś studentem i jedziesz na uczelnię. Dowiadujesz się, że linia autobusowa, którą zwykle podróżujesz, ma opóźnienia. Chcesz sprawdzić aktualną sytuację i znaleźć alternatywny sposób dotarcia na miejsce.
+
+Zadania dla uczestnika:
+
+1. Odszukaj interesującą Cię linię komunikacji miejskiej.
+2. Sprawdź jej aktualny status i informacje o opóźnieniu.
+3. Otwórz mapę przystanków na trasie.
+4. Wybierz przystanek docelowy.
+5. Znajdź alternatywne połączenie.
+6. Porównaj proponowane rozwiązania pod względem czasu podróży i liczby przesiadek.
+
+Oczekiwany rezultat: użytkownik odnajduje linię, sprawdza jej status i potrafi wybrać alternatywne połączenie odpowiadające jego potrzebom.
+
+**Scenariusz 3: CU-03 - Sprawdzenie własnych usług**
+
+Sytuacja: korzystasz z kilku usług związanych z miejscem zamieszkania i pracą. Chcesz szybko sprawdzić, czy któraś z obserwowanych przez Ciebie usług ma aktualnie problemy.
+
+Zadania dla uczestnika:
+
+1. Przejdź do widoku swoich grup usług.
+2. Odszukaj grupę oznaczoną jako główna.
+3. Sprawdź zbiorczy status usług znajdujących się w tej grupie.
+4. Wskaż usługę, której działanie jest nieprawidłowe.
+
+Oczekiwany rezultat: użytkownik bez problemu odnajduje główną grupę i potrafi rozpoznać status poszczególnych usług.
+
+**Scenariusz 4: CU-04 - Sprawdzanie historii awarii**
+
+Sytuacja: od pewnego czasu zauważasz częste problemy z dostawą internetu u swojego dostawcy. Chcesz sprawdzić, jak często występowały awarie w ostatnim miesiącu i jak długo trwały.
+
+Zadania dla uczestnika:
+
+1. Odszukaj usługę internetową wybranego dostawcy.
+2. Przejdź do historii awarii tej usługi.
+3. Wyświetl historię z ostatniego tygodnia.
+4. Zmień zakres czasowy na ostatni miesiąc, a następnie na ostatnie trzy miesiące.
+5. Sprawdź, jakie awarie występowały w tym okresie oraz jak długo trwały.
+6. Zapoznaj się z wykresem liczby zgłoszeń i oceń częstotliwość występowania problemów.
+
+Oczekiwany rezultat: użytkownik odnajduje historię awarii i potrafi odczytać informacje dotyczące częstotliwości, czasu trwania oraz przyczyn występujących problemów.
+
+**Scenariusz 5: CU-05 - Konfiguracja powiadomień**
+
+Sytuacja: chcesz otrzymywać informacje o planowanych przerwach w dostawie wody w miejscu zamieszkania. Zależy Ci na tym, aby otrzymywać powiadomienia z jednodniowym wyprzedzeniem, ale nie chcesz dostawać alertów dotyczących każdej drobnej awarii.
+
+Zadania dla uczestnika:
+
+1. Odszukaj wybraną usługę wodociągową.
+2. Włącz powiadomienia dla tej usługi.
+3. Skonfiguruj alerty dotyczące wyłącznie planowanych przerw.
+4. Ustaw jednodniowe wyprzedzenie.
+5. Przypisz wybraną usługę do odpowiedniej grupy.
+
+Oczekiwany rezultat: użytkownik samodzielnie włącza powiadomienia i ustawia reguły odpowiadające przedstawionym wymaganiom.
+
+**Scenariusz 6: CU-06 - Zarządzanie grupą usług**
+
+Sytuacja: niedawno zmieniłeś miejsce zamieszkania. Chcesz zaktualizować ustawienia aplikacji tak, aby jedna z Twoich grup usług wskazywała nowy adres. Przy okazji chcesz wyłączyć powiadomienia dla całej grupy, ale nie usuwać obserwowanych usług.
+
+Zadania dla uczestnika:
+
+1. Otwórz widok swoich grup.
+2. Wybierz grupę, której lokalizację chcesz zmienić.
+3. Zaktualizuj przypisaną lokalizację.
+4. Wyłącz powiadomienia dla całej grupy.
+5. Sprawdź, czy usługi nadal znajdują się w grupie.
+
+Oczekiwany rezultat: użytkownik zmienia lokalizację i wyłącza powiadomienia bez przypadkowego usunięcia grupy lub należących do niej usług.
+
+**Scenariusz 7: CU-07 - Zgłaszanie awarii**
+
+Sytuacja: wracasz do mieszkania i zauważasz, że nie działa prąd. Sprawdzasz aplikację, ale nie widzisz jeszcze informacji o awarii w Twojej okolicy. Chcesz poinformować innych użytkowników o problemie.
+
+Zadania dla uczestnika:
+
+1. Odszukaj funkcję zgłaszania awarii.
+2. Wybierz usługę, której dotyczy problem.
+3. Określ przybliżony czas trwania awarii.
+4. Opcjonalnie wskaż lokalizację.
+5. Wyślij zgłoszenie.
+
+Oczekiwany rezultat: użytkownik samodzielnie odnajduje formularz i uzupełnia wymagane informacje.
+
+### 4.2 Ocena aplikacji
+
+Aplikację oceniono analitycznie, bez udziału badanych, na makiecie cyfrowej. Podstawą były scenariusze badań z punktu 4.1, odpowiadające przypadkom użycia CU-01-CU-07. Zastosowano trzy metody wymagane w instrukcji: przegląd kognitywny, GOMS oraz KLM/TLM. Przegląd kognitywny bada, czy nowicjusz odkryje właściwą akcję i poprawnie odczyta odpowiedź systemu. GOMS rozkłada zadanie na cele, operatory, metody i reguły wyboru. KLM/TLM szacuje czas wykonania przez biegłego użytkownika na ekranie dotykowym i porównuje go z progami z punktu 4.3. Wyniki trzech metod zebrano w punktach 4.2.1-4.2.3; wynikające z nich problemy i propozycje poprawek zawarto w punkcie 4.4.
+
+Obiektem oceny była istniejąca makieta, a nie specyfikacja planowanego redesignu. Tam, gdzie scenariusz wymaga funkcji nieobecnej w makiecie (reguły powiadomień, zmiana lokalizacji grupy, alternatywa komunikacyjna, zakresy historii), odnotowano brak metody zamiast uzupełniać przebieg.
+
+#### 4.2.1 Przegląd kognitywny
+
+Ocena metodą przeglądu kognitywnego została przeprowadzona na makiecie cyfrowej, bez udziału badanych. Badacz realizował scenariusze 1-7 z punktu 4.1, odgrywając rolę nowicjusza i „odkrywając” interfejs. Na każdym kroku stawiano cztery pytania z wykładu: co użytkownik chce osiągnąć; czy właściwe akcje są oczywiste; czy opis akcji jest klarowny; czy użytkownik poprawnie interpretuje odpowiedź systemu.
+
+Scenariusz 1 (CU-01). Wejście w katalog jest czytelne: przycisk „Usługi” prowadzi do listy kafelków, wybór Netii jest oczywisty, a informacja o awarii widoczna jest już na kafelku. Kliknięcie kafelka otwiera kartę szczegółów w jednym kroku. Na karcie znajdują się napis statusu, czas ostatniego sprawdzenia, wykres zgłoszeń oraz heatmapa zasięgu. Brakuje przyczyny przerwy, szacowanego czasu zakończenia oraz liczby zgłoszeń podanej jako liczba; skalę zgłoszeń użytkownik musi odczytać z wykresu. Odpowiedź na czwarte pytanie jest częściowa: system potwierdza wystąpienie problemu i jego obszar, ale nie odpowiada na pytania o przyczynę i czas końca.
+
+Scenariusz 2 (CU-02). Widok komunikacji publicznej zawiera mapę oraz jedną linię. Nie ma informacji o opóźnieniu, wyboru przystanku, propozycji alternatywnego połączenia ani porównania czasu podróży i liczby przesiadek. Właściwe akcje scenariusza nie są dostępne, więc pytania o oczywistość akcji i klarowność opisu uzyskują odpowiedź negatywną.
+
+Scenariusz 3 (CU-03). Wejście w grupy nie sprawia trudności: przycisk z etykietą „grupy” znajduje się w lewym dolnym rogu, a po tapnięciu pojawia się czytelna lista grup. Żadna grupa nie jest oznaczona jako główna, więc użytkownik nie wie, którą powinien otworzyć, i wybiera dowolną (w próbie: „Dom”). Na liście usług status kodowany jest kolorem przycisku „I” (czerwony, żółty, zielony), bez etykiety słownej; znaczenie kolorów odczytywane jest z domysłu. Dopiero po otwarciu czerwonej pozycji (Netia) system pokazuje status, czas sprawdzenia, wykres i heatmapę, co pozwala potwierdzić awarię. Pytania dotyczące wyboru grupy głównej oraz odczytu statusu z listy kończą się negatywnie.
+
+Scenariusz 4 (CU-04). Po wejściu w usługę widoczny jest czytelny wykres historii w zakresie tygodnia. Nie da się przełączyć zakresu na miesiąc ani na trzy miesiące i nie ma listy przerw z przyczyną oraz czasem trwania. Użytkownik nie uzyskuje informacji wymaganej w zadaniach 3-6 scenariusza.
+
+Scenariusz 5 (CU-05). Makieta nie zawiera konfiguracji reguł (tylko przerwy planowane, wyprzedzenie jednego dnia, przypisanie konkretnej usługi do grupy). Jedyną dostępną akcją jest włączenie lub wyłączenie powiadomień całej grupy. Cel scenariusza jest nieosiągalny; właściwe akcje nie istnieją.
+
+Scenariusz 6 (CU-06). Wyłączenie powiadomień grupy jest łatwe i nie usuwa usług z grupy. Funkcji zmiany lokalizacji grupy nie ma. Pytanie o oczywistość wyciszenia wypada pozytywnie, pytanie o zmianę lokalizacji - negatywnie.
+
+Scenariusz 7 (CU-07). Zgłoszenie awarii polega na wyszukaniu usługi (w grupie albo w katalogu) i zatwierdzeniu chęci zgłoszenia. Formularz nie zawiera czasu trwania, lokalizacji ani innych pól. Funkcja jest znajdowalna, lecz uboższa niż w opisie przypadku użycia.
+
+#### 4.2.2 GOMS
+
+Modele GOMS zbudowano dla celów odpowiadających oczekiwanym rezultatom scenariuszy z punktu 4.1. Operatorami są atomowe akcje na ekranie dotykowym (tap, odczyt). Tam, gdzie makieta nie oferuje metody realizacji celu, odnotowano brak metody zamiast uzupełniać przebieg.
+
+Scenariusz 1. Cel główny: sprawdzić awarię internetu, to znaczy ustalić, czy dotyczy użytkownika, jaka jest przyczyna, kiedy się skończy i jaki ma zasięg. Cel „znaleźć usługę” ma dwie metody: A - tap „Usługi” i tap kafelka Netia; B - wyszukiwarka na ekranie startowym. Reguła wyboru: A, gdy kafelek jest widoczny, w przeciwnym razie B. W próbie zastosowano A. Cel „odczytać status” realizuje odczyt kafelka, a następnie karty. Cel „odczytać przyczynę i czas końca” nie ma metody w makiecie. Cel „odczytać zasięg” realizuje odczyt heatmapy i wykresu.
+
+Scenariusz 2. Cel główny: sprawdzić status linii i znaleźć alternatywne połączenie na wybrany przystanek. Jedyna metoda to otwarcie widoku komunikacji (mapa i linia). Metoda prowadząca do alternatywy i porównania czasu nie istnieje.
+
+Scenariusz 3. Cel główny: sprawdzić, czy któraś z obserwowanych usług nie działa. Podcel „otworzyć grupy” realizuje tap „grupy”. Podcel „otworzyć grupę główną” ma metodę tapnięcia wybranej grupy, ale nie ma reguły wyboru, ponieważ system nie oznacza grupy głównej; w próbie użyto grupy „Dom”. Podcel „odczytać, która usługa nie działa” ma metodę A (odczyt koloru na liście) i metodę B (tap usługi i odczyt karty). Reguła wyboru: A, gdy kolor jest zrozumiały, B, gdy użytkownik nie ufa kolorowi. W próbie zastosowano B (Netia).
+
+Scenariusz 4. Cel główny: ocenić częstotliwość i czas trwania awarii w ostatnim miesiącu. Metoda: tap usługi i odczyt wykresu tygodnia. Metody zmiany zakresu na 30 dni i trzy miesiące oraz odczytu listy z przyczyną i czasem trwania nie istnieją.
+
+Scenariusz 5. Cel główny: włączyć powiadomienia o planowanych przerwach w dostawie wody z jednodniowym wyprzedzeniem i przypisać usługę do grupy. Metoda A (przełącznik i reguły na karcie usługi) nie istnieje. Metoda B (przełącznik powiadomień całej grupy) istnieje, lecz nie realizuje celu głównego. Reguła wyboru nie ma zastosowania: dostępna jest wyłącznie B.
+
+Scenariusz 6. Cel główny: zmienić lokalizację grupy i wyłączyć jej powiadomienia bez usuwania usług. Metoda zmiany lokalizacji nie istnieje. Metoda wyciszenia: tap grupy i tap przełącznika powiadomień; usługi pozostają w grupie.
+
+Scenariusz 7. Cel główny: zgłosić awarię. Metoda: znaleźć usługę w grupie albo w katalogu i zatwierdzić zgłoszenie. Metody podania czasu trwania („od 30 minut”) i lokalizacji nie istnieją.
+
+#### 4.2.3 KLM/TLM
+
+Szacowanie czasu wykonano modelem TLM jako rozszerzeniem KLM na ekran dotykowy. Z KLM (wykład) przyjęto operator mentalny M = 1,20 s. Z TLM przyjęto tap T = 0,08 s. Operatorów myszy (P, H, BB) nie stosowano. Założono, że aplikacja jest już otwarta (pominięto Initial Act). Przewijania w żadnym scenariuszu nie zaobserwowano, więc nie doliczano SC. Zapis ma postać ze slajdu z przykładem KLM: sekwencja operatorów, suma, porównanie z progiem z punktu 4.3.
+
+Scenariusz 1, metoda A: M T M T M (initiate, tap „Usługi”, namysł nad kafelkiem, tap Netia, odczyt karty) = 3,76 s. Próg znalezienia usługi (do 15 s) jest spełniony, podobnie wymóg jednego kroku od listy do szczegółów. Próg poprawnego odczytu przyczyny, czasu zakończenia i liczby zgłoszeń nie jest spełniony, ponieważ pól tych nie ma na karcie.
+
+Scenariusz 2: M T M (initiate, wejście w komunikację, odczyt mapy i linii) = 2,48 s. Próg „alternatywa w najwyżej dwóch krokach od statusu linii” nie podlega ocenie ilościowej, bo alternatywy nie ma.
+
+Scenariusz 3, metoda A (odczyt koloru na liście): M T M T M = 3,76 s. Metoda B (karta Netii): M T M T M T M = 5,04 s. Punkt 4.3 nie narzuca limitu czasu dla tego scenariusza; problemem pozostaje brak grupy głównej, a nie długość ścieżki.
+
+Scenariusz 4: M T M T M (usługa, odczyt wykresu tygodnia) = 3,76 s. Kryterium zmiany zakresu na tydzień, miesiąc i trzy miesiące nie jest spełnione.
+
+Scenariusz 5: metody A nie liczono. Metoda B (przełącznik grupy): M T M T M T = 3,84 s. Progów „przełącznik usługi wskazany w 5 s” i „konfiguracja reguły w 90 s” nie da się odnieść do makiety, bo nie ma ani przełącznika na karcie usługi, ani reguł.
+
+Scenariusz 6, wyciszenie grupy: M T M T M T = 3,84 s. Kryterium zachowania usług w grupie jest spełnione. Kryterium zmiany lokalizacji nie jest spełnione.
+
+Scenariusz 7: M T M T M T (znalezienie usługi, zatwierdzenie zgłoszenia) = 3,84 s. Próg 20 s od otwarcia funkcji do wysłania jest spełniony dla biegłego użytkownika. Formularz z zadaniami 3-4 scenariusza nie istnieje.
+
+Porównanie obu metod w scenariuszu 3 pokazuje - analogicznie do przykładu Design A / Design B z wykładu - że wejście w kartę wydłuża zadanie o jeden tap i jeden operator M (z 3,76 s do 5,04 s). Różnica jest niewielka wobec progów z punktu 4.3; wąskim gardłem nie jest czas, lecz brak etykiet i brak funkcji.
+
 ### 4.3 Miary i kryteria oceny użyteczności
- 
-Miary użyteczności zdefiniowano zgodnie z podejściem przywoływanym w ISO 9241-210, w którym użyteczność opisuje skuteczność, efektywność i satysfakcja użytkownika w określonym kontekście użycia. Skuteczność oznacza, czy użytkownik osiąga cel zadania i czy robi to poprawnie, efektywność - jakim nakładem czasu i kroków, a satysfakcja - jak użytkownik subiektywnie ocenia łatwość korzystania z aplikacji. Do tych trzech wymiarów dodano czwarty, wynikający z drugiego celu redesignu opisanego w punkcie 2.2 oraz z funkcjonalności F8: dostępność i zrozumiałość interfejsu dla dzieci i osób o niskim zaznajomieniu z technologią. Każda miara ma jedną definicję obowiązującą dla wszystkich funkcjonalności, a progi liczbowe, które zależą od przypadku użycia, zebrano w osobnej tabeli kryteriów.
- 
+
+Miary użyteczności zdefiniowano zgodnie z podejściem przywoływanym w ISO 9241-210, w którym użyteczność opisują skuteczność, efektywność i satysfakcja użytkownika w określonym kontekście użycia. Skuteczność oznacza, czy użytkownik osiąga cel zadania i czy robi to poprawnie, efektywność - jakim nakładem czasu i kroków, a satysfakcja - jak użytkownik subiektywnie ocenia łatwość korzystania z aplikacji. Do tych trzech wymiarów dodano czwarty, wynikający z drugiego celu redesignu opisanego w punkcie 2.2 oraz z funkcjonalności F8: dostępność i zrozumiałość interfejsu dla dzieci i osób o niskim zaznajomieniu z technologią. Każda miara ma jedną definicję obowiązującą we wszystkich scenariuszach z punktu 4.1, a progi liczbowe, które zależą od scenariusza, zebrano w osobnej tabeli kryteriów. Kryteria operacjonalizują „oczekiwany rezultat” podany przy każdym scenariuszu.
+
 **Miary użyteczności**
- 
+
 | ID | Miara | Wymiar | Definicja i sposób pomiaru | Jednostka |
 |---|---|---|---|---|
-| M1 | Wskaźnik ukończenia zadania | skuteczność | Odsetek uczestników, którzy osiągnęli cel zadania samodzielnie. Zadanie ukończone po podpowiedzi moderatora lub porzucone liczy się jako nieukończone. | % (oraz liczebność, np. 4 z 5) |
+| M1 | Wskaźnik ukończenia zadania | skuteczność | Odsetek uczestników, którzy osiągnęli cel zadania samodzielnie i z poprawnym efektem końcowym (na przykład z ustawioną właściwą regułą powiadomień). Zadanie ukończone po podpowiedzi moderatora, porzucone lub zakończone niewłaściwym efektem liczy się jako nieukończone. | % (oraz liczebność, np. 4 z 5) |
 | M2 | Liczba błędów na zadanie | skuteczność | Liczba dotknięć elementów niepowiązanych z celem zadania oraz wejść na niewłaściwy ekran, zliczana na podstawie obserwacji i nagrania sesji. | liczba, średnia na uczestnika |
-| M3 | Poprawność odczytu informacji | skuteczność | Odsetek uczestników, którzy w zadaniu odczytowym poprawnie wskazują stan usługi, przyczynę, szacowany czas naprawy i zasięg przerwy (F2) albo parametry przerwy z historii (F6). | % |
-| M4 | Czas wykonania zadania | efektywność | Czas od zakończenia czytania polecenia do osiągnięcia celu, liczony wyłącznie dla zadań ukończonych. | s, mediana |
-| M5 | Liczba kroków | efektywność | Liczba dotknięć ekranu potrzebnych do osiągnięcia celu, zestawiana z liczbą kroków ścieżki optymalnej. | liczba, iloraz do ścieżki optymalnej |
-| M6 | Czas wskazania elementu | efektywność | Czas od polecenia do pierwszego trafnego wskazania właściwego elementu interfejsu, na przykład przełącznika powiadomień albo wejścia do zgłoszenia awarii. | s |
-| M7 | Ocena łatwości zadania (SEQ) | satysfakcja | Jedno pytanie zadawane po każdym zadaniu: jak łatwe lub trudne było jego wykonanie. | skala 1-7, średnia |
-| M8 | Wynik SUS | satysfakcja | Kwestionariusz System Usability Scale, dziesięć pytań wypełnianych po zakończeniu sesji. | 0-100 |
-| M9 | Nasilenie problemu użyteczności | wszystkie | Ocena każdego zaobserwowanego problemu w skali Nielsena, uwzględniająca częstość problemu, jego wpływ na wykonanie zadania i trwałość: 0 - brak problemu, 1 - kosmetyczny, 2 - drobny, 3 - poważny, 4 - katastrofalny. | 0-4 |
-| M10 | Zgodność z wymaganiami dostępności | dostępność | Audyt ekranów trybu uproszczonego: liczba informacji na ekranie oraz odsetek celów dotykowych o rozmiarze co najmniej 48 dp. | liczba, % |
- 
-Ponieważ badania z użytkownikami obejmują niewielką liczbę uczestników, odsetki są zawsze podawane razem z liczebnościami, a wartości czasu - jako mediany, które są odporne na pojedyncze wyniki odstające. Miary M1-M6 oraz M9 pochodzą z obserwacji sesji, miary M7 i M8 z kwestionariuszy, a miara M10 z audytu projektu interfejsu, niezależnego od udziału użytkowników.
- 
+| M3 | Liczba błędów krytycznych | skuteczność | Liczba działań prowadzących do utraty danych użytkownika lub skutku niezgodnego z jego zamiarem, na przykład przypadkowego usunięcia grupy albo usługi z grupy lub wysłania zgłoszenia dla niewłaściwej usługi. | liczba |
+| M4 | Poprawność odczytu informacji | skuteczność | Odsetek uczestników, którzy w zadaniu odczytowym poprawnie wskazują żądane informacje (na przykład status, przyczynę, szacowany czas naprawy, zasięg i liczbę zgłoszeń albo czas trwania i częstotliwość awarii). | % |
+| M5 | Czas wykonania zadania | efektywność | Czas od zakończenia czytania polecenia do osiągnięcia celu, liczony wyłącznie dla zadań ukończonych. | s, mediana |
+| M6 | Liczba kroków | efektywność | Liczba dotknięć ekranu potrzebnych do osiągnięcia celu, zestawiana z liczbą kroków ścieżki optymalnej. | liczba, iloraz do ścieżki optymalnej |
+| M7 | Czas wskazania elementu | efektywność | Czas od polecenia do pierwszego trafnego wskazania właściwego elementu interfejsu, na przykład przełącznika powiadomień albo wejścia do zgłoszenia awarii. | s |
+| M8 | Ocena łatwości zadania (SEQ) | satysfakcja | Jedno pytanie zadawane po każdym zadaniu: jak łatwe lub trudne było jego wykonanie. | skala 1-7, średnia |
+| M9 | Wynik SUS | satysfakcja | Kwestionariusz System Usability Scale, dziesięć pytań wypełnianych po zakończeniu sesji. | 0-100 |
+| M10 | Nasilenie problemu użyteczności | wszystkie | Ocena każdego zaobserwowanego problemu w skali Nielsena, uwzględniająca częstość problemu, jego wpływ na wykonanie zadania i trwałość: 0 - brak problemu, 1 - kosmetyczny, 2 - drobny, 3 - poważny, 4 - katastrofalny. | 0-4 |
+| M11 | Zgodność z wymaganiami dostępności | dostępność | Audyt ekranów trybu uproszczonego: liczba informacji na ekranie oraz odsetek celów dotykowych o rozmiarze co najmniej 48 dp. | liczba, % |
+
+Ponieważ badania z użytkownikami obejmują niewielką liczbę uczestników, odsetki są zawsze podawane razem z liczebnościami, a wartości czasu - jako mediany, które są odporne na pojedyncze wyniki odstające. Miary M1-M7 oraz M10 pochodzą z obserwacji sesji, miary M8 i M9 z kwestionariuszy, a miara M11 z audytu projektu interfejsu, niezależnego od udziału użytkowników.
+
 **Progi ogólne**
- 
+
 | Miara | Kryterium spełnione, gdy | Uzasadnienie progu |
 |---|---|---|
-| M1 | co najmniej 90% uczestników ukończyło zadanie samodzielnie | wartość z kryteriów akceptacji F1 i F5; przy małej liczbie uczestników oznacza w praktyce brak niepowodzeń |
-| M7 | średnia ocena zadania wynosi co najmniej 5,5 | przeciętna wartość SEQ podawana w literaturze |
-| M8 | wynik SUS wynosi co najmniej 68 | przeciętny wynik SUS podawany w literaturze |
-| M9 | nie pozostaje żaden nierozwiązany problem o nasileniu 3 lub 4 | przyjęcie zespołu |
- 
-Zadanie uznaje się za wykonane poprawnie pod względem użyteczności, gdy spełnia wszystkie progi M1, M4-M6 wskazane dla odpowiadającego mu przypadku użycia oraz próg M7; w przeciwnym razie zadanie wymaga poprawy interfejsu. Całą aplikację ocenia się łącznie, na podstawie progów M8 i M9, tak aby dobre wyniki pojedynczych zadań nie przesłaniały ogólnego odbioru produktu.
- 
-**Kryteria dla przypadków użycia**
- 
-| Przypadek użycia | Funkcjonalności | Miary główne | Kryterium |
+| M1, M4 | co najmniej 90% uczestników | wartość z kryteriów akceptacji F1 i F5; przy małej liczbie uczestników oznacza w praktyce brak niepowodzeń |
+| M3 | brak błędów krytycznych | przyjęcie zespołu |
+| M8 | średnia ocena zadania wynosi co najmniej 5,5 | przeciętna wartość SEQ podawana w literaturze |
+| M9 | wynik SUS wynosi co najmniej 68 | przeciętny wynik SUS podawany w literaturze |
+| M10 | nie pozostaje żaden nierozwiązany problem o nasileniu 3 lub 4 | przyjęcie zespołu |
+
+Zadanie uznaje się za wykonane poprawnie pod względem użyteczności, gdy spełnia progi ogólne dla M1, M3 i M4 oraz progi szczegółowe M5-M7 wskazane dla odpowiadającego mu scenariusza, a także próg M8; w przeciwnym razie zadanie wymaga poprawy interfejsu. Całą aplikację ocenia się łącznie, na podstawie progów M9 i M10, tak aby dobre wyniki pojedynczych zadań nie przesłaniały ogólnego odbioru produktu.
+
+**Kryteria dla scenariuszy badań**
+
+Numery zadań odnoszą się do list zadań dla uczestnika w punkcie 4.1.
+
+| Scenariusz | Funkcjonalności | Miary główne | Kryterium |
 |---|---|---|---|
-| CU-01 Sprawdzenie usługi lub serwisu | F1, F2 | M1, M3, M4, M5 | znalezienie usługi w czasie do 15 s; M1 i M3 co najmniej 90%; przejście od listy do szczegółów w jednym kroku |
-| CU-02 Sprawdzenie usług publicznych | F7, F2 | M1, M3, M5 | M1 i M3 co najmniej 90%; alternatywne połączenie w najwyżej dwóch krokach od statusu linii |
-| CU-03 Sprawdzenie „swoich” usług | F4, F2 | M1, M2, M5 | M1 co najmniej 90%; brak błędów polegających na wejściu w grupę zamiast w usługę |
-| CU-04 Sprawdzenie historii awarii | F6 | M1, M3 | M1 i M3 co najmniej 90%, w tym poprawna zmiana zakresu wykresu (7 dni, 30 dni, 3 miesiące) |
-| CU-05 Konfiguracja powiadomień | F3 | M1, M4, M6 | przełącznik wskazany w czasie do 5 s przez wszystkich uczestników; konfiguracja reguły w czasie do 90 s; M1 co najmniej 90% |
-| CU-06 Zarządzanie grupą | F4, F3 | M1, M2 | M1 co najmniej 90%; brak błędów polegających na dodawaniu usług obok grupy |
-| CU-07 Zgłoszenie awarii | F5 | M1, M4, M6 | zgłoszenie w czasie do 20 s; co najmniej 90% uczestników samodzielnie znajduje funkcję |
-| Wszystkie CU w trybie uproszczonym | F8 | M1, M10 | co najwyżej trzy informacje na ekranie; wszystkie cele dotykowe o rozmiarze co najmniej 48 dp; M1 co najmniej 90% wśród uczestników o niskim zaznajomieniu z technologią |
+| Scenariusz 1 (CU-01) | F1, F2 | M1, M4, M5, M6 | usługa znaleziona w czasie do 15 s (zadanie 1); przejście od listy do szczegółów w jednym kroku (zadanie 3); poprawny odczyt przyczyny, szacowanego czasu zakończenia, zasięgu i liczby zgłoszeń (zadania 4-5); M1 i M4 co najmniej 90% |
+| Scenariusz 2 (CU-02) | F7, F2 | M1, M4, M6 | alternatywne połączenie znalezione w najwyżej dwóch krokach od statusu linii (zadanie 5); poprawne porównanie czasu podróży i liczby przesiadek (zadanie 6); M1 i M4 co najmniej 90% |
+| Scenariusz 3 (CU-03) | F4, F2 | M1, M2, M4 | główna grupa odnaleziona (zadanie 2) i poprawnie wskazana usługa o nieprawidłowym działaniu (zadanie 4); M1 i M4 co najmniej 90%; brak błędów polegających na pomyleniu grupy z usługą |
+| Scenariusz 4 (CU-04) | F6 | M1, M4 | poprawna zmiana zakresu na tydzień, miesiąc i trzy miesiące (zadania 3-4); poprawny odczyt liczby awarii, czasu trwania i przyczyn oraz ocena częstotliwości problemów (zadania 5-6); M1 i M4 co najmniej 90% |
+| Scenariusz 5 (CU-05) | F3 | M1, M5, M7 | przełącznik powiadomień wskazany w czasie do 5 s przez wszystkich uczestników (zadanie 2); konfiguracja reguły w czasie do 90 s (zadania 2-5); efekt końcowy zgodny z sytuacją: powiadomienia włączone, tylko przerwy planowane, wyprzedzenie jednodniowe, usługa przypisana do grupy; M1 co najmniej 90% |
+| Scenariusz 6 (CU-06) | F4, F3 | M1, M3, M4 | lokalizacja grupy zmieniona, powiadomienia grupy wyłączone, a usługi nadal w grupie (zadania 3-5); brak przypadkowego usunięcia grupy lub usługi (M3 równe 0); M1 i M4 co najmniej 90% |
+| Scenariusz 7 (CU-07) | F5 | M1, M3, M5, M7 | funkcja zgłaszania znaleziona samodzielnie przez co najmniej 90% uczestników (zadanie 1); zgłoszenie wysłane w czasie do 20 s, liczonym od otwarcia funkcji do wysłania (zadania 2-5); zgłoszenie dotyczy właściwej usługi (M3 równe 0); M1 co najmniej 90% |
+| Tryb uproszczony | F8 | M11 | co najwyżej trzy informacje na ekranie; wszystkie cele dotykowe o rozmiarze co najmniej 48 dp |
+
+Kryteria dla scenariuszy 1, 2, 5 i 7 oraz dla trybu uproszczonego wynikają bezpośrednio z kryteriów akceptacji funkcjonalności F1, F2, F3, F5, F7 i F8 z punktu 3.3 oraz z charakterystyk technicznych H1-H9 z punktu 3.4.2. Kryteria dla scenariuszy 3 i 6 odnoszą się do błędów zaobserwowanych w testach makiety (pomylenie grupy z usługą, dodawanie usług obok grupy) i do oczekiwanego rezultatu scenariusza 6, a kryteria dla scenariusza 4 wynikają z zakresu funkcjonalności F6.
+
+### 4.4 Potencjalne problemy użyteczności, analiza wyników, propozycje poprawek
+
+Przegląd kognitywny, modele GOMS i oszacowania TLM wskazują, że wąskim gardłem makiety nie jest długość ścieżek, lecz brak elementów wymaganych przez scenariusze oraz niejednoznaczne oznaczenie statusu. Poniżej zebrano problemy i propozycje poprawek.
+
+Po pierwsze, lista grup nie oznacza grupy głównej, więc zadanie ze scenariusza 3 nie ma poprawnej akcji. Należy dodać etykietę lub ikonę „główna” przy wybranej grupie.
+
+Po drugie, status usługi na liście opiera się wyłącznie na kolorze przycisku „I”. Nowicjusz odgaduje znaczenie kolorów. Przy statusie powinien pojawić się tekst („awaria”, „działa”, „problem lokalny”), zgodnie z wymaganiem F2, że odczyt nie może zależeć od koloru.
+
+Po trzecie, karta usługi nie zawiera przyczyny, szacowanego czasu zakończenia ani liczby zgłoszeń jako liczby, mimo że są to treści zadań 4 i 5 scenariusza 1 oraz charakterystyki H2 i H3. Wykres i heatmapę należy uzupełnić o te trzy pola, nie zastępować ich.
+
+Po czwarte, powiadomienia można tylko włączyć lub wyłączyć dla całej grupy. Brakuje przełącznika na karcie usługi oraz reguł z scenariusza 5 (tylko planowane, wyprzedzenie jednego dnia, przypisanie usługi do grupy). To jest treść F3 i próg 90 s z punktu 4.3.
+
+Po piąte, w scenariuszu 6 wyciszenie grupy działa poprawnie i nie usuwa usług; brakuje zmiany lokalizacji grupy.
+
+Po szóste, zgłoszenie awarii sprowadza się do zatwierdzenia przy usłudze. Należy dodać presety czasu trwania i opcjonalną lokalizację, zachowując krótką ścieżkę (wejście z listy i z karty).
+
+Po siódme, historia ogranicza się do wykresu tygodnia. Potrzebne są zakresy 7 dni, 30 dni i 3 miesiące oraz lista przerw z przyczyną i czasem trwania (F6, scenariusz 4).
+
+Po ósme, widok komunikacji kończy się na mapie i jednej linii. Alternatywne połączenie z porównaniem czasu i liczby przesiadek ma być dostępne w najwyżej dwóch krokach od statusu linii (F7, scenariusz 2).
+
+Analiza TLM nie wskazuje na nadmiar kroków w ścieżkach, które makieta już realizuje (katalog, karta, grupy, wyciszenie, zatwierdzenie zgłoszenia). Poprawki powinny więc dodawać brakujące cele z GOMS i etykiety z przeglądu kognitywnego, a nie skracać istniejących sekwencji tapnięć.
 
 ## 5. Badania użyteczności
 
