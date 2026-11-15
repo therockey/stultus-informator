@@ -1,0 +1,5 @@
+{
+  "@@locale": "pl",
+  "errorscreen_generic_error": "Wystąpił nieznany błąd.",
+  "future_provider_error": "Błąd: {error}"
+}
