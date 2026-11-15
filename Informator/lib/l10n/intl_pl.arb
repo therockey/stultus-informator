@@ -1,5 +1,11 @@
 {
   "@@locale": "pl",
   "errorscreen_generic_error": "Wystąpił nieznany błąd.",
-  "future_provider_error": "Błąd: {error}"
+  "future_provider_error": "Błąd: {error}",
+  "languagedialog_title": "Wybierz język",
+  "languagedialog_default": "(Domyślny)",
+  "logo_semantics": "Logo aplikacji Informator",
+  "intropage1_title": "Witamy w Informatorze!",
+  "intropage1_body": "Wszystkie ważne informacje. W jednym miejscu.",
+  "appcard_title": "Bądź na bierząco ze swoim życiem"
 }

@@ -1,5 +1,11 @@
 {
   "@@locale": "en",
   "errorscreen_generic_error": "An unknown error occurred.",
-  "future_provider_error": "Error: {error}"
+  "future_provider_error": "Error: {error}",
+  "languagedialog_title": "Select Language",
+  "languagedialog_default": "(Default)",
+  "logo_semantics": "Informator app logo",
+  "intropage1_title": "Welcome to Informator!",
+  "intropage1_body": "All critical news. In one spot.",
+  "appcard_title": "Stay up-to-date with your life"
 }

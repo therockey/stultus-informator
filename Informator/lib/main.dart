@@ -8,6 +8,8 @@ import 'package:informator/providers/shared_preferences_provider.dart';
 import 'package:informator/providers/locale_provider.dart';
 import 'package:informator/screens/error_screen.dart';
 import 'package:informator/screens/license_screen.dart';
+import 'package:informator/screens/home_screen.dart';
+import 'package:informator/screens/intro/intro_screen.dart';
 
 void main() async {
   final prefs = await SharedPreferences.getInstance();
@@ -61,8 +63,6 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: ThemeData(colorScheme: MaterialTheme.darkScheme()),
         routes: {
           '/home': (context) => const HomeScreen(),
-          '/pairing': (context) => PairingScreen(),
-          '/about': (context) => const AboutScreen(),
           '/license': (context) => const LicenseScreen(),
           '/error': (context) => const ErrorScreen(),
         },
