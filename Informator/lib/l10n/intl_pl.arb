@@ -11,7 +11,20 @@
   "intropage2_body": "",
   "intropage2_semantics": "",
   "appcard_title": "Bądź na bierząco ze swoim życiem",
-  "groups": "Grupy",
+  "groups": "Twoje grupy",
+  "groups_add": "Dodaj grupę",
+  "groups_empty": "Nie masz jeszcze żadnych grup.",
+  "group_location": "Lokalizacja: {location}",
+  "@group_location": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "group_location_none": "Brak",
+  "group_notifications_label": "Powiadomienia o przerwach",
+  "group_remove": "Usuń grupę",
   "services": "Usługi",
   "settings": "Ustawienia",
   "services_search_hint": "Wpisz nazwę usługi...",

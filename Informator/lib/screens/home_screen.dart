@@ -37,7 +37,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     }
 
     final Map<int, HomeTab> tabs = {
-      0: HomeTab(body: const GroupsScreen(), title: strings.groups),
+      0: HomeTab(
+        body: const GroupsScreen(),
+        title: strings.groups,
+        floatingActionButton: const AddGroupButton(),
+      ),
       1: HomeTab(body: const ServicesScreen()),
       2: HomeTab(body: const SettingsScreen(), title: strings.settings),
     };
@@ -54,6 +58,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: theme.primaryContainer,
       ),
       body: selectedTab.body,
+      floatingActionButton: selectedTab.floatingActionButton,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTabIndex,
         onTap: (index) {

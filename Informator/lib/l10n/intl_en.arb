@@ -11,7 +11,20 @@
   "intropage2_body": "Our app uses your unique ECG/PPG signals as a biometric marker. Instead of fingerprints or face scans, your heartbeat helps confirm your identity — safer and more convenient than traditional login methods.",
   "intropage2_semantics": "Secure login with heartbeat signal",
   "appcard_title": "Stay up-to-date with your life",
-  "groups": "Groups",
+  "groups": "Your groups",
+  "groups_add": "Add group",
+  "groups_empty": "You don't have any groups yet.",
+  "group_location": "Location: {location}",
+  "@group_location": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "group_location_none": "None",
+  "group_notifications_label": "Outage notifications",
+  "group_remove": "Remove group",
   "services": "Services",
   "settings": "Settings",
   "services_search_hint": "Type a service name...",
