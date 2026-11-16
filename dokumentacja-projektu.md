@@ -80,7 +80,7 @@ Pełne zestawienie odpowiedzi z tury archiwalnej zawiera poniższa tabela. Numer
 |  | 2 | tak, pod warunkiem że zgłoszeń będzie dużo, wraz z rozróżnieniem sposobu ich potwierdzania |
 |  | 3 | nie, nie potrzebuje takich informacji |
 |  | 4 | tak |
-|  | 5 | przy awarii lub przerwie nieplanowanej warto wiedzieć, czy problem jest szerszy, czy dotyczy tylko tej osoby |
+|  | 5 | przy awarii lub przerwie nieplanowane	j warto wiedzieć, czy problem jest szerszy, czy dotyczy tylko tej osoby |
 |  | 6 | sam nie chciałby zgłaszać, ale funkcja jest ważna, aby wiedzieć, czy awaria rzeczywiście jest awarią |
 
 Z tury archiwalnej wynikają cztery wnioski, które bezpośrednio kształtują specyfikację. Po pierwsze, użytkownicy chcą otrzymywać powiadomienia, a nie musieć samodzielnie sprawdzać aplikacji - powiadomienie było jedynym elementem wskazanym we wszystkich czterech odpowiedziach na pytanie o cechę niezbędną. Po drugie, oczekują kontroli nad ilością i rodzajem informacji: chcą zaznaczyć, czy interesuje ich całe miasto, czy tylko własna ulica, i chcą móc wyłączyć wybrane kategorie, aby uniknąć szumu informacyjnego. Po trzecie, w trakcie przerwy najważniejsze są czas trwania i szacowany czas naprawy, a przy przerwach planowanych - informacja z wyprzedzeniem; przyczyna jest istotna dla części rozmówców, a obszar przerwy dla większości okazuje się drugorzędny, dopóki nie trzeba ocenić, czy problem jest powszechny. Po czwarte, użytkownicy chcą wiedzieć, czy zgłoszony problem dotyczy tylko ich, czy całej okolicy, i są skłonni potwierdzać cudze zgłoszenia, nawet jeśli sami nie chcą wypełniać formularza.
