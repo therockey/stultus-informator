@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "org.stultus.informator"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

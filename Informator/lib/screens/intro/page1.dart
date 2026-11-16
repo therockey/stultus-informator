@@ -27,11 +27,12 @@ class Page1 extends PageViewModel {
           ),
         ),
         decoration: PageDecoration(
+          imagePadding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           titleTextStyle: TextStyle(
             fontSize: 28.0,
             fontWeight: FontWeight.w700,
           ),
-          pageColor: Theme.of(_context).colorScheme.onPrimary,
+          pageColor: Theme.of(_context).colorScheme.surface,
         ),
       );
 }

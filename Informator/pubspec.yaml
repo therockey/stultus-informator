@@ -45,6 +45,8 @@ dependencies:
   intl_utils: ^2.8.17
   package_info_plus: ^10.2.2
   flutter_launcher_icons: ^0.14.4
+  permission_handler: ^13.0.2
+  native_lens: ^0.16.1
 
 dev_dependencies:
   flutter_test:
