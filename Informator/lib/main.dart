@@ -1,7 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart' as flutter_localizations;
 import 'package:informator/theme.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/providers/shared_preferences_provider.dart';
@@ -56,7 +56,12 @@ class _MyAppState extends ConsumerState<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       locale: localeNotifier.locale,
-      localizationsDelegates: [S.delegate, GlobalWidgetsLocalizations.delegate],
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        flutter_localizations.GlobalMaterialLocalizations.delegate,
+        flutter_localizations.GlobalWidgetsLocalizations.delegate,
+      ],
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(colorScheme: MaterialTheme.lightScheme()),
       darkTheme: ThemeData(colorScheme: MaterialTheme.darkScheme()),

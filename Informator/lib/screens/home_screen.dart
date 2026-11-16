@@ -55,35 +55,52 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           style: TextStyle(color: theme.onSurface),
         ),
         centerTitle: true,
+        toolbarHeight: 72,
         backgroundColor: theme.primaryContainer,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: theme.secondaryContainer,
+              foregroundColor: theme.onSecondaryContainer,
+              child: const Icon(Icons.person_outline),
+            ),
+          ),
+        ],
       ),
       body: selectedTab.body,
       floatingActionButton: selectedTab.floatingActionButton,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedTabIndex,
-        onTap: (index) {
-          if (tabs.containsKey(index)) {
-            setState(() => _selectedTabIndex = index);
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            activeIcon: selectedIcon(Icons.home),
-            label: strings.groups,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            activeIcon: selectedIcon(Icons.search),
-            label: strings.services,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.settings),
-            activeIcon: selectedIcon(Icons.settings),
-            label: strings.settings,
-          ),
-        ],
-        backgroundColor: theme.primaryContainer,
+      bottomNavigationBar: SizedBox(
+        height: 80,
+        child: BottomNavigationBar(
+          currentIndex: _selectedTabIndex,
+          onTap: (index) {
+            if (tabs.containsKey(index)) {
+              setState(() => _selectedTabIndex = index);
+            }
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.home),
+              activeIcon: selectedIcon(Icons.home),
+              label: strings.groups,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.search),
+              activeIcon: selectedIcon(Icons.search),
+              label: strings.services,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.settings),
+              activeIcon: selectedIcon(Icons.settings),
+              label: strings.settings,
+            ),
+          ],
+          backgroundColor: theme.primaryContainer,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+        ),
       ),
     );
   }
