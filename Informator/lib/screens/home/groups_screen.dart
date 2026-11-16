@@ -10,7 +10,14 @@ class GroupsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final groups = ref.watch(groupsProvider);
+    final groupsState = ref.watch(groupsProvider);
+    if (groupsState.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (groupsState.hasError) {
+      return Center(child: Text(groupsState.error.toString()));
+    }
+    final groups = groupsState.requireValue;
 
     if (groups.isEmpty) {
       final theme = Theme.of(context).colorScheme;
@@ -37,10 +44,14 @@ class GroupsScreen extends ConsumerWidget {
         return GroupCard(
           key: ValueKey(group.id),
           group: group,
-          onNotificationsChanged: (enabled) => ref
-              .read(groupsProvider.notifier)
-              .setNotificationsEnabled(group.id, enabled),
-          onRemove: () => ref.read(groupsProvider.notifier).remove(group.id),
+          onNotificationsChanged: (enabled) {
+            ref
+                .read(groupsProvider.notifier)
+                .setNotificationsEnabled(group.id, enabled);
+          },
+          onRemove: () {
+            ref.read(groupsProvider.notifier).remove(group.id);
+          },
         );
       },
     );

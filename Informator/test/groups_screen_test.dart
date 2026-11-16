@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
+import 'package:informator/models/group.dart';
+import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/screens/home/groups_screen.dart';
 import 'package:informator/screens/home_screen.dart';
 import 'package:informator/theme.dart';
@@ -9,8 +11,48 @@ import 'package:material_ui/material_ui.dart';
 
 const Color notificationsOnColor = Color(0xFFCBA600);
 
+class TestGroupsNotifier extends GroupsNotifier {
+  @override
+  Future<List<Group>> build() async => [
+    const Group(id: 'moja-grupa', name: 'Twoja Grupa'),
+    const Group(
+      id: 'dom',
+      name: 'Dom',
+      location: 'Szarych Szeregów 2, Kalisz',
+      notificationsEnabled: true,
+    ),
+    const Group(
+      id: 'politechnika',
+      name: 'Politechnika',
+      location: 'Grunwaldzka 15, Wrocław',
+      notificationsEnabled: true,
+    ),
+  ];
+
+  @override
+  Future<void> setNotificationsEnabled(String groupId, bool enabled) async {
+    state = AsyncData([
+      for (final group in state.requireValue)
+        group.id == groupId
+            ? group.copyWith(notificationsEnabled: enabled)
+            : group,
+    ]);
+  }
+
+  @override
+  Future<void> remove(String groupId) async {
+    state = AsyncData([
+      for (final group in state.requireValue)
+        if (group.id != groupId) group,
+    ]);
+  }
+}
+
 Widget localizedApp(Widget child) {
   return ProviderScope(
+    overrides: [
+      groupsProvider.overrideWith(TestGroupsNotifier.new),
+    ],
     child: MaterialApp(
       locale: const Locale('pl'),
       localizationsDelegates: [
@@ -22,6 +64,12 @@ Widget localizedApp(Widget child) {
       home: Scaffold(body: child),
     ),
   );
+}
+
+Future<void> pumpDatabase(WidgetTester tester) async {
+  await tester.pump();
+  await tester.runAsync(() => Future<void>.delayed(const Duration(seconds: 3)));
+  await tester.pump();
 }
 
 Finder cardOf(String id) => find.byKey(ValueKey(id));
@@ -42,7 +90,7 @@ Color bellColor(WidgetTester tester, String id) =>
 void main() {
   testWidgets('lists the user groups with their locations', (tester) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.byType(GroupCard), findsNWidgets(3));
     expect(find.text('Twoja Grupa'), findsOneWidget);
@@ -54,7 +102,7 @@ void main() {
 
   testWidgets('bell is yellow only where notifications are on', (tester) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(tester.widget<Switch>(switchOf('moja-grupa')).value, isFalse);
     expect(bellColor(tester, 'moja-grupa'), isNot(notificationsOnColor));
@@ -67,10 +115,10 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     await tester.tap(switchOf('moja-grupa'));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(tester.widget<Switch>(switchOf('moja-grupa')).value, isTrue);
     expect(bellColor(tester, 'moja-grupa'), notificationsOnColor);
@@ -81,10 +129,10 @@ void main() {
     tester,
   ) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     await tester.tap(switchOf('dom'));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(tester.widget<Switch>(switchOf('dom')).value, isFalse);
     expect(bellColor(tester, 'dom'), isNot(notificationsOnColor));
@@ -92,12 +140,12 @@ void main() {
 
   testWidgets('removing a group drops it from the list', (tester) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     await tester.tap(
       find.descendant(of: cardOf('politechnika'), matching: find.byIcon(Icons.close)),
     );
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.text('Politechnika'), findsNothing);
     expect(find.byType(GroupCard), findsNWidgets(2));
@@ -105,13 +153,13 @@ void main() {
 
   testWidgets('says so when no group is left', (tester) async {
     await tester.pumpWidget(localizedApp(const GroupsScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     for (final id in ['moja-grupa', 'dom', 'politechnika']) {
       await tester.tap(
         find.descendant(of: cardOf(id), matching: find.byIcon(Icons.close)),
       );
-      await tester.pumpAndSettle();
+      await pumpDatabase(tester);
     }
 
     expect(find.byType(GroupCard), findsNothing);
@@ -123,6 +171,9 @@ void main() {
   ) async {
     await tester.pumpWidget(
       ProviderScope(
+        overrides: [
+          groupsProvider.overrideWith(TestGroupsNotifier.new),
+        ],
         child: MaterialApp(
           locale: const Locale('pl'),
           localizationsDelegates: [
@@ -135,12 +186,12 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.byType(AddGroupButton), findsNothing);
 
     await tester.tap(find.byIcon(Icons.home));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.byType(AddGroupButton), findsOneWidget);
   });

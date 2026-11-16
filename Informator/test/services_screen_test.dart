@@ -10,7 +10,28 @@ import 'package:material_ui/material_ui.dart';
 Widget localizedApp(Widget child, {List<Service>? services}) {
   return ProviderScope(
     overrides: [
-      if (services != null) servicesProvider.overrideWithValue(services),
+      servicesProvider.overrideWith(
+        (ref) async => services ?? const [
+          Service(
+            id: 'netia',
+            name: 'Netia',
+            status: ServiceStatus.outage,
+            groups: ['Dom', 'Media'],
+          ),
+          Service(
+            id: 'openai',
+            name: 'OpenAI',
+            status: ServiceStatus.degraded,
+            groups: ['Serwis'],
+          ),
+          Service(
+            id: 'grygry2',
+            name: 'GryGry2',
+            status: ServiceStatus.operational,
+            groups: ['Gry', 'Serwis'],
+          ),
+        ],
+      ),
     ],
     child: MaterialApp(
       locale: const Locale('pl'),
@@ -21,10 +42,16 @@ Widget localizedApp(Widget child, {List<Service>? services}) {
   );
 }
 
+Future<void> pumpDatabase(WidgetTester tester) async {
+  await tester.pump();
+  await tester.runAsync(() => Future<void>.delayed(const Duration(seconds: 3)));
+  await tester.pump();
+}
+
 void main() {
   testWidgets('lists popular services before the user searches', (tester) async {
     await tester.pumpWidget(localizedApp(const ServicesScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.text('Popularne usługi'), findsOneWidget);
     expect(find.byType(ServiceCard), findsWidgets);
@@ -35,7 +62,7 @@ void main() {
 
   testWidgets('filters the list by the typed service name', (tester) async {
     await tester.pumpWidget(localizedApp(const ServicesScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     await tester.enterText(find.byType(TextField), 'net');
     await tester.pumpAndSettle();
@@ -47,7 +74,7 @@ void main() {
 
   testWidgets('shows a message when no service matches', (tester) async {
     await tester.pumpWidget(localizedApp(const ServicesScreen()));
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     await tester.enterText(find.byType(TextField), 'nie-ma-takiej-uslugi');
     await tester.pumpAndSettle();
@@ -73,7 +100,7 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     expect(find.text('Netia'), findsOneWidget);
     expect(find.text('Dom'), findsOneWidget);
@@ -101,7 +128,7 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await pumpDatabase(tester);
 
     final buttons = find.byType(ServiceActionButton);
     expect(buttons, findsNWidgets(2));

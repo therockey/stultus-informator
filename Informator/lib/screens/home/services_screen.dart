@@ -37,7 +37,14 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     final strings = S.of(context);
-    final services = ref.watch(servicesProvider);
+    final servicesState = ref.watch(servicesProvider);
+    if (servicesState.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (servicesState.hasError) {
+      return _LoadError(message: servicesState.error.toString());
+    }
+    final services = servicesState.requireValue;
     final List<Service> results = services
         .where((service) => service.matchesQuery(_query))
         .toList(growable: false);
@@ -159,6 +166,22 @@ class _NoResults extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),
         ),
+      ),
+    );
+  }
+}
+
+class _LoadError extends StatelessWidget {
+  const _LoadError({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Text(message, textAlign: TextAlign.center),
       ),
     );
   }

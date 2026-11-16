@@ -1,41 +1,35 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/models/group.dart';
+import 'package:informator/providers/database_provider.dart';
 
-/// Groups the user belongs to.
-const List<Group> initialGroups = <Group>[
-  Group(id: 'moja-grupa', name: 'Twoja Grupa'),
-  Group(
-    id: 'dom',
-    name: 'Dom',
-    location: 'Szarych Szeregów 2, Kalisz',
-    notificationsEnabled: true,
-  ),
-  Group(
-    id: 'politechnika',
-    name: 'Politechnika',
-    location: 'Grunwaldzka 15, Wrocław',
-    notificationsEnabled: true,
-  ),
-];
-
-final groupsProvider = NotifierProvider<GroupsNotifier, List<Group>>(
+final groupsProvider = AsyncNotifierProvider<GroupsNotifier, List<Group>>(
   GroupsNotifier.new,
 );
 
-class GroupsNotifier extends Notifier<List<Group>> {
+class GroupsNotifier extends AsyncNotifier<List<Group>> {
   @override
-  List<Group> build() => initialGroups;
+  Future<List<Group>> build() {
+    return ref.watch(informatorRepositoryProvider).fetchGroups();
+  }
 
-  void setNotificationsEnabled(String groupId, bool enabled) {
-    state = [
-      for (final group in state)
+  Future<void> setNotificationsEnabled(String groupId, bool enabled) async {
+    final groups = state.requireValue;
+    state = AsyncData([
+      for (final group in groups)
         group.id == groupId
             ? group.copyWith(notificationsEnabled: enabled)
             : group,
-    ];
+    ]);
+    await ref
+        .read(informatorRepositoryProvider)
+        .updateGroupNotifications(groupId, enabled);
   }
 
-  void remove(String groupId) {
-    state = state.where((group) => group.id != groupId).toList(growable: false);
+  Future<void> remove(String groupId) async {
+    state = AsyncData([
+      for (final group in state.requireValue)
+        if (group.id != groupId) group,
+    ]);
+    await ref.read(informatorRepositoryProvider).deleteGroup(groupId);
   }
 }
