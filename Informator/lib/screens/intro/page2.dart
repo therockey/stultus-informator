@@ -13,7 +13,11 @@ class Page2 extends PageViewModel {
   Page2(this._context, this._ref)
     : super(
         title: S.of(_context).intropage2_title,
-        body: S.of(_context).intropage2_body,
+        bodyWidget: Text(
+          S.of(_context).intropage2_body,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 16),
+        ),
         image: Center(
           child: Image.asset(
             'assets/intro2.png',

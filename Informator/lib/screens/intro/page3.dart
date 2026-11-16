@@ -40,7 +40,8 @@ class Page3 extends PageViewModel {
                 .maybeWhen(
                   data: (step) => switch (step) {
                     1 => Icons.notifications_active,
-                    2 => Icons.battery_alert,
+                    2 => Icons.location_on,
+                    3 => Icons.battery_alert,
                     _ => Icons.check_circle,
                   },
                   orElse: () => Icons.notifications_active,
@@ -86,7 +87,8 @@ class Page3 extends PageViewModel {
 
     return switch (step) {
       1 => strings.intropage3_notifications_title,
-      2 => strings.intropage3_battery_title,
+      2 => strings.intropage3_location_title,
+      3 => strings.intropage3_battery_title,
       _ => strings.intropage3_done_title,
     };
   }
@@ -110,6 +112,16 @@ class Page3 extends PageViewModel {
         onRecheck: () => ref.invalidate(currentStepProvider),
       ),
       2 => _buildStepLayout(
+        context,
+        body: strings.intropage3_location_body,
+        buttonLabel: strings.intropage3_location_step,
+        onPressed: () async {
+          await Permission.locationWhenInUse.request();
+          ref.invalidate(currentStepProvider);
+        },
+        onRecheck: () => ref.invalidate(currentStepProvider),
+      ),
+      3 => _buildStepLayout(
         context,
         body: strings.intropage3_body,
         buttonLabel: strings.intropage3_step1,
