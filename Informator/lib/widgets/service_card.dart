@@ -23,9 +23,7 @@ class ServiceCard extends StatelessWidget {
   });
 
   final Service service;
-
   final VoidCallback? onReportOutage;
-
   final VoidCallback? onAddToGroup;
 
   @override
@@ -85,12 +83,14 @@ class ServiceCard extends StatelessWidget {
                   label: strings.service_report_outage,
                   onPressed: onReportOutage,
                 ),
-                const SizedBox(height: 8),
-                ServiceActionButton(
-                  icon: Icons.home_outlined,
-                  label: strings.service_add_to_group,
-                  onPressed: onAddToGroup,
-                ),
+                if (onAddToGroup != null) ...[
+                  const SizedBox(height: 8),
+                  ServiceActionButton(
+                    icon: Icons.home_outlined,
+                    label: strings.service_add_to_group,
+                    onPressed: onAddToGroup,
+                  ),
+                ],
               ],
             ),
           ),
@@ -110,9 +110,7 @@ class ServiceActionButton extends StatelessWidget {
   });
 
   final IconData icon;
-
   final String label;
-
   final VoidCallback? onPressed;
 
   @override
@@ -242,7 +240,9 @@ class _GroupChip extends StatelessWidget {
         foreground: scheme.onTertiaryFixedVariant,
       ),
     ];
-    final index = group.codeUnits.fold<int>(0, (sum, unit) => sum + unit) %
+
+    final index =
+        group.codeUnits.fold<int>(0, (sum, unit) => sum + unit) %
         palette.length;
 
     return palette[index];

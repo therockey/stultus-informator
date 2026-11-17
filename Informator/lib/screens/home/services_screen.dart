@@ -1,7 +1,14 @@
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
+import 'package:informator/models/group.dart';
 import 'package:informator/models/service.dart';
+import 'package:informator/providers/database_provider.dart';
+import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/providers/services_provider.dart';
+import 'package:informator/widgets/add_to_group_dialog.dart';
+import 'package:informator/widgets/report_issue_dialog.dart';
+import 'package:informator/widgets/thank_you_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -17,6 +24,52 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   String _query = '';
+
+  Future<void> _showAddToGroupDialog(Service service) async {
+    try {
+      final groups = await ref.read(groupsProvider.future);
+
+      if (!mounted) return;
+
+      final selectedGroup = await showDialog<Group>(
+        context: context,
+        builder: (context) => AddToGroupDialog(
+          groups: groups,
+        ),
+      );
+
+      if (selectedGroup == null || !mounted) return;
+
+      await ref
+          .read(informatorRepositoryProvider)
+          .addServiceToGroup(service.id, selectedGroup.name);
+
+      ref.invalidate(servicesProvider);
+    } catch (error) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Nie udało się dodać usługi: $error'),
+        ),
+      );
+    }
+  }
+
+  Future<void> _showReportIssueDialog(Service service) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => const ReportIssueDialog(),
+    );
+
+    if (!mounted || confirmed != true) return;
+
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (dialogContext) => const ThankYouDialog(),
+    );
+  }
 
   @override
   void dispose() {
@@ -85,7 +138,13 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
                       ),
                     for (var index = 0; index < results.length; index++) ...[
                       if (index > 0) const SizedBox(height: 12),
-                      ServiceCard(service: results[index]),
+                      ServiceCard(
+                        service: results[index],
+                        onReportOutage: () =>
+                            _showReportIssueDialog(results[index]),
+                        onAddToGroup: () =>
+                            _showAddToGroupDialog(results[index]),
+                      ),
                     ],
                   ],
                 ),
@@ -105,7 +164,7 @@ class _SearchField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-
+  
   final String hintText;
 
   final bool showClearButton;
@@ -126,7 +185,7 @@ class _SearchField extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       textInputAction: TextInputAction.search,
-      style: TextStyle(color: theme.onSurface, fontSize: 16),
+       style: TextStyle(color: theme.onSurface, fontSize: 16),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),

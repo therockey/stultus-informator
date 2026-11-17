@@ -1,3 +1,4 @@
+
 import 'package:informator/data/app_database.dart';
 import 'package:informator/models/group.dart';
 import 'package:informator/models/service.dart';
@@ -22,6 +23,62 @@ class InformatorRepository {
     ];
   }
 
+  Future<Group> createGroup(String name) async {
+    final database = await _database.database;
+
+    final group = Group(
+      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      name: name,
+    );
+
+    await database.insert('groups', {
+      'id': group.id,
+      'name': group.name,
+      'location': null,
+      'notifications_enabled': 0,
+    });
+
+    return group;
+  }
+
+
+Future<void> addServiceToGroup(
+  String serviceId,
+  String groupName,
+) async {
+  final database = await _database.database;
+
+  final existing = await database.query(
+    'service_groups',
+    columns: ['service_id'],
+    where: 'service_id = ? AND name = ?',
+    whereArgs: [serviceId, groupName],
+    limit: 1,
+  );
+
+  if (existing.isNotEmpty) {
+    return;
+  }
+
+  final result = await database.rawQuery(
+    '''
+    SELECT COALESCE(MAX(position), -1) + 1 AS next_position
+    FROM service_groups
+    WHERE service_id = ?
+    ''',
+    [serviceId],
+  );
+
+  final position = (result.first['next_position'] as int?) ?? 0;
+
+  await database.insert('service_groups', {
+    'service_id': serviceId,
+    'name': groupName,
+    'position': position,
+  });
+}
+
+
   Future<List<Service>> fetchServices() async {
     final database = await _database.database;
     final rows = await database.rawQuery('''
@@ -33,7 +90,7 @@ class InformatorRepository {
       FROM services
       LEFT JOIN service_groups
         ON service_groups.service_id = services.id
-      GROUP BY services.id, services.name, services.status
+       GROUP BY services.id, services.name, services.status
       ORDER BY services.rowid
     ''');
 

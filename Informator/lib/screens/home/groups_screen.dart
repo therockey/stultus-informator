@@ -1,27 +1,38 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
+import 'package:informator/models/group.dart';
 import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/widgets/group_card.dart';
 import 'package:material_ui/material_ui.dart';
 
-/// Lists the user's groups together with their notification state.
 class GroupsScreen extends ConsumerWidget {
-  const GroupsScreen({super.key});
+  const GroupsScreen({super.key, this.onGroupTap});
+
+  final ValueChanged<Group>? onGroupTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final groupsState = ref.watch(groupsProvider);
+    final theme = Theme.of(context).colorScheme;
+
     if (groupsState.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
     if (groupsState.hasError) {
-      return Center(child: Text(groupsState.error.toString()));
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            groupsState.error.toString(),
+            style: TextStyle(color: theme.error),
+          ),
+        ),
+      );
     }
+
     final groups = groupsState.requireValue;
 
     if (groups.isEmpty) {
-      final theme = Theme.of(context).colorScheme;
-
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -44,6 +55,7 @@ class GroupsScreen extends ConsumerWidget {
         return GroupCard(
           key: ValueKey(group.id),
           group: group,
+          onTap: () => onGroupTap?.call(group),
           onNotificationsChanged: (enabled) {
             ref
                 .read(groupsProvider.notifier)
@@ -58,7 +70,6 @@ class GroupsScreen extends ConsumerWidget {
   }
 }
 
-/// Adds a new group to the list.
 class AddGroupButton extends StatelessWidget {
   const AddGroupButton({super.key, this.onPressed});
 

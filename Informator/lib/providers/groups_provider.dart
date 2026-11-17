@@ -32,4 +32,15 @@ class GroupsNotifier extends AsyncNotifier<List<Group>> {
     ]);
     await ref.read(informatorRepositoryProvider).deleteGroup(groupId);
   }
+
+  Future<void> add(String name) async {
+  final group = await ref
+      .read(informatorRepositoryProvider)
+      .createGroup(name);
+
+  state = AsyncData([
+    ...state.requireValue,
+    group,
+  ]);
+}
 }
