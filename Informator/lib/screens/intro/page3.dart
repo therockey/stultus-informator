@@ -68,7 +68,7 @@ class Page3 extends PageViewModel {
                 child: CircularProgressIndicator(),
               ),
               error: (error, stackTrace) => Text(
-                S.of(context).future_provider_error(error),
+                S.of(context).future_provider_error(error.toString()),
                 textAlign: TextAlign.center,
               ),
             );

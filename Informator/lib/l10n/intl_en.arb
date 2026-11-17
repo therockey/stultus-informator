@@ -1,7 +1,15 @@
+
 {
   "@@locale": "en",
   "errorscreen_generic_error": "An unknown error occurred.",
   "future_provider_error": "Error: {error}",
+  "@future_provider_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "languagedialog_title": "Select Language",
   "languagedialog_default": "(Default)",
   "logo_semantics": "Informator app logo",
@@ -25,6 +33,15 @@
   "group_location_none": "None",
   "group_notifications_label": "Outage notifications",
   "group_remove": "Remove group",
+  "group_details_load_error": "Failed to load services: {error}",
+  "@group_details_load_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "group_details_empty": "This group doesn't have any services yet.\nGo to the Services screen and add a service to this group.",
   "services": "Services",
   "settings": "Settings",
   "settings_placeholder": "Main application settings will appear here.",
@@ -40,6 +57,14 @@
   "services_no_results": "No services with that name.",
   "service_report_outage": "Report outage",
   "service_add_to_group": "Add to group",
+  "services_add_to_group_error": "Failed to add service: {error}",
+  "@services_add_to_group_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "service_status_operational": "Operational",
   "service_status_degraded": "Local issue",
   "service_status_outage": "Outage",
@@ -57,5 +82,17 @@
   "intropage3_recheck": "Check again",
   "intropage3_done_title": "You're all set",
   "intropage3_done_body": "Informator can now keep you informed about outages.",
-  "intropage3_step2": "Continue"
+  "intropage3_step2": "Continue",
+  "thank_you_title": "Thank you!",
+  "thank_you_message": "Thank you for your response!",
+  "report_issue_title": "Report an issue",
+  "report_issue_question": "Are you experiencing problems with this service?",
+  "common_no": "No",
+  "common_yes": "Yes",
+  "add_to_group_title": "Add to group",
+  "add_to_group_instruction": "Choose a group from the list below:",
+  "add_to_group_name_label": "Name",
+  "add_to_group_name_hint": "Enter a group name",
+  "add_to_group_empty": "You don't have any groups yet.",
+  "add_to_group_no_results": "No group found with the specified name."
 }

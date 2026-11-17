@@ -1,7 +1,15 @@
+
 {
   "@@locale": "pl",
   "errorscreen_generic_error": "Wystąpił nieznany błąd.",
   "future_provider_error": "Błąd: {error}",
+  "@future_provider_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "languagedialog_title": "Wybierz język",
   "languagedialog_default": "(Domyślny)",
   "logo_semantics": "Logo aplikacji Informator",
@@ -10,7 +18,7 @@
   "intropage2_title": "Jak to działa",
   "intropage2_body": "Informator gromadzi w jednym miejscu informacje o awariach i przerwach w dostawie mediów, działaniu usług cyfrowych oraz komunikacji miejskiej. Obserwuj wybrane usługi i lokalizacje, sprawdzaj, czy problem dotyczy Ciebie, i otrzymuj powiadomienia na czas.",
   "intropage2_semantics": "",
-  "appcard_title": "Bądź na bierząco ze swoim życiem",
+  "appcard_title": "Bądź na bieżąco ze swoim życiem",
   "groups": "Twoje grupy",
   "groups_add": "Dodaj grupę",
   "groups_empty": "Nie masz jeszcze żadnych grup.",
@@ -25,6 +33,15 @@
   "group_location_none": "Brak",
   "group_notifications_label": "Powiadomienia o przerwach",
   "group_remove": "Usuń grupę",
+  "group_details_load_error": "Nie udało się pobrać usług: {error}",
+  "@group_details_load_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "group_details_empty": "Ta grupa nie ma jeszcze żadnych usług.\nPrzejdź do ekranu usług i dodaj usługę do tej grupy.",
   "services": "Usługi",
   "settings": "Ustawienia",
   "settings_placeholder": "Główne ustawienia aplikacji pojawią się tutaj.",
@@ -40,6 +57,14 @@
   "services_no_results": "Nie znaleziono usług o tej nazwie.",
   "service_report_outage": "Zgłoś awarię",
   "service_add_to_group": "Dodaj do grupy",
+  "services_add_to_group_error": "Nie udało się dodać usługi: {error}",
+  "@services_add_to_group_error": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "service_status_operational": "Działa",
   "service_status_degraded": "Problem lokalny",
   "service_status_outage": "Awaria",
@@ -58,4 +83,19 @@
   "intropage3_done_title": "Wszystko gotowe",
   "intropage3_done_body": "Informator może teraz informować Cię o przerwach.",
   "intropage3_step2": "Kontynuuj"
+}
+
+{
+  "thank_you_title": "Dziękujemy!",
+  "thank_you_message": "Dziękujemy za odpowiedź!",
+  "report_issue_title": "Zgłoś problem",
+  "report_issue_question": "Czy doświadczasz problemów z tą usługą?",
+  "common_no": "Nie",
+  "common_yes": "Tak",
+  "add_to_group_title": "Dodaj do grupy",
+  "add_to_group_instruction": "Wybierz grupę z listy poniżej:",
+  "add_to_group_name_label": "Nazwa",
+  "add_to_group_name_hint": "Podaj nazwę grupy",
+  "add_to_group_empty": "Nie masz jeszcze żadnych grup.",
+  "add_to_group_no_results": "Nie znaleziono grupy o podanej nazwie."
 }

@@ -1,4 +1,6 @@
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
 import 'package:informator/models/service.dart';
 import 'package:informator/providers/services_provider.dart';
@@ -37,6 +39,7 @@ class GroupDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).colorScheme;
+    final strings = S.of(context);
     final servicesState = ref.watch(servicesProvider);
 
     if (servicesState.isLoading) {
@@ -50,11 +53,10 @@ class GroupDetailsScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Text(
-            'Nie udało się pobrać usług: '
-            '${servicesState.error}',
-            style: TextStyle(
-              color: theme.error,
+            strings.group_details_load_error(
+              servicesState.error.toString(),
             ),
+            style: TextStyle(color: theme.error),
             textAlign: TextAlign.center,
           ),
         ),
@@ -72,8 +74,7 @@ class GroupDetailsScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: Text(
-            'Ta grupa nie ma jeszcze żadnych usług.\n'
-            'Przejdź do ekranu usług i dodaj usługę do tej grupy.',
+            strings.group_details_empty,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: theme.onSurfaceVariant,

@@ -50,7 +50,8 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Nie udało się dodać usługi: $error'),
+          content: Text(S.of(context).services_add_to_group_error(error.toString()),
+),
         ),
       );
     }

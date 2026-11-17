@@ -1,6 +1,7 @@
 
-import 'package:material_ui/material_ui.dart';
+import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AddToGroupDialog extends StatefulWidget {
   const AddToGroupDialog({
@@ -48,23 +49,24 @@ class _AddToGroupDialogState extends State<AddToGroupDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = S.of(context);
     final filteredGroups = _filteredGroups;
 
     return AlertDialog(
-      title: const Text('Dodaj do grupy'),
+      title: Text(strings.add_to_group_title),
       content: SizedBox(
         width: double.maxFinite,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Wybierz grupę z listy poniżej:'),
+            Text(strings.add_to_group_instruction),
             const SizedBox(height: 12),
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                labelText: 'Nazwa',
-                hintText: 'Podaj nazwę grupy',
+                labelText: strings.add_to_group_name_label,
+                hintText: strings.add_to_group_name_hint,
                 border: const OutlineInputBorder(),
                 suffixIcon: _searchQuery.isNotEmpty
                     ? IconButton(
@@ -81,9 +83,9 @@ class _AddToGroupDialogState extends State<AddToGroupDialog> {
             ),
             const SizedBox(height: 12),
             if (widget.groups.isEmpty)
-              const Text('Nie masz jeszcze żadnych grup.')
+              Text(strings.add_to_group_empty)
             else if (filteredGroups.isEmpty)
-              const Text('Nie znaleziono grupy o podanej nazwie.')
+              Text(strings.add_to_group_no_results)
             else
               Flexible(
                 child: ListView(
