@@ -2,10 +2,12 @@ import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/providers/app_bar_title_provider.dart';
+import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/screens/home/groups_screen.dart';
 import 'package:informator/screens/home/home_tab.dart';
 import 'package:informator/screens/home/services_screen.dart';
 import 'package:informator/screens/home/settings_screen.dart';
+import 'package:informator/widgets/create_group_dialog.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +20,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   static const int _defaultTabIndex = 1;
 
   int _selectedTabIndex = _defaultTabIndex;
+
+  Future<void> _showCreateGroupDialog(BuildContext context) async {
+    final groupName = await showDialog<String>(
+      context: context,
+      builder: (context) => const CreateGroupDialog(),
+    );
+
+    if (groupName == null || groupName.trim().isEmpty) return;
+
+    await ref.read(groupsProvider.notifier).add(groupName.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +45,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           color: theme.primary,
           borderRadius: BorderRadius.circular(24),
         ),
-        child: Icon(icon, color: theme.onPrimary),
+       child: Icon(icon, color: theme.onPrimary),
       );
     }
 
@@ -40,7 +53,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       0: HomeTab(
         body: const GroupsScreen(),
         title: strings.groups,
-        floatingActionButton: const AddGroupButton(),
+        floatingActionButton: AddGroupButton(
+          onPressed: () => _showCreateGroupDialog(context),
+        ),
       ),
       1: HomeTab(body: const ServicesScreen()),
       2: HomeTab(body: const SettingsScreen(), title: strings.settings),
