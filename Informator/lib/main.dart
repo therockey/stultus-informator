@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,13 +9,19 @@ import 'package:informator/generated/l10n.dart';
 import 'package:informator/providers/shared_preferences_provider.dart';
 import 'package:informator/providers/locale_provider.dart';
 import 'package:informator/providers/app_theme_provider.dart';
+import 'package:informator/providers/user_settings_provider.dart';
 import 'package:informator/screens/error_screen.dart';
 import 'package:informator/screens/license_screen.dart';
 import 'package:informator/screens/home_screen.dart';
 import 'package:informator/screens/intro/intro_screen.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
   final prefs = await SharedPreferences.getInstance();
 
   final container = ProviderContainer(
@@ -52,6 +60,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     final localeNotifier = ref.watch(localeProvider);
     final themeNotifier = ref.watch(themeProvider);
+    final userSettings = ref.watch(userSettingsProvider).settings;
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -63,9 +72,25 @@ class _MyAppState extends ConsumerState<MyApp> {
         flutter_localizations.GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      theme: ThemeData(colorScheme: MaterialTheme.lightScheme()),
-      darkTheme: ThemeData(colorScheme: MaterialTheme.darkScheme()),
+      theme: ThemeData(
+        colorScheme: userSettings.highContrast
+            ? MaterialTheme.lightMediumContrastScheme()
+            : MaterialTheme.lightScheme(),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: userSettings.highContrast
+            ? MaterialTheme.darkMediumContrastScheme()
+            : MaterialTheme.darkScheme(),
+      ),
       themeMode: themeNotifier.themeMode,
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(userSettings.textScale),
+          ),
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
       routes: {
         '/home': (context) => const HomeScreen(),
         '/license': (context) => const LicenseScreen(),

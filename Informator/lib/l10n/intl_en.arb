@@ -1,4 +1,3 @@
-
 {
   "@@locale": "en",
   "errorscreen_generic_error": "An unknown error occurred.",
@@ -94,5 +93,94 @@
   "add_to_group_name_label": "Name",
   "add_to_group_name_hint": "Enter a group name",
   "add_to_group_empty": "You don't have any groups yet.",
-  "add_to_group_no_results": "No group found with the specified name."
+  "add_to_group_no_results": "No group found with the specified name.",
+  "settings_section_appearance": "Appearance",
+  "settings_section_accessibility": "Accessibility",
+  "settings_section_notifications": "Notifications",
+  "settings_section_glossary": "Glossary",
+  "settings_text_size": "Text size",
+  "settings_text_size_normal": "Regular",
+  "settings_text_size_large": "Large",
+  "settings_text_size_xlarge": "Extra large",
+  "settings_high_contrast": "High contrast",
+  "settings_simplified_mode": "Simplified mode",
+  "settings_simplified_mode_subtitle": "Key facts only, larger type, fewer details",
+  "settings_hide_distressing": "Hide upsetting content",
+  "settings_hide_distressing_subtitle": "Accidents and mass alerts stay off service cards",
+  "settings_channel": "Notification channel",
+  "settings_channel_push": "Push notification",
+  "settings_channel_sms": "SMS",
+  "settings_quiet_hours": "Quiet hours",
+  "settings_quiet_hours_subtitle": "No alerts are sent during this window",
+  "settings_quiet_hours_start": "From",
+  "settings_quiet_hours_end": "To",
+  "settings_glossary_open": "Open the glossary",
+  "glossary_title": "Glossary",
+  "glossary_outage_term": "Outage",
+  "glossary_outage_body": "An unplanned interruption. The service is down and the provider did not announce it in advance.",
+  "glossary_maintenance_term": "Maintenance",
+  "glossary_maintenance_body": "A planned interruption announced ahead of time, for example network works.",
+  "glossary_local_term": "Local issue",
+  "glossary_local_body": "The disruption covers only part of the area or a handful of reports, not the whole service.",
+  "service_cause": "Cause",
+  "service_window": "Time window",
+  "service_window_value": "{start} – {end}",
+  "@service_window_value": {
+    "placeholders": {
+      "start": { "type": "String" },
+      "end": { "type": "String" }
+    }
+  },
+  "service_eta": "Estimated repair time",
+  "service_progress": "Repair progress",
+  "service_progress_value": "{progress}%",
+  "@service_progress_value": {
+    "placeholders": {
+      "progress": { "type": "int" }
+    }
+  },
+  "service_source": "Source",
+  "service_source_official": "Official provider statement",
+  "service_source_community": "User reports",
+  "service_type_planned": "Planned interruption",
+  "service_type_unplanned": "Unplanned outage",
+  "service_last_checked": "Last checked: {time}",
+  "@service_last_checked": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "service_reports_last_hour": "{count} nearby reports in the last hour",
+  "@service_reports_last_hour": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "service_official_link": "Official provider update",
+  "service_official_link_stub": "Demo source: {url}",
+  "@service_official_link_stub": {
+    "placeholders": {
+      "url": { "type": "String" }
+    }
+  },
+  "service_heatmap_title": "Outage area",
+  "service_heatmap_local": "My location only",
+  "service_heatmap_all": "Whole service",
+  "service_chart_title": "Reports over the last 7 days",
+  "service_notifications": "Notifications for this service",
+  "service_rule": "When to send an alert",
+  "service_rule_all": "All interruptions",
+  "service_rule_planned": "Planned only",
+  "service_rule_outages": "Outages only",
+  "service_lead_time": "Advance notice",
+  "service_lead_none": "No advance notice",
+  "service_lead_two_hours": "2 hours",
+  "service_lead_one_day": "1 day",
+  "service_history": "Outage history",
+  "service_history_stub": "Outage history will be available in a later version.",
+  "service_report_stub": "Outage reporting will be available in a later version.",
+  "service_add_to_group_stub": "Adding to a group will be available in a later version.",
+  "service_operational_message": "No reported problems. The service is running normally.",
+  "service_coming_soon": "Coming soon",
+  "service_open_glossary": "What does this mean?"
 }

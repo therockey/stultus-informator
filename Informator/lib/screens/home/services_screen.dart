@@ -6,10 +6,11 @@ import 'package:informator/models/service.dart';
 import 'package:informator/providers/database_provider.dart';
 import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/providers/services_provider.dart';
+import 'package:informator/screens/home/service_details_screen.dart';
 import 'package:informator/widgets/add_to_group_dialog.dart';
 import 'package:informator/widgets/report_issue_dialog.dart';
-import 'package:informator/widgets/thank_you_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
+import 'package:informator/widgets/thank_you_dialog.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// Lists popular services and lets the user search the catalogue by name.
@@ -87,6 +88,14 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
     _onQueryChanged('');
   }
 
+  void _openDetails(Service service) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => ServiceDetailsScreen(serviceId: service.id),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
@@ -141,6 +150,7 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
                       if (index > 0) const SizedBox(height: 12),
                       ServiceCard(
                         service: results[index],
+                        onOpen: () => _openDetails(results[index]),
                         onReportOutage: () =>
                             _showReportIssueDialog(results[index]),
                         onAddToGroup: () =>

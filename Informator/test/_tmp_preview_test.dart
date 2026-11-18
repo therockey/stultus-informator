@@ -55,31 +55,33 @@ Future<void> _pump(
 }
 
 void main() {
-  setUpAll(() async {
-    await _loadFont('Roboto', [
-      'roboto-regular.ttf',
-      'roboto-medium.ttf',
-      'roboto-bold.ttf',
-      'roboto-black.ttf',
-    ]);
-    await _loadFont('MaterialIcons', ['materialicons-regular.otf']);
-  });
+  group('preview', skip: 'Windows-only golden harness with a local font path', () {
+    setUpAll(() async {
+      await _loadFont('Roboto', [
+        'roboto-regular.ttf',
+        'roboto-medium.ttf',
+        'roboto-bold.ttf',
+        'roboto-black.ttf',
+      ]);
+      await _loadFont('MaterialIcons', ['materialicons-regular.otf']);
+    });
 
-  testWidgets('groups dark', (tester) async {
-    await _pump(
-      tester,
-      scheme: MaterialTheme.darkScheme(),
-      size: const Size(412, 892),
-      golden: 'preview_groups_dark.png',
-    );
-  });
+    testWidgets('groups dark', (tester) async {
+      await _pump(
+        tester,
+        scheme: MaterialTheme.darkScheme(),
+        size: const Size(412, 892),
+        golden: 'preview_groups_dark.png',
+      );
+    });
 
-  testWidgets('groups light', (tester) async {
-    await _pump(
-      tester,
-      scheme: MaterialTheme.lightScheme(),
-      size: const Size(412, 892),
-      golden: 'preview_groups_light.png',
-    );
+    testWidgets('groups light', (tester) async {
+      await _pump(
+        tester,
+        scheme: MaterialTheme.lightScheme(),
+        size: const Size(412, 892),
+        golden: 'preview_groups_light.png',
+      );
+    });
   });
 }
