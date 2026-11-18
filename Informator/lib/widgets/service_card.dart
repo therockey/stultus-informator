@@ -1,16 +1,7 @@
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/service.dart';
+import 'package:informator/widgets/service_status.dart';
 import 'package:material_ui/material_ui.dart';
-
-/// Status colours taken from the "ICK Informator" design; they are not part of
-/// the Material colour scheme because they encode availability, not a role.
-const Map<ServiceStatus, Color> _statusColors = <ServiceStatus, Color>{
-  ServiceStatus.operational: Color(0xFF37D955),
-  ServiceStatus.degraded: Color(0xFFD9BE37),
-  ServiceStatus.outage: Color(0xFFD93737),
-};
-
-const Color _statusGlyphColor = Color(0xFF1E1E1E);
 
 /// Single service on the services list: status indicator, name, the groups it
 /// belongs to and the actions available for it.
@@ -18,11 +9,16 @@ class ServiceCard extends StatelessWidget {
   const ServiceCard({
     super.key,
     required this.service,
+    this.onOpen,
     this.onReportOutage,
     this.onAddToGroup,
   });
 
   final Service service;
+
+  /// Opens the details screen. The whole block is the hit target (F2).
+  final VoidCallback? onOpen;
+
   final VoidCallback? onReportOutage;
   final VoidCallback? onAddToGroup;
 
@@ -40,35 +36,61 @@ class ServiceCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _StatusIndicator(status: service.status),
-          const SizedBox(width: 12),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  service.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: theme.onSurfaceVariant,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.4,
-                  ),
-                ),
-                if (service.groups.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: onOpen,
+                borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      for (final group in service.groups)
-                        _GroupChip(label: group),
+                      ServiceStatusBadge(status: service.status),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              service.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: theme.onSurfaceVariant,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: -0.4,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              serviceStatusLabel(strings, service.status),
+                              style: TextStyle(
+                                color: theme.onSurface,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            if (service.groups.isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: [
+                                  for (final group in service.groups)
+                                    _GroupChip(label: group),
+                                ],
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ],
-              ],
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 8),
@@ -145,52 +167,6 @@ class ServiceActionButton extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _StatusIndicator extends StatelessWidget {
-  const _StatusIndicator({required this.status});
-
-  final ServiceStatus status;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = _statusColors[status]!;
-
-    return Semantics(
-      label: _statusLabel(context, status),
-      child: ExcludeSemantics(
-        child: Container(
-          width: 32,
-          height: 32,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-            border: Border.all(color: _statusGlyphColor, width: 2),
-          ),
-          child: const Text(
-            'i',
-            style: TextStyle(
-              color: _statusGlyphColor,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              height: 1,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  static String _statusLabel(BuildContext context, ServiceStatus status) {
-    final strings = S.of(context);
-
-    return switch (status) {
-      ServiceStatus.operational => strings.service_status_operational,
-      ServiceStatus.degraded => strings.service_status_degraded,
-      ServiceStatus.outage => strings.service_status_outage,
-    };
   }
 }
 

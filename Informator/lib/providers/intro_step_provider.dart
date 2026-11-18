@@ -11,7 +11,8 @@ final currentStepProvider = FutureProvider<int>((ref) async {
   if (kIsWeb ||
       (defaultTargetPlatform != TargetPlatform.android &&
           defaultTargetPlatform != TargetPlatform.iOS)) {
-    return 3;
+    // Desktop has no notification/location/battery plugins — skip to "done".
+    return 4;
   }
 
   final notificationsGranted = await Permission.notification.isGranted;

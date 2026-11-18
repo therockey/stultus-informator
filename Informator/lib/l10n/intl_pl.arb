@@ -1,4 +1,3 @@
-
 {
   "@@locale": "pl",
   "errorscreen_generic_error": "Wystąpił nieznany błąd.",
@@ -82,10 +81,7 @@
   "intropage3_recheck": "Sprawdź ponownie",
   "intropage3_done_title": "Wszystko gotowe",
   "intropage3_done_body": "Informator może teraz informować Cię o przerwach.",
-  "intropage3_step2": "Kontynuuj"
-}
-
-{
+  "intropage3_step2": "Kontynuuj",
   "thank_you_title": "Dziękujemy!",
   "thank_you_message": "Dziękujemy za odpowiedź!",
   "report_issue_title": "Zgłoś problem",
@@ -97,5 +93,94 @@
   "add_to_group_name_label": "Nazwa",
   "add_to_group_name_hint": "Podaj nazwę grupy",
   "add_to_group_empty": "Nie masz jeszcze żadnych grup.",
-  "add_to_group_no_results": "Nie znaleziono grupy o podanej nazwie."
+  "add_to_group_no_results": "Nie znaleziono grupy o podanej nazwie.",
+  "settings_section_appearance": "Wygląd",
+  "settings_section_accessibility": "Dostępność",
+  "settings_section_notifications": "Powiadomienia",
+  "settings_section_glossary": "Słownik pojęć",
+  "settings_text_size": "Rozmiar tekstu",
+  "settings_text_size_normal": "Zwykły",
+  "settings_text_size_large": "Duży",
+  "settings_text_size_xlarge": "Bardzo duży",
+  "settings_high_contrast": "Podwyższony kontrast",
+  "settings_simplified_mode": "Tryb uproszczony",
+  "settings_simplified_mode_subtitle": "Najważniejsze informacje, większy tekst, mniej szczegółów",
+  "settings_hide_distressing": "Ukryj treści niepokojące",
+  "settings_hide_distressing_subtitle": "Wypadki i alerty masowe nie pojawiają się na kartach usług",
+  "settings_channel": "Kanał powiadomień",
+  "settings_channel_push": "Powiadomienie push",
+  "settings_channel_sms": "SMS",
+  "settings_quiet_hours": "Ciche godziny",
+  "settings_quiet_hours_subtitle": "W tym czasie aplikacja nie wysyła alertów",
+  "settings_quiet_hours_start": "Od",
+  "settings_quiet_hours_end": "Do",
+  "settings_glossary_open": "Otwórz słownik pojęć",
+  "glossary_title": "Słownik pojęć",
+  "glossary_outage_term": "Awaria",
+  "glossary_outage_body": "Nieplanowana przerwa. Usługa nie działa, a dostawca nie zapowiadał wyłączenia.",
+  "glossary_maintenance_term": "Konserwacja",
+  "glossary_maintenance_body": "Planowana przerwa ogłoszona z wyprzedzeniem, na przykład prace na sieci.",
+  "glossary_local_term": "Problem lokalny",
+  "glossary_local_body": "Zakłócenie dotyczy tylko części obszaru albo pojedynczych zgłoszeń, a nie całej usługi.",
+  "service_cause": "Przyczyna",
+  "service_window": "Okno czasowe",
+  "service_window_value": "{start} – {end}",
+  "@service_window_value": {
+    "placeholders": {
+      "start": { "type": "String" },
+      "end": { "type": "String" }
+    }
+  },
+  "service_eta": "Szacowany czas naprawy",
+  "service_progress": "Postęp prac",
+  "service_progress_value": "{progress}%",
+  "@service_progress_value": {
+    "placeholders": {
+      "progress": { "type": "int" }
+    }
+  },
+  "service_source": "Źródło",
+  "service_source_official": "Oficjalne stanowisko dostawcy",
+  "service_source_community": "Zgłoszenia użytkowników",
+  "service_type_planned": "Przerwa planowana",
+  "service_type_unplanned": "Przerwa nieplanowana",
+  "service_last_checked": "Ostatnie sprawdzenie: {time}",
+  "@service_last_checked": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "service_reports_last_hour": "{count} zgłoszeń w okolicy z ostatniej godziny",
+  "@service_reports_last_hour": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "service_official_link": "Oficjalny komunikat dostawcy",
+  "service_official_link_stub": "Źródło demonstracyjne: {url}",
+  "@service_official_link_stub": {
+    "placeholders": {
+      "url": { "type": "String" }
+    }
+  },
+  "service_heatmap_title": "Zasięg przerwy",
+  "service_heatmap_local": "Tylko moja lokalizacja",
+  "service_heatmap_all": "Cała usługa",
+  "service_chart_title": "Zgłoszenia z ostatnich 7 dni",
+  "service_notifications": "Powiadomienia o tej usłudze",
+  "service_rule": "Kiedy wysyłać alert",
+  "service_rule_all": "Wszystkie przerwy",
+  "service_rule_planned": "Tylko planowane",
+  "service_rule_outages": "Tylko awarie",
+  "service_lead_time": "Wyprzedzenie",
+  "service_lead_none": "Bez wyprzedzenia",
+  "service_lead_two_hours": "2 godziny",
+  "service_lead_one_day": "1 dzień",
+  "service_history": "Historia awarii",
+  "service_history_stub": "Historia awarii będzie dostępna w kolejnej wersji.",
+  "service_report_stub": "Zgłaszanie awarii będzie dostępne w kolejnej wersji.",
+  "service_add_to_group_stub": "Dodawanie do grupy będzie dostępne w kolejnej wersji.",
+  "service_operational_message": "Brak zgłoszonych problemów. Usługa działa prawidłowo.",
+  "service_coming_soon": "Wkrótce",
+  "service_open_glossary": "Co to znaczy?"
 }

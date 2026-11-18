@@ -4,6 +4,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:informator/screens/intro/page1.dart';
 import 'package:informator/screens/intro/page2.dart';
 import 'package:informator/screens/intro/page3.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends ConsumerWidget {
   const IntroScreen({super.key});
@@ -28,12 +29,11 @@ class IntroScreen extends ConsumerWidget {
       body: IntroductionScreen(
         pages: introPages,
         showDoneButton: true,
-        overrideDone: (con, fun) => TextButton(
-          onPressed: null,
-          child: Icon(Icons.arrow_forward, color: Colors.white),
-        ),
-        // fake invisible button to prevent intro screen footer from changing size when 'next' button disappears
-        showSkipButton: false,
+        showSkipButton: true,
+        skip: const Text('Pomiń'),
+        done: const Icon(Icons.arrow_forward),
+        onSkip: () => _finishIntro(context),
+        onDone: () => _finishIntro(context),
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
           color: Theme.of(context).colorScheme.onPrimaryContainer
@@ -46,5 +46,13 @@ class IntroScreen extends ConsumerWidget {
         next: const Icon(Icons.arrow_forward),
       ),
     );
+  }
+}
+
+Future<void> _finishIntro(BuildContext context) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('isFirstRun', false);
+  if (context.mounted) {
+    Navigator.of(context).pushReplacementNamed('/home');
   }
 }

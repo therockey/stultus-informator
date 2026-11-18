@@ -82,6 +82,14 @@ class Page3 extends PageViewModel {
         ),
       );
 
+  static Future<void> _requestPermission(Permission permission) async {
+    try {
+      await permission.request();
+    } on Exception {
+      // Desktop and unsupported platforms have no permission channel.
+    }
+  }
+
   static String _titleForStep(BuildContext context, int step) {
     final strings = S.of(context);
 
@@ -106,7 +114,7 @@ class Page3 extends PageViewModel {
         body: strings.intropage3_notifications_body,
         buttonLabel: strings.intropage3_notifications_step,
         onPressed: () async {
-          await Permission.notification.request();
+          await _requestPermission(Permission.notification);
           ref.invalidate(currentStepProvider);
         },
         onRecheck: () => ref.invalidate(currentStepProvider),
@@ -116,7 +124,7 @@ class Page3 extends PageViewModel {
         body: strings.intropage3_location_body,
         buttonLabel: strings.intropage3_location_step,
         onPressed: () async {
-          await Permission.locationWhenInUse.request();
+          await _requestPermission(Permission.locationWhenInUse);
           ref.invalidate(currentStepProvider);
         },
         onRecheck: () => ref.invalidate(currentStepProvider),
@@ -126,7 +134,7 @@ class Page3 extends PageViewModel {
         body: strings.intropage3_body,
         buttonLabel: strings.intropage3_step1,
         onPressed: () async {
-          await Permission.ignoreBatteryOptimizations.request();
+          await _requestPermission(Permission.ignoreBatteryOptimizations);
           ref.invalidate(currentStepProvider);
         },
         onRecheck: () => ref.invalidate(currentStepProvider),
