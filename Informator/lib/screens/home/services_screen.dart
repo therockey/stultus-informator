@@ -7,6 +7,7 @@ import 'package:informator/providers/database_provider.dart';
 import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/providers/services_provider.dart';
 import 'package:informator/screens/home/service_details_screen.dart';
+import 'package:informator/screens/home/transport_screen.dart';
 import 'package:informator/widgets/add_to_group_dialog.dart';
 import 'package:informator/widgets/report_issue_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
@@ -96,6 +97,12 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
     );
   }
 
+  void _openTransport() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const TransportScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
@@ -125,6 +132,33 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
             onClear: _clearQuery,
           ),
         ),
+        if (!isSearching)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+            child: SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                key: const Key('open-transport-button'),
+                onPressed: _openTransport,
+                style: FilledButton.styleFrom(
+                  backgroundColor: theme.tertiaryContainer,
+                  foregroundColor: theme.onTertiaryContainer,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.directions_transit),
+                label: Text(
+                  strings.transport_title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
         Expanded(
           child: results.isEmpty
               ? _NoResults(message: strings.services_no_results)

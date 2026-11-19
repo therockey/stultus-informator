@@ -182,5 +182,34 @@
   "service_add_to_group_stub": "Dodawanie do grupy będzie dostępne w kolejnej wersji.",
   "service_operational_message": "Brak zgłoszonych problemów. Usługa działa prawidłowo.",
   "service_coming_soon": "Wkrótce",
-  "service_open_glossary": "Co to znaczy?"
+  "service_open_glossary": "Co to znaczy?",
+  "transport_title": "Transport publiczny",
+  "transport_map_title": "Mapa sieci",
+  "transport_map_semantics": "Schematyczna mapa linii komunikacji miejskiej",
+  "transport_lines_title": "Linie",
+  "transport_lines_empty": "Brak dostępnych linii.",
+  "transport_kind_tram": "Tramwaj",
+  "transport_kind_bus": "Autobus",
+  "transport_status": "Status: {status}",
+  "@transport_status": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "transport_detours": "Dostępne objazdy",
+  "transport_detours_none": "Brak dostępnych objazdów dla tej linii.",
+  "transport_affected_area": "Obszar utrudnień",
+  "transport_started": "Utrudnienia od",
+  "transport_current_delay": "Aktualne opóźnienie",
+  "transport_delay_chart_title": "Opóźnienie w ostatnich 12 godzinach",
+  "transport_delay_minutes": "{minutes} min",
+  "@transport_delay_minutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

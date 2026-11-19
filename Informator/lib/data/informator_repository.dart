@@ -4,6 +4,7 @@ import 'package:informator/models/group.dart';
 import 'package:informator/models/notification_preferences.dart';
 import 'package:informator/models/service.dart';
 import 'package:informator/models/service_details.dart';
+import 'package:informator/models/transport.dart';
 import 'package:sqflite/sqflite.dart';
 
 class InformatorRepository {
@@ -183,6 +184,162 @@ Future<void> addServiceToGroup(
           (row['notifications_lead_time'] as String?) ?? 'none',
         ),
       ),
+    );
+  }
+
+  Future<List<TransportLine>> fetchTransportLines() async {
+    final database = await _database.database;
+    final lineRows = await database.rawQuery('''
+      SELECT
+        transport_lines.id,
+        transport_lines.name,
+        transport_lines.short_name,
+        transport_lines.kind,
+        transport_lines.status,
+        transport_outages.disrupted_from,
+        transport_outages.disrupted_to
+      FROM transport_lines
+      LEFT JOIN transport_outages
+        ON transport_outages.line_id = transport_lines.id
+      ORDER BY transport_lines.position
+    ''');
+    final routeRows = await database.query(
+      'transport_route_points',
+      orderBy: 'line_id, seq',
+    );
+    final delayRows = await database.query(
+      'transport_delay_points',
+      orderBy: 'line_id, recorded_at',
+    );
+
+    final routes = <String, List<TransportRoutePoint>>{};
+    for (final row in routeRows) {
+      routes.putIfAbsent(row['line_id']! as String, () => []).add(
+        _routePointFromRow(row),
+      );
+    }
+    final delays = <String, List<TransportDelayPoint>>{};
+    for (final row in delayRows) {
+      delays.putIfAbsent(row['line_id']! as String, () => []).add(
+        _delayPointFromRow(row),
+      );
+    }
+
+    return [
+      for (final row in lineRows)
+        _transportLineFromRow(
+          row,
+          routes[row['id']! as String] ?? const <TransportRoutePoint>[],
+          delays[row['id']! as String] ?? const <TransportDelayPoint>[],
+        ),
+    ];
+  }
+
+  Future<TransportLineDetails> fetchTransportLineDetails(String lineId) async {
+    final database = await _database.database;
+    final rows = await database.rawQuery(
+      '''
+      SELECT
+        transport_lines.id,
+        transport_lines.name,
+        transport_lines.short_name,
+        transport_lines.kind,
+        transport_lines.status,
+        transport_outages.cause,
+        transport_outages.started_at,
+        transport_outages.eta,
+        transport_outages.source,
+        transport_outages.last_checked,
+        transport_outages.disrupted_from,
+        transport_outages.disrupted_to,
+        transport_outages.area_x,
+        transport_outages.area_y,
+        transport_outages.area_radius
+      FROM transport_lines
+      LEFT JOIN transport_outages
+        ON transport_outages.line_id = transport_lines.id
+      WHERE transport_lines.id = ?
+      ''',
+      [lineId],
+    );
+
+    if (rows.isEmpty) {
+      throw StateError('Unknown transport line: $lineId');
+    }
+
+    final row = rows.first;
+    final routeRows = await database.query(
+      'transport_route_points',
+      where: 'line_id = ?',
+      whereArgs: [lineId],
+      orderBy: 'seq',
+    );
+    final delayRows = await database.query(
+      'transport_delay_points',
+      where: 'line_id = ?',
+      whereArgs: [lineId],
+      orderBy: 'recorded_at',
+    );
+    final detourRows = await database.query(
+      'transport_detours',
+      where: 'line_id = ?',
+      whereArgs: [lineId],
+      orderBy: 'position',
+    );
+
+    return TransportLineDetails(
+      line: _transportLineFromRow(
+        row,
+        [for (final point in routeRows) _routePointFromRow(point)],
+        [for (final point in delayRows) _delayPointFromRow(point)],
+      ),
+      cause: row['cause'] as String?,
+      startedAt: _dateTimeFrom(row['started_at']),
+      eta: _dateTimeFrom(row['eta']),
+      source: _sourceFrom(row['source'] as String?),
+      lastChecked: _dateTimeFrom(row['last_checked']),
+      areaX: (row['area_x'] as num?)?.toDouble(),
+      areaY: (row['area_y'] as num?)?.toDouble(),
+      areaRadius: (row['area_radius'] as num?)?.toDouble(),
+      detours: [
+        for (final detour in detourRows)
+          TransportDetour(
+            fromLine: detour['from_line']! as String,
+            toLine: detour['to_line']! as String,
+          ),
+      ],
+    );
+  }
+
+  TransportLine _transportLineFromRow(
+    Map<String, Object?> row,
+    List<TransportRoutePoint> route,
+    List<TransportDelayPoint> delays,
+  ) {
+    return TransportLine(
+      id: row['id']! as String,
+      name: row['name']! as String,
+      shortName: row['short_name']! as String,
+      kind: TransportKind.values.byName(row['kind']! as String),
+      status: ServiceStatus.values.byName(row['status']! as String),
+      route: route,
+      delays: delays,
+      disruptedFrom: row['disrupted_from'] as int?,
+      disruptedTo: row['disrupted_to'] as int?,
+    );
+  }
+
+  TransportRoutePoint _routePointFromRow(Map<String, Object?> row) {
+    return TransportRoutePoint(
+      x: (row['x']! as num).toDouble(),
+      y: (row['y']! as num).toDouble(),
+    );
+  }
+
+  TransportDelayPoint _delayPointFromRow(Map<String, Object?> row) {
+    return TransportDelayPoint(
+      time: DateTime.fromMillisecondsSinceEpoch(row['recorded_at']! as int),
+      minutes: row['delay_minutes']! as int,
     );
   }
 
