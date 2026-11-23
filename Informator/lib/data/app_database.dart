@@ -10,20 +10,19 @@ class AppDatabase {
   static final AppDatabase instance = AppDatabase._();
 
   static const _databaseName = 'informator.db';
-  static const _databaseVersion = 4;
+  static const _databaseVersion = 5;
 
   final String? _databasePath;
 
   Database? _database;
 
-  factory AppDatabase.forTesting() =>
-      AppDatabase._(
-        join(
-          Directory.systemTemp.path,
-          'informator_test_${DateTime.now().microsecondsSinceEpoch}_'
-              '${Random().nextInt(1 << 32)}.db',
-        ),
-      );
+  factory AppDatabase.forTesting() => AppDatabase._(
+    join(
+      Directory.systemTemp.path,
+      'informator_test_${DateTime.now().microsecondsSinceEpoch}_'
+      '${Random().nextInt(1 << 32)}.db',
+    ),
+  );
 
   Future<Database> get database async {
     final existing = _database;
@@ -31,7 +30,8 @@ class AppDatabase {
       return existing;
     }
 
-    final databasePath = _databasePath ?? join(await getDatabasesPath(), _databaseName);
+    final databasePath =
+        _databasePath ?? join(await getDatabasesPath(), _databaseName);
     final database = await openDatabase(
       databasePath,
       version: _databaseVersion,
@@ -109,6 +109,17 @@ class AppDatabase {
       await _createTransportTables(database);
       await _seedTransport(database);
     }
+    if (oldVersion < 5) {
+      await database.execute('''
+        CREATE TABLE IF NOT EXISTS service_reports (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          service_id TEXT NOT NULL,
+          reported_at INTEGER NOT NULL,
+          FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
+        )
+      ''');
+      await _seedServiceReports(database);
+    }
   }
 
   Future<void> _createOutageTables(Database database) async {
@@ -137,6 +148,14 @@ class AppDatabase {
         day INTEGER NOT NULL,
         count INTEGER NOT NULL,
         PRIMARY KEY (service_id, day),
+        FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
+      )
+    ''');
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS service_reports (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        service_id TEXT NOT NULL,
+        reported_at INTEGER NOT NULL,
         FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
       )
     ''');
@@ -213,63 +232,88 @@ class AppDatabase {
     ''');
   }
 
-  Future<void> _seedTransport(
-    Database database, {
-    Batch? batch,
-  }) async {
+  Future<void> _seedTransport(Database database, {Batch? batch}) async {
     final target = batch ?? database.batch();
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
 
-    const lines = <({
-      String id,
-      String short,
-      String kind,
-      String status,
-      List<(double, double)> route,
-      List<int> delays,
-    })>[
-      (
-        id: 'tram-10',
-        short: '10',
-        kind: 'tram',
-        status: 'degraded',
-        route: [(0.05, 0.50), (0.30, 0.50), (0.55, 0.55), (0.80, 0.50), (0.95, 0.45)],
-        delays: [0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7],
-      ),
-      (
-        id: 'tram-12',
-        short: '12',
-        kind: 'tram',
-        status: 'outage',
-        route: [(0.05, 0.80), (0.25, 0.65), (0.45, 0.55), (0.60, 0.40), (0.80, 0.25), (0.95, 0.20)],
-        delays: [0, 0, 1, 0, 2, 5, 9, 14, 18, 22, 25, 27],
-      ),
-      (
-        id: 'tram-13',
-        short: '13',
-        kind: 'tram',
-        status: 'outage',
-        route: [(0.10, 0.20), (0.30, 0.35), (0.50, 0.50), (0.70, 0.65), (0.90, 0.80)],
-        delays: [0, 1, 0, 0, 3, 6, 10, 12, 15, 20, 24, 26],
-      ),
-      (
-        id: 'tram-15',
-        short: '15',
-        kind: 'tram',
-        status: 'operational',
-        route: [(0.20, 0.95), (0.35, 0.75), (0.50, 0.55), (0.65, 0.30), (0.75, 0.05)],
-        delays: [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0],
-      ),
-      (
-        id: 'bus-17',
-        short: '17',
-        kind: 'bus',
-        status: 'operational',
-        route: [(0.05, 0.10), (0.35, 0.12), (0.60, 0.30), (0.90, 0.35)],
-        delays: [1, 0, 0, 1, 0, 0, 2, 0, 1, 0, 0, 1],
-      ),
-    ];
+    const lines =
+        <
+          ({
+            String id,
+            String short,
+            String kind,
+            String status,
+            List<(double, double)> route,
+            List<int> delays,
+          })
+        >[
+          (
+            id: 'tram-10',
+            short: '10',
+            kind: 'tram',
+            status: 'degraded',
+            route: [
+              (0.05, 0.50),
+              (0.30, 0.50),
+              (0.55, 0.55),
+              (0.80, 0.50),
+              (0.95, 0.45),
+            ],
+            delays: [0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7],
+          ),
+          (
+            id: 'tram-12',
+            short: '12',
+            kind: 'tram',
+            status: 'outage',
+            route: [
+              (0.05, 0.80),
+              (0.25, 0.65),
+              (0.45, 0.55),
+              (0.60, 0.40),
+              (0.80, 0.25),
+              (0.95, 0.20),
+            ],
+            delays: [0, 0, 1, 0, 2, 5, 9, 14, 18, 22, 25, 27],
+          ),
+          (
+            id: 'tram-13',
+            short: '13',
+            kind: 'tram',
+            status: 'outage',
+            route: [
+              (0.10, 0.20),
+              (0.30, 0.35),
+              (0.50, 0.50),
+              (0.70, 0.65),
+              (0.90, 0.80),
+            ],
+            delays: [0, 1, 0, 0, 3, 6, 10, 12, 15, 20, 24, 26],
+          ),
+          (
+            id: 'tram-15',
+            short: '15',
+            kind: 'tram',
+            status: 'operational',
+            route: [
+              (0.20, 0.95),
+              (0.35, 0.75),
+              (0.50, 0.55),
+              (0.65, 0.30),
+              (0.75, 0.05),
+            ],
+            delays: [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0],
+          ),
+          (
+            id: 'bus-17',
+            short: '17',
+            kind: 'bus',
+            status: 'operational',
+            route: [(0.05, 0.10), (0.35, 0.12), (0.60, 0.30), (0.90, 0.35)],
+            delays: [1, 0, 0, 1, 0, 0, 2, 0, 1, 0, 0, 1],
+          ),
+        ];
 
     for (var index = 0; index < lines.length; index++) {
       final line = lines[index];
@@ -307,8 +351,12 @@ class AppDatabase {
     target.insert('transport_outages', {
       'line_id': 'tram-12',
       'cause': 'Awaria zasilania sieci trakcyjnej na odcinku Hallera – Plac Grunwaldzki',
-      'started_at': today.add(const Duration(hours: 7, minutes: 10)).millisecondsSinceEpoch,
-      'eta': today.add(const Duration(hours: 15, minutes: 30)).millisecondsSinceEpoch,
+      'started_at': today
+          .add(const Duration(hours: 7, minutes: 10))
+          .millisecondsSinceEpoch,
+      'eta': today
+          .add(const Duration(hours: 15, minutes: 30))
+          .millisecondsSinceEpoch,
       'source': 'official',
       'last_checked': now.millisecondsSinceEpoch,
       'disrupted_from': 2,
@@ -350,10 +398,7 @@ class AppDatabase {
         ('Linia 10', 'Linia 17'),
         ('Linia 15', 'Linia 17'),
       ],
-      'tram-13': [
-        ('Linia 10', 'Linia 15'),
-        ('Linia 15', 'Linia 17'),
-      ],
+      'tram-13': [('Linia 10', 'Linia 15'), ('Linia 15', 'Linia 17')],
     };
     for (final entry in detours.entries) {
       for (var index = 0; index < entry.value.length; index++) {
@@ -439,15 +484,13 @@ class AppDatabase {
     }
     await _seedServiceGroups(database, batch: batch);
     await _seedServiceOutages(database, batch: batch);
+    await _seedServiceReports(database, batch: batch);
     await _seedServiceNotifications(database, batch: batch);
     await _seedTransport(database, batch: batch);
     await batch.commit(noResult: true);
   }
 
-  Future<void> _seedServiceGroups(
-    Database database, {
-    Batch? batch,
-  }) async {
+  Future<void> _seedServiceGroups(Database database, {Batch? batch}) async {
     final target = batch ?? database.batch();
     const serviceGroups = <String, List<String>>{
       'netia': <String>['Dom', 'Media'],
@@ -459,15 +502,11 @@ class AppDatabase {
     };
     for (final entry in serviceGroups.entries) {
       for (var index = 0; index < entry.value.length; index++) {
-        target.insert(
-          'service_groups',
-          {
-            'service_id': entry.key,
-            'name': entry.value[index],
-            'position': index,
-          },
-          conflictAlgorithm: ConflictAlgorithm.ignore,
-        );
+        target.insert('service_groups', {
+          'service_id': entry.key,
+          'name': entry.value[index],
+          'position': index,
+        }, conflictAlgorithm: ConflictAlgorithm.ignore);
       }
     }
     if (batch == null) {
@@ -489,26 +528,19 @@ class AppDatabase {
       'mpk',
     ];
     for (final id in ids) {
-      target.insert(
-        'service_notifications',
-        {
-          'service_id': id,
-          'enabled': 0,
-          'rule': 'all',
-          'lead_time': 'none',
-        },
-        conflictAlgorithm: ConflictAlgorithm.ignore,
-      );
+      target.insert('service_notifications', {
+        'service_id': id,
+        'enabled': 0,
+        'rule': 'all',
+        'lead_time': 'none',
+      }, conflictAlgorithm: ConflictAlgorithm.ignore);
     }
     if (batch == null) {
       await target.commit(noResult: true);
     }
   }
 
-  Future<void> _seedServiceOutages(
-    Database database, {
-    Batch? batch,
-  }) async {
+  Future<void> _seedServiceOutages(Database database, {Batch? batch}) async {
     final target = batch ?? database.batch();
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -517,7 +549,9 @@ class AppDatabase {
     target.insert('service_outages', {
       'service_id': 'netia',
       'cause': 'Uszkodzenie linii światłowodowej na odcinku Grunwaldzka',
-      'window_start': today.add(const Duration(hours: 6, minutes: 30)).millisecondsSinceEpoch,
+      'window_start': today
+          .add(const Duration(hours: 6, minutes: 30))
+          .millisecondsSinceEpoch,
       'window_end': today.add(const Duration(hours: 16)).millisecondsSinceEpoch,
       'eta': today.add(const Duration(hours: 14)).millisecondsSinceEpoch,
       'progress': 40,
@@ -533,8 +567,12 @@ class AppDatabase {
     target.insert('service_outages', {
       'service_id': 'veolia',
       'cause': 'Planowana konserwacja sieci wodociągowej',
-      'window_start': tomorrow.add(const Duration(hours: 8)).millisecondsSinceEpoch,
-      'window_end': tomorrow.add(const Duration(hours: 16)).millisecondsSinceEpoch,
+      'window_start': tomorrow
+          .add(const Duration(hours: 8))
+          .millisecondsSinceEpoch,
+      'window_end': tomorrow
+          .add(const Duration(hours: 16))
+          .millisecondsSinceEpoch,
       'eta': tomorrow.add(const Duration(hours: 16)).millisecondsSinceEpoch,
       'progress': 0,
       'source': 'official',
@@ -549,7 +587,9 @@ class AppDatabase {
     target.insert('service_outages', {
       'service_id': 'openai',
       'cause': 'Wydłużony czas odpowiedzi API w regionie EU',
-      'window_start': today.add(const Duration(hours: 9)).millisecondsSinceEpoch,
+      'window_start': today
+          .add(const Duration(hours: 9))
+          .millisecondsSinceEpoch,
       'window_end': today.add(const Duration(hours: 18)).millisecondsSinceEpoch,
       'eta': today.add(const Duration(hours: 13)).millisecondsSinceEpoch,
       'progress': 70,
@@ -583,15 +623,71 @@ class AppDatabase {
   ) {
     for (var index = 0; index < counts.length; index++) {
       final day = today.subtract(Duration(days: counts.length - 1 - index));
-      batch.insert(
-        'service_report_points',
-        {
-          'service_id': serviceId,
-          'day': day.millisecondsSinceEpoch,
-          'count': counts[index],
-        },
-        conflictAlgorithm: ConflictAlgorithm.ignore,
-      );
+      batch.insert('service_report_points', {
+        'service_id': serviceId,
+        'day': day.millisecondsSinceEpoch,
+        'count': counts[index],
+      }, conflictAlgorithm: ConflictAlgorithm.ignore);
+    }
+  }
+
+  Future<void> _seedServiceReports(Database database, {Batch? batch}) async {
+    final target = batch ?? database.batch();
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    int dailyCount(String serviceId, int ageInDays) {
+      final index = 89 - ageInDays;
+      switch (serviceId) {
+        case 'netia':
+          final base = 2 + (index % 5);
+          final activeOutage = index >= 72
+              ? 4 + ((index - 72) * 2).clamp(0, 18)
+              : 0;
+          final recentSpike = index >= 84 && index <= 86 ? 12 : 0;
+          return base + activeOutage + recentSpike;
+        case 'veolia':
+          if (index >= 88) return index == 89 ? 1 : 3;
+          return index % 9 == 0 ? 2 : 0;
+        case 'openai':
+          final base = 3 + (index % 4);
+          return index >= 68 && index <= 76 ? base + 5 : base;
+        case 'tauron':
+          return index % 13 == 0 ? 1 : 0;
+        case 'grygry2':
+          return index % 17 == 0 ? 2 : 0;
+        case 'mpk':
+          return 1 + (index % 6);
+        default:
+          return index % 19 == 0 ? 1 : 0;
+      }
+    }
+
+    for (final serviceId in const [
+      'netia',
+      'veolia',
+      'openai',
+      'tauron',
+      'grygry2',
+      'mpk',
+    ]) {
+      for (var ageInDays = 89; ageInDays >= 0; ageInDays--) {
+        final day = today.subtract(Duration(days: ageInDays));
+        final count = dailyCount(serviceId, ageInDays);
+        for (var index = 0; index < count; index++) {
+          final reportedAt = day.add(
+            Duration(minutes: 480 + ((index * 53) % 720)),
+          );
+          target.insert('service_reports', {
+            'service_id': serviceId,
+            'reported_at': reportedAt.millisecondsSinceEpoch,
+          });
+        }
+      }
+    }
+
+    if (batch == null) {
+      await target.commit(noResult: true);
     }
   }
 }

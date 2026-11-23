@@ -1,4 +1,3 @@
-
 import 'package:informator/data/app_database.dart';
 import 'package:informator/models/group.dart';
 import 'package:informator/models/notification_preferences.dart';
@@ -11,6 +10,33 @@ class InformatorRepository {
   InformatorRepository(this._database);
 
   final AppDatabase _database;
+
+  List<ReportPoint> _aggregateDailyReportPoints(
+    List<Map<String, Object?>> rows,
+  ) {
+    final counts = <DateTime, int>{};
+    for (final row in rows) {
+      final timestamp = row['reported_at']! as int;
+      final date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+      final day = DateTime(date.year, date.month, date.day);
+      counts[day] = (counts[day] ?? 0) + 1;
+    }
+
+    final orderedDays = counts.keys.toList()..sort();
+    if (orderedDays.isEmpty) return <ReportPoint>[];
+
+    final first = orderedDays.first;
+    final last = orderedDays.last;
+    final points = <ReportPoint>[];
+    for (
+      var day = first;
+      !day.isAfter(last);
+      day = day.add(const Duration(days: 1))
+    ) {
+      points.add(ReportPoint(day: day, count: counts[day] ?? 0));
+    }
+    return points;
+  }
 
   Future<List<Group>> fetchGroups() async {
     final database = await _database.database;
@@ -45,43 +71,38 @@ class InformatorRepository {
     return group;
   }
 
+  Future<void> addServiceToGroup(String serviceId, String groupName) async {
+    final database = await _database.database;
 
-Future<void> addServiceToGroup(
-  String serviceId,
-  String groupName,
-) async {
-  final database = await _database.database;
+    final existing = await database.query(
+      'service_groups',
+      columns: ['service_id'],
+      where: 'service_id = ? AND name = ?',
+      whereArgs: [serviceId, groupName],
+      limit: 1,
+    );
 
-  final existing = await database.query(
-    'service_groups',
-    columns: ['service_id'],
-    where: 'service_id = ? AND name = ?',
-    whereArgs: [serviceId, groupName],
-    limit: 1,
-  );
+    if (existing.isNotEmpty) {
+      return;
+    }
 
-  if (existing.isNotEmpty) {
-    return;
-  }
-
-  final result = await database.rawQuery(
-    '''
+    final result = await database.rawQuery(
+      '''
     SELECT COALESCE(MAX(position), -1) + 1 AS next_position
     FROM service_groups
     WHERE service_id = ?
     ''',
-    [serviceId],
-  );
+      [serviceId],
+    );
 
-  final position = (result.first['next_position'] as int?) ?? 0;
+    final position = (result.first['next_position'] as int?) ?? 0;
 
-  await database.insert('service_groups', {
-    'service_id': serviceId,
-    'name': groupName,
-    'position': position,
-  });
-}
-
+    await database.insert('service_groups', {
+      'service_id': serviceId,
+      'name': groupName,
+      'position': position,
+    });
+  }
 
   Future<List<Service>> fetchServices() async {
     final database = await _database.database;
@@ -98,9 +119,7 @@ Future<void> addServiceToGroup(
       ORDER BY services.rowid
     ''');
 
-    return [
-      for (final row in rows) _serviceFromRow(row),
-    ];
+    return [for (final row in rows) _serviceFromRow(row)];
   }
 
   Future<ServiceDetails> fetchServiceDetails(String serviceId) async {
@@ -146,12 +165,37 @@ Future<void> addServiceToGroup(
     }
 
     final row = rows.first;
-    final pointRows = await database.query(
-      'service_report_points',
-      where: 'service_id = ?',
-      whereArgs: [serviceId],
-      orderBy: 'day',
+    final now = DateTime.now();
+    final ninetyDaysAgo = now.subtract(const Duration(days: 90));
+    final reportRows = await database.query(
+      'service_reports',
+      where: 'service_id = ? AND reported_at >= ?',
+      whereArgs: [
+        serviceId,
+        DateTime(
+          ninetyDaysAgo.year,
+          ninetyDaysAgo.month,
+          ninetyDaysAgo.day,
+        ).millisecondsSinceEpoch,
+      ],
+      orderBy: 'reported_at',
     );
+    final reportPoints = _aggregateDailyReportPoints(reportRows);
+    if (reportPoints.isEmpty) {
+      final pointRows = await database.query(
+        'service_report_points',
+        where: 'service_id = ?',
+        whereArgs: [serviceId],
+        orderBy: 'day',
+      );
+      reportPoints.addAll([
+        for (final point in pointRows)
+          ReportPoint(
+            day: DateTime.fromMillisecondsSinceEpoch(point['day']! as int),
+            count: point['count']! as int,
+          ),
+      ]);
+    }
 
     return ServiceDetails(
       service: _serviceFromRow(row),
@@ -168,13 +212,7 @@ Future<void> addServiceToGroup(
       localStreets: _splitList(row['local_streets'] as String?),
       allStreets: _splitList(row['all_streets'] as String?),
       distressingNote: row['distressing_note'] as String?,
-      reportPoints: [
-        for (final point in pointRows)
-          ReportPoint(
-            day: DateTime.fromMillisecondsSinceEpoch(point['day']! as int),
-            count: point['count']! as int,
-          ),
-      ],
+      reportPoints: reportPoints,
       notifications: ServiceNotificationSettings(
         enabled: (row['notifications_enabled'] as int?) == 1,
         rule: NotificationRule.values.byName(
@@ -214,15 +252,15 @@ Future<void> addServiceToGroup(
 
     final routes = <String, List<TransportRoutePoint>>{};
     for (final row in routeRows) {
-      routes.putIfAbsent(row['line_id']! as String, () => []).add(
-        _routePointFromRow(row),
-      );
+      routes
+          .putIfAbsent(row['line_id']! as String, () => [])
+          .add(_routePointFromRow(row));
     }
     final delays = <String, List<TransportDelayPoint>>{};
     for (final row in delayRows) {
-      delays.putIfAbsent(row['line_id']! as String, () => []).add(
-        _delayPointFromRow(row),
-      );
+      delays
+          .putIfAbsent(row['line_id']! as String, () => [])
+          .add(_delayPointFromRow(row));
     }
 
     return [
@@ -356,15 +394,29 @@ Future<void> addServiceToGroup(
       leadTime: leadTime,
     );
     final database = await _database.database;
-    await database.insert(
-      'service_notifications',
-      {
-        'service_id': serviceId,
-        'enabled': next.enabled ? 1 : 0,
-        'rule': next.rule.name,
-        'lead_time': next.leadTime.name,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
+    await database.insert('service_notifications', {
+      'service_id': serviceId,
+      'enabled': next.enabled ? 1 : 0,
+      'rule': next.rule.name,
+      'lead_time': next.leadTime.name,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<void> addServiceReport({required String serviceId}) async {
+    final database = await _database.database;
+    final now = DateTime.now();
+    await database.insert('service_reports', {
+      'service_id': serviceId,
+      'reported_at': now.millisecondsSinceEpoch,
+    });
+    await database.rawUpdate(
+      '''
+      UPDATE service_outages
+      SET nearby_reports_last_hour = nearby_reports_last_hour + 1,
+          last_checked = ?
+      WHERE service_id = ?
+      ''',
+      [now.millisecondsSinceEpoch, serviceId],
     );
   }
 
@@ -380,11 +432,7 @@ Future<void> addServiceToGroup(
 
   Future<void> deleteGroup(String groupId) async {
     final database = await _database.database;
-    await database.delete(
-      'groups',
-      where: 'id = ?',
-      whereArgs: [groupId],
-    );
+    await database.delete('groups', where: 'id = ?', whereArgs: [groupId]);
   }
 
   Service _serviceFromRow(Map<String, Object?> row) {

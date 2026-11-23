@@ -7,7 +7,6 @@ import 'package:informator/models/service_details.dart';
 import 'package:informator/providers/service_details_provider.dart';
 import 'package:informator/providers/shared_preferences_provider.dart';
 import 'package:informator/screens/home/service_details_screen.dart';
-import 'package:informator/widgets/outage_heatmap.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -74,23 +73,6 @@ void main() {
       findsOneWidget,
     );
     expect(find.textContaining('47'), findsOneWidget);
-    expect(find.byType(OutageHeatmap), findsOneWidget);
-  });
-
-  testWidgets('heatmap toggle switches to the whole-service view', (tester) async {
-    tester.view.physicalSize = const Size(412, 1400);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-
-    await tester.pumpWidget(await detailsApp());
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Cała usługa'));
-    await tester.pumpAndSettle();
-
-    final heatmap = tester.widget<OutageHeatmap>(find.byType(OutageHeatmap));
-    expect(heatmap.streets, contains('Ślężna'));
   });
 
   testWidgets('simplified mode shows at most three facts', (tester) async {
@@ -100,9 +82,10 @@ void main() {
     final column = tester.widget<Column>(
       find.byKey(const Key('simplified-info')),
     );
-    final factCount = column.children.where((child) => child is! SizedBox).length;
+    final factCount = column.children
+        .where((child) => child is! SizedBox)
+        .length;
     expect(factCount, lessThanOrEqualTo(3));
-    expect(find.byType(OutageHeatmap), findsNothing);
     expect(find.text('Awaria'), findsOneWidget);
     expect(
       find.text('Uszkodzenie linii światłowodowej na odcinku Grunwaldzka'),

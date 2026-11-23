@@ -74,4 +74,34 @@ void main() {
     expect(details.notifications.rule, NotificationRule.plannedOnly);
     expect(details.notifications.leadTime, NotificationLeadTime.oneDay);
   });
+
+  test('adds an outage report and refreshes details', () async {
+    final repository = InformatorRepository(AppDatabase.forTesting());
+    final before = await repository.fetchServiceDetails('netia');
+
+    await repository.addServiceReport(serviceId: 'netia');
+
+    final after = await repository.fetchServiceDetails('netia');
+    expect(after.nearbyReportsLastHour, before.nearbyReportsLastHour + 1);
+    expect(
+      after.reportPoints.last.count,
+      greaterThanOrEqualTo(before.reportPoints.last.count),
+    );
+  });
+
+  test('seeds report history for every catalogue service', () async {
+    final repository = InformatorRepository(AppDatabase.forTesting());
+
+    for (final serviceId in const [
+      'netia',
+      'veolia',
+      'openai',
+      'tauron',
+      'grygry2',
+      'mpk',
+    ]) {
+      final details = await repository.fetchServiceDetails(serviceId);
+      expect(details.reportPoints, isNotEmpty, reason: serviceId);
+    }
+  });
 }

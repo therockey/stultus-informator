@@ -1,25 +1,24 @@
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
 import 'package:informator/models/service.dart';
 import 'package:informator/providers/services_provider.dart';
+import 'package:informator/providers/database_provider.dart';
+import 'package:informator/providers/service_details_provider.dart';
 import 'package:informator/widgets/report_issue_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
 import 'package:informator/widgets/thank_you_dialog.dart';
 import 'package:material_ui/material_ui.dart';
 
 class GroupDetailsScreen extends ConsumerWidget {
-  const GroupDetailsScreen({
-    super.key,
-    required this.group,
-  });
+  const GroupDetailsScreen({super.key, required this.group});
 
   final Group group;
 
   Future<void> _reportOutage(
     BuildContext context,
     Service service,
+    WidgetRef ref,
   ) async {
     final confirmed = await showDialog<bool>(
       context: context,
@@ -30,6 +29,13 @@ class GroupDetailsScreen extends ConsumerWidget {
       return;
     }
 
+    await ref
+        .read(informatorRepositoryProvider)
+        .addServiceReport(serviceId: service.id);
+    ref.invalidate(serviceDetailsProvider(service.id));
+    ref.invalidate(servicesProvider);
+
+    if (!context.mounted) return;
     await showDialog<void>(
       context: context,
       builder: (context) => const ThankYouDialog(),
@@ -43,9 +49,7 @@ class GroupDetailsScreen extends ConsumerWidget {
     final servicesState = ref.watch(servicesProvider);
 
     if (servicesState.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     if (servicesState.hasError) {
@@ -53,9 +57,7 @@ class GroupDetailsScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Text(
-            strings.group_details_load_error(
-              servicesState.error.toString(),
-            ),
+            strings.group_details_load_error(servicesState.error.toString()),
             style: TextStyle(color: theme.error),
             textAlign: TextAlign.center,
           ),
@@ -98,7 +100,7 @@ class GroupDetailsScreen extends ConsumerWidget {
         return ServiceCard(
           service: service,
           onReportOutage: () {
-            _reportOutage(context, service);
+            _reportOutage(context, service, ref);
           },
           onAddToGroup: null,
         );

@@ -167,7 +167,7 @@
   "service_heatmap_title": "Outage area",
   "service_heatmap_local": "My location only",
   "service_heatmap_all": "Whole service",
-  "service_chart_title": "Reports over the last 7 days",
+  "service_chart_title": "User reports",
   "service_notifications": "Notifications for this service",
   "service_rule": "When to send an alert",
   "service_rule_all": "All interruptions",

@@ -5,7 +5,7 @@ import 'package:informator/widgets/service_status.dart';
 import 'package:material_ui/material_ui.dart';
 
 /// Schematic map of transport lines, drawn from the route geometry stored in
-/// the database (no external map SDK, like [OutageHeatmap]).
+/// the database (no external map SDK).
 ///
 /// The disrupted segment of a line is painted in the status colour and, when
 /// an area is given, the affected area is marked with a translucent circle.
@@ -109,13 +109,18 @@ class _TransportMapPainter extends CustomPainter {
       size.width - 2 * _padding,
       size.height - 2 * _padding,
     );
-    Offset project(double x, double y) =>
-        Offset(drawable.left + x * drawable.width, drawable.top + y * drawable.height);
+    Offset project(double x, double y) => Offset(
+      drawable.left + x * drawable.width,
+      drawable.top + y * drawable.height,
+    );
 
     final centerX = areaX;
     final centerY = areaY;
     final radius = areaRadius;
-    if (centerX != null && centerY != null && radius != null && lines.isNotEmpty) {
+    if (centerX != null &&
+        centerY != null &&
+        radius != null &&
+        lines.isNotEmpty) {
       final color = kServiceStatusColors[lines.first.status]!;
       final center = project(centerX, centerY);
       final pixelRadius = radius * drawable.shortestSide;
@@ -138,14 +143,13 @@ class _TransportMapPainter extends CustomPainter {
       final points = [for (final p in line.route) project(p.x, p.y)];
       if (points.length < 2) continue;
 
-      canvas.drawPath(
-        _pathThrough(points),
-        _linePaint(lineColor, 4),
-      );
+      canvas.drawPath(_pathThrough(points), _linePaint(lineColor, 4));
 
       final from = line.disruptedFrom;
       final to = line.disruptedTo;
-      if (line.status != ServiceStatus.operational && from != null && to != null) {
+      if (line.status != ServiceStatus.operational &&
+          from != null &&
+          to != null) {
         final last = points.length - 1;
         final start = from < 0 ? 0 : (from > last ? last : from);
         final end = to < 0 ? 0 : (to > last ? last : to);

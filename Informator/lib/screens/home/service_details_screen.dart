@@ -7,8 +7,9 @@ import 'package:informator/providers/app_bar_title_provider.dart';
 import 'package:informator/providers/service_details_provider.dart';
 import 'package:informator/providers/user_settings_provider.dart';
 import 'package:informator/widgets/glossary_sheet.dart';
-import 'package:informator/widgets/outage_heatmap.dart';
 import 'package:informator/widgets/outage_reports_chart.dart';
+import 'package:informator/widgets/report_issue_dialog.dart';
+import 'package:informator/widgets/thank_you_dialog.dart';
 import 'package:informator/widgets/service_status.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
@@ -24,7 +25,7 @@ class ServiceDetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
-  bool _localView = true;
+  ReportPeriod _reportPeriod = ReportPeriod.sevenDays;
   String? _title;
 
   @override
@@ -54,10 +55,11 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
             : _FullBody(
                 details: value,
                 hideDistressing: settings.hideDistressing,
-                localView: _localView,
-                onLocalViewChanged: (local) =>
-                    setState(() => _localView = local),
                 onNotificationsChanged: _updateNotifications,
+                reportPeriod: _reportPeriod,
+                onReportPeriodChanged: (period) =>
+                    setState(() => _reportPeriod = period),
+                onReportOutage: _reportOutage,
               ),
       ),
     );
@@ -77,6 +79,24 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
           leadTime: leadTime,
         );
     ref.invalidate(serviceDetailsProvider(widget.serviceId));
+  }
+
+  Future<void> _reportOutage() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (_) => const ReportIssueDialog(),
+    );
+    if (!mounted || confirmed != true) return;
+
+    await ref
+        .read(informatorRepositoryProvider)
+        .addServiceReport(serviceId: widget.serviceId);
+    ref.invalidate(serviceDetailsProvider(widget.serviceId));
+    if (!mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (_) => const ThankYouDialog(),
+    );
   }
 }
 
@@ -166,18 +186,15 @@ class _FullBody extends StatelessWidget {
   const _FullBody({
     required this.details,
     required this.hideDistressing,
-    required this.localView,
-    required this.onLocalViewChanged,
     required this.onNotificationsChanged,
+    required this.reportPeriod,
+    required this.onReportPeriodChanged,
+    required this.onReportOutage,
   });
 
   final ServiceDetails details;
 
   final bool hideDistressing;
-
-  final bool localView;
-
-  final ValueChanged<bool> onLocalViewChanged;
 
   final Future<void> Function({
     bool? enabled,
@@ -186,13 +203,17 @@ class _FullBody extends StatelessWidget {
   })
   onNotificationsChanged;
 
+  final ReportPeriod reportPeriod;
+
+  final ValueChanged<ReportPeriod> onReportPeriodChanged;
+
+  final Future<void> Function() onReportOutage;
+
   @override
   Widget build(BuildContext context) {
     final strings = S.of(context);
     final theme = Theme.of(context).colorScheme;
     final service = details.service;
-    final streets = localView ? details.localStreets : details.allStreets;
-
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
       children: [
@@ -319,38 +340,6 @@ class _FullBody extends StatelessWidget {
             ),
           ],
         ],
-        const SizedBox(height: 20),
-        if (details.hasOutage && streets.isNotEmpty) ...[
-          Text(
-            strings.service_heatmap_title,
-            style: TextStyle(
-              color: theme.onSurface,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            key: const Key('heatmap-scope'),
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              ChoiceChip(
-                label: Text(strings.service_heatmap_local),
-                selected: localView,
-                onSelected: (_) => onLocalViewChanged(true),
-              ),
-              ChoiceChip(
-                label: Text(strings.service_heatmap_all),
-                selected: !localView,
-                onSelected: (_) => onLocalViewChanged(false),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          OutageHeatmap(streets: streets),
-          const SizedBox(height: 20),
-        ],
         if (details.reportPoints.isNotEmpty) ...[
           Text(
             strings.service_chart_title,
@@ -361,7 +350,23 @@ class _FullBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          OutageReportsChart(points: details.reportPoints),
+          SegmentedButton<ReportPeriod>(
+            segments: const [
+              ButtonSegment(value: ReportPeriod.sevenDays, label: Text('7d')),
+              ButtonSegment(value: ReportPeriod.thirtyDays, label: Text('30d')),
+              ButtonSegment(value: ReportPeriod.ninetyDays, label: Text('90d')),
+            ],
+            selected: {reportPeriod},
+            showSelectedIcon: false,
+            onSelectionChanged: (selection) {
+              onReportPeriodChanged(selection.first);
+            },
+          ),
+          const SizedBox(height: 8),
+          OutageReportsChart(
+            points: details.reportPoints,
+            period: reportPeriod,
+          ),
           const SizedBox(height: 20),
         ],
         SwitchListTile(
@@ -411,23 +416,11 @@ class _FullBody extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(strings.service_report_stub)),
-            );
-          },
+          onPressed: onReportOutage,
           icon: const Icon(Icons.warning_amber_rounded),
           label: Text(strings.service_report_outage),
         ),
         const SizedBox(height: 8),
-        OutlinedButton(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(strings.service_history_stub)),
-            );
-          },
-          child: Text(strings.service_history),
-        ),
       ],
     );
   }

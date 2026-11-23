@@ -167,7 +167,7 @@
   "service_heatmap_title": "Zasięg przerwy",
   "service_heatmap_local": "Tylko moja lokalizacja",
   "service_heatmap_all": "Cała usługa",
-  "service_chart_title": "Zgłoszenia z ostatnich 7 dni",
+  "service_chart_title": "Zgłoszenia użytkowników",
   "service_notifications": "Powiadomienia o tej usłudze",
   "service_rule": "Kiedy wysyłać alert",
   "service_rule_all": "Wszystkie przerwy",
