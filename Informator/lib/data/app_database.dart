@@ -10,7 +10,7 @@ class AppDatabase {
   static final AppDatabase instance = AppDatabase._();
 
   static const _databaseName = 'informator.db';
-  static const _databaseVersion = 3;
+  static const _databaseVersion = 4;
 
   final String? _databasePath;
 
@@ -79,6 +79,7 @@ class AppDatabase {
       )
     ''');
     await _createOutageTables(database);
+    await _createTransportTables(database);
     await _seed(database);
   }
 
@@ -103,6 +104,10 @@ class AppDatabase {
       await _createOutageTables(database);
       await _seedServiceOutages(database);
       await _seedServiceNotifications(database);
+    }
+    if (oldVersion < 4) {
+      await _createTransportTables(database);
+      await _seedTransport(database);
     }
   }
 
@@ -144,6 +149,226 @@ class AppDatabase {
         FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
       )
     ''');
+  }
+
+  /// Public transport: lines, their schematic geometry, the current
+  /// disruption, suggested detours and the delay history shown in charts.
+  Future<void> _createTransportTables(Database database) async {
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS transport_lines (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        short_name TEXT NOT NULL,
+        kind TEXT NOT NULL,
+        status TEXT NOT NULL,
+        position INTEGER NOT NULL
+      )
+    ''');
+    // Coordinates are normalised to 0..1 so the schematic map can be drawn at
+    // any size without a map SDK.
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS transport_route_points (
+        line_id TEXT NOT NULL,
+        seq INTEGER NOT NULL,
+        x REAL NOT NULL,
+        y REAL NOT NULL,
+        PRIMARY KEY (line_id, seq),
+        FOREIGN KEY (line_id) REFERENCES transport_lines(id) ON DELETE CASCADE
+      )
+    ''');
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS transport_outages (
+        line_id TEXT PRIMARY KEY,
+        cause TEXT,
+        started_at INTEGER,
+        eta INTEGER,
+        source TEXT,
+        last_checked INTEGER,
+        disrupted_from INTEGER,
+        disrupted_to INTEGER,
+        area_x REAL,
+        area_y REAL,
+        area_radius REAL,
+        FOREIGN KEY (line_id) REFERENCES transport_lines(id) ON DELETE CASCADE
+      )
+    ''');
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS transport_detours (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        line_id TEXT NOT NULL,
+        from_line TEXT NOT NULL,
+        to_line TEXT NOT NULL,
+        position INTEGER NOT NULL,
+        FOREIGN KEY (line_id) REFERENCES transport_lines(id) ON DELETE CASCADE
+      )
+    ''');
+    await database.execute('''
+      CREATE TABLE IF NOT EXISTS transport_delay_points (
+        line_id TEXT NOT NULL,
+        recorded_at INTEGER NOT NULL,
+        delay_minutes INTEGER NOT NULL,
+        PRIMARY KEY (line_id, recorded_at),
+        FOREIGN KEY (line_id) REFERENCES transport_lines(id) ON DELETE CASCADE
+      )
+    ''');
+  }
+
+  Future<void> _seedTransport(
+    Database database, {
+    Batch? batch,
+  }) async {
+    final target = batch ?? database.batch();
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
+    const lines = <({
+      String id,
+      String short,
+      String kind,
+      String status,
+      List<(double, double)> route,
+      List<int> delays,
+    })>[
+      (
+        id: 'tram-10',
+        short: '10',
+        kind: 'tram',
+        status: 'degraded',
+        route: [(0.05, 0.50), (0.30, 0.50), (0.55, 0.55), (0.80, 0.50), (0.95, 0.45)],
+        delays: [0, 0, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7],
+      ),
+      (
+        id: 'tram-12',
+        short: '12',
+        kind: 'tram',
+        status: 'outage',
+        route: [(0.05, 0.80), (0.25, 0.65), (0.45, 0.55), (0.60, 0.40), (0.80, 0.25), (0.95, 0.20)],
+        delays: [0, 0, 1, 0, 2, 5, 9, 14, 18, 22, 25, 27],
+      ),
+      (
+        id: 'tram-13',
+        short: '13',
+        kind: 'tram',
+        status: 'outage',
+        route: [(0.10, 0.20), (0.30, 0.35), (0.50, 0.50), (0.70, 0.65), (0.90, 0.80)],
+        delays: [0, 1, 0, 0, 3, 6, 10, 12, 15, 20, 24, 26],
+      ),
+      (
+        id: 'tram-15',
+        short: '15',
+        kind: 'tram',
+        status: 'operational',
+        route: [(0.20, 0.95), (0.35, 0.75), (0.50, 0.55), (0.65, 0.30), (0.75, 0.05)],
+        delays: [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0],
+      ),
+      (
+        id: 'bus-17',
+        short: '17',
+        kind: 'bus',
+        status: 'operational',
+        route: [(0.05, 0.10), (0.35, 0.12), (0.60, 0.30), (0.90, 0.35)],
+        delays: [1, 0, 0, 1, 0, 0, 2, 0, 1, 0, 0, 1],
+      ),
+    ];
+
+    for (var index = 0; index < lines.length; index++) {
+      final line = lines[index];
+      target.insert('transport_lines', {
+        'id': line.id,
+        'name': 'Linia ${line.short}',
+        'short_name': line.short,
+        'kind': line.kind,
+        'status': line.status,
+        'position': index,
+      }, conflictAlgorithm: ConflictAlgorithm.ignore);
+
+      for (var seq = 0; seq < line.route.length; seq++) {
+        target.insert('transport_route_points', {
+          'line_id': line.id,
+          'seq': seq,
+          'x': line.route[seq].$1,
+          'y': line.route[seq].$2,
+        }, conflictAlgorithm: ConflictAlgorithm.ignore);
+      }
+
+      final currentHour = DateTime(now.year, now.month, now.day, now.hour);
+      for (var i = 0; i < line.delays.length; i++) {
+        final recordedAt = currentHour.subtract(
+          Duration(hours: line.delays.length - 1 - i),
+        );
+        target.insert('transport_delay_points', {
+          'line_id': line.id,
+          'recorded_at': recordedAt.millisecondsSinceEpoch,
+          'delay_minutes': line.delays[i],
+        }, conflictAlgorithm: ConflictAlgorithm.ignore);
+      }
+    }
+
+    target.insert('transport_outages', {
+      'line_id': 'tram-12',
+      'cause': 'Awaria zasilania sieci trakcyjnej na odcinku Hallera – Plac Grunwaldzki',
+      'started_at': today.add(const Duration(hours: 7, minutes: 10)).millisecondsSinceEpoch,
+      'eta': today.add(const Duration(hours: 15, minutes: 30)).millisecondsSinceEpoch,
+      'source': 'official',
+      'last_checked': now.millisecondsSinceEpoch,
+      'disrupted_from': 2,
+      'disrupted_to': 4,
+      'area_x': 0.52,
+      'area_y': 0.47,
+      'area_radius': 0.15,
+    }, conflictAlgorithm: ConflictAlgorithm.ignore);
+    target.insert('transport_outages', {
+      'line_id': 'tram-13',
+      'cause': 'Zablokowane tory na skrzyżowaniu Ślężna / Powstańców',
+      'started_at': today.add(const Duration(hours: 8)).millisecondsSinceEpoch,
+      'eta': today.add(const Duration(hours: 14)).millisecondsSinceEpoch,
+      'source': 'official',
+      'last_checked': now.millisecondsSinceEpoch,
+      'disrupted_from': 1,
+      'disrupted_to': 3,
+      'area_x': 0.42,
+      'area_y': 0.43,
+      'area_radius': 0.13,
+    }, conflictAlgorithm: ConflictAlgorithm.ignore);
+    target.insert('transport_outages', {
+      'line_id': 'tram-10',
+      'cause': 'Prace torowe – wolniejszy przejazd na części trasy',
+      'started_at': today.add(const Duration(hours: 6)).millisecondsSinceEpoch,
+      'eta': today.add(const Duration(hours: 12)).millisecondsSinceEpoch,
+      'source': 'community',
+      'last_checked': now.millisecondsSinceEpoch,
+      'disrupted_from': 2,
+      'disrupted_to': 3,
+      'area_x': 0.68,
+      'area_y': 0.52,
+      'area_radius': 0.10,
+    }, conflictAlgorithm: ConflictAlgorithm.ignore);
+
+    const detours = <String, List<(String, String)>>{
+      'tram-12': [
+        ('Linia 10', 'Linia 15'),
+        ('Linia 10', 'Linia 17'),
+        ('Linia 15', 'Linia 17'),
+      ],
+      'tram-13': [
+        ('Linia 10', 'Linia 15'),
+        ('Linia 15', 'Linia 17'),
+      ],
+    };
+    for (final entry in detours.entries) {
+      for (var index = 0; index < entry.value.length; index++) {
+        target.insert('transport_detours', {
+          'line_id': entry.key,
+          'from_line': entry.value[index].$1,
+          'to_line': entry.value[index].$2,
+          'position': index,
+        });
+      }
+    }
+
+    if (batch == null) {
+      await target.commit(noResult: true);
+    }
   }
 
   Future<void> _seed(Database database) async {
@@ -215,6 +440,7 @@ class AppDatabase {
     await _seedServiceGroups(database, batch: batch);
     await _seedServiceOutages(database, batch: batch);
     await _seedServiceNotifications(database, batch: batch);
+    await _seedTransport(database, batch: batch);
     await batch.commit(noResult: true);
   }
 

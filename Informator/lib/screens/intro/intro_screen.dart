@@ -1,16 +1,32 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:informator/screens/intro/page1.dart';
 import 'package:informator/screens/intro/page2.dart';
 import 'package:informator/screens/intro/page3.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:informator/generated/l10n.dart';
+import 'package:informator/providers/intro_step_provider.dart';
 
-class IntroScreen extends ConsumerWidget {
+class IntroScreen extends ConsumerStatefulWidget {
   const IntroScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends ConsumerState<IntroScreen> {
+  final GlobalKey<IntroductionScreenState> _introKey =
+      GlobalKey<IntroductionScreenState>();
+  int _currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final setupStep = ref
+        .watch(currentStepProvider)
+        .maybeWhen(data: (step) => step, orElse: () => 0);
+    final permissionsComplete = setupStep == 4;
     final List<PageViewModel> introPages = [
       Page1(context, ref),
       Page2(context, ref),
@@ -27,13 +43,16 @@ class IntroScreen extends ConsumerWidget {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: IntroductionScreen(
+        key: _introKey,
         pages: introPages,
-        showDoneButton: true,
+        showDoneButton: _currentPage == 2 && permissionsComplete,
         showSkipButton: true,
-        skip: const Text('Pomiń'),
-        done: const Icon(Icons.arrow_forward),
-        onSkip: () => _finishIntro(context),
+        skip: Text(S.of(context).intro_skip),
+        done: Text(S.of(context).intropage3_step2),
+        onSkip: () => _skipToPermissions(context),
         onDone: () => _finishIntro(context),
+        onChange: (page) => setState(() => _currentPage = page),
+        showNextButton: _currentPage < 2,
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
           color: Theme.of(context).colorScheme.onPrimaryContainer
@@ -46,6 +65,30 @@ class IntroScreen extends ConsumerWidget {
         next: const Icon(Icons.arrow_forward),
       ),
     );
+  }
+
+  Future<void> _skipToPermissions(BuildContext context) async {
+    await _introKey.currentState?.animateScroll(2);
+    if (!mounted) return;
+
+    final step = await ref.read(currentStepProvider.future);
+    if (!mounted) return;
+
+    final permission = switch (step) {
+      1 => Permission.notification,
+      2 => Permission.locationWhenInUse,
+      3 => Permission.ignoreBatteryOptimizations,
+      _ => null,
+    };
+
+    if (permission != null) {
+      try {
+        await permission.request();
+      } on Exception {
+        // Desktop and unsupported platforms have no permission channel.
+      }
+      ref.invalidate(currentStepProvider);
+    }
   }
 }
 

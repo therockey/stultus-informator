@@ -82,6 +82,7 @@
   "intropage3_done_title": "You're all set",
   "intropage3_done_body": "Informator can now keep you informed about outages.",
   "intropage3_step2": "Continue",
+  "intro_skip": "Skip",
   "thank_you_title": "Thank you!",
   "thank_you_message": "Thank you for your response!",
   "report_issue_title": "Report an issue",
@@ -182,5 +183,34 @@
   "service_add_to_group_stub": "Adding to a group will be available in a later version.",
   "service_operational_message": "No reported problems. The service is running normally.",
   "service_coming_soon": "Coming soon",
-  "service_open_glossary": "What does this mean?"
+  "service_open_glossary": "What does this mean?",
+  "transport_title": "Public transport",
+  "transport_map_title": "Network map",
+  "transport_map_semantics": "Schematic map of public transport lines",
+  "transport_lines_title": "Lines",
+  "transport_lines_empty": "No lines available.",
+  "transport_kind_tram": "Tram",
+  "transport_kind_bus": "Bus",
+  "transport_status": "Status: {status}",
+  "@transport_status": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "transport_detours": "Available detours",
+  "transport_detours_none": "No detours are available for this line.",
+  "transport_affected_area": "Affected area",
+  "transport_started": "Disruption since",
+  "transport_current_delay": "Current delay",
+  "transport_delay_chart_title": "Delay over the last 12 hours",
+  "transport_delay_minutes": "{minutes} min",
+  "@transport_delay_minutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

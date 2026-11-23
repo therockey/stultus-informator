@@ -1,4 +1,3 @@
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
@@ -7,6 +6,7 @@ import 'package:informator/providers/database_provider.dart';
 import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/providers/services_provider.dart';
 import 'package:informator/screens/home/service_details_screen.dart';
+import 'package:informator/screens/home/transport_screen.dart';
 import 'package:informator/widgets/add_to_group_dialog.dart';
 import 'package:informator/widgets/report_issue_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
@@ -15,7 +15,10 @@ import 'package:material_ui/material_ui.dart';
 
 /// Lists popular services and lets the user search the catalogue by name.
 class ServicesScreen extends ConsumerStatefulWidget {
-  const ServicesScreen({super.key});
+  const ServicesScreen({super.key, this.onServiceTap, this.onTransportTap});
+
+  final ValueChanged<Service>? onServiceTap;
+  final VoidCallback? onTransportTap;
 
   @override
   ConsumerState<ServicesScreen> createState() => _ServicesScreenState();
@@ -34,9 +37,7 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
 
       final selectedGroup = await showDialog<Group>(
         context: context,
-        builder: (context) => AddToGroupDialog(
-          groups: groups,
-        ),
+        builder: (context) => AddToGroupDialog(groups: groups),
       );
 
       if (selectedGroup == null || !mounted) return;
@@ -51,8 +52,9 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(S.of(context).services_add_to_group_error(error.toString()),
-),
+          content: Text(
+            S.of(context).services_add_to_group_error(error.toString()),
+          ),
         ),
       );
     }
@@ -89,11 +91,24 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
   }
 
   void _openDetails(Service service) {
+    if (widget.onServiceTap != null) {
+      widget.onServiceTap!(service);
+      return;
+    }
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => ServiceDetailsScreen(serviceId: service.id),
       ),
     );
+  }
+
+  void _openTransport() {
+    if (widget.onTransportTap != null) {
+      widget.onTransportTap!();
+      return;
+    }
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const TransportScreen()));
   }
 
   @override
@@ -125,6 +140,33 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
             onClear: _clearQuery,
           ),
         ),
+        if (!isSearching)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+            child: SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                key: const Key('open-transport-button'),
+                onPressed: _openTransport,
+                style: FilledButton.styleFrom(
+                  backgroundColor: theme.tertiaryContainer,
+                  foregroundColor: theme.onTertiaryContainer,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: const Icon(Icons.directions_transit),
+                label: Text(
+                  strings.transport_title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
         Expanded(
           child: results.isEmpty
               ? _NoResults(message: strings.services_no_results)
@@ -175,7 +217,7 @@ class _SearchField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  
+
   final String hintText;
 
   final bool showClearButton;
@@ -196,7 +238,7 @@ class _SearchField extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       textInputAction: TextInputAction.search,
-       style: TextStyle(color: theme.onSurface, fontSize: 16),
+      style: TextStyle(color: theme.onSurface, fontSize: 16),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),

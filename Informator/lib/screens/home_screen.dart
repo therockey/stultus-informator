@@ -9,6 +9,9 @@ import 'package:informator/screens/home/groups_screen.dart';
 import 'package:informator/screens/home/home_tab.dart';
 import 'package:informator/screens/home/services_screen.dart';
 import 'package:informator/screens/home/settings_screen.dart';
+import 'package:informator/screens/home/service_details_screen.dart';
+import 'package:informator/screens/home/transport_screen.dart';
+import 'package:informator/screens/home/transport_line_details_screen.dart';
 import 'package:informator/widgets/create_group_dialog.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -23,6 +26,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   int _selectedTabIndex = _defaultTabIndex;
   Group? _selectedGroup;
+  String? _selectedServiceId;
+  bool _showTransport = false;
+  String? _selectedTransportLineId;
 
   Future<void> _showCreateGroupDialog(BuildContext context) async {
     final groupName = await showDialog<String>(
@@ -45,6 +51,41 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void _closeGroupDetails() {
     setState(() {
       _selectedGroup = null;
+    });
+  }
+
+  void _openService(String serviceId) {
+    setState(() {
+      _selectedServiceId = serviceId;
+      _showTransport = false;
+      _selectedTransportLineId = null;
+    });
+  }
+
+  void _openTransport() {
+    setState(() {
+      _selectedServiceId = null;
+      _showTransport = true;
+      _selectedTransportLineId = null;
+    });
+  }
+
+  void _openTransportLine(String lineId) {
+    setState(() {
+      _selectedTransportLineId = lineId;
+    });
+  }
+
+  void _closeMiddleDetails() {
+    ref.read(appBarTitleOverrideProvider.notifier).clear();
+    setState(() {
+      if (_selectedTransportLineId != null) {
+        _selectedTransportLineId = null;
+      } else if (_showTransport) {
+        _showTransport = false;
+      } else {
+        _selectedServiceId = null;
+      }
     });
   }
 
@@ -96,22 +137,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
         title: currentGroup?.name ?? strings.groups,
         floatingActionButton: currentGroup == null
-            ? AddGroupButton(
-                onPressed: () => _showCreateGroupDialog(context),
-              )
+            ? AddGroupButton(onPressed: () => _showCreateGroupDialog(context))
             : null,
       ),
       1: HomeTab(
-        body: const ServicesScreen(),
+        body: _selectedTransportLineId != null
+            ? TransportLineDetailsScreen(lineId: _selectedTransportLineId!)
+            : _showTransport
+            ? TransportScreen(onLineTap: (line) => _openTransportLine(line.id))
+            : _selectedServiceId != null
+            ? ServiceDetailsScreen(serviceId: _selectedServiceId!)
+            : ServicesScreen(
+                onServiceTap: (service) => _openService(service.id),
+                onTransportTap: _openTransport,
+              ),
       ),
-      2: HomeTab(
-        body: const SettingsScreen(),
-        title: strings.settings,
-      ),
+      2: HomeTab(body: const SettingsScreen(), title: strings.settings),
     };
 
-    final selectedTab =
-        tabs[_selectedTabIndex] ?? tabs[_defaultTabIndex]!;
+    final selectedTab = tabs[_selectedTabIndex] ?? tabs[_defaultTabIndex]!;
 
     return Scaffold(
       appBar: AppBar(
@@ -120,6 +164,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _closeGroupDetails,
+              )
+            : _selectedTabIndex == 1 &&
+                  (_selectedServiceId != null ||
+                      _showTransport ||
+                      _selectedTransportLineId != null)
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: _closeMiddleDetails,
               )
             : null,
         title: Text(
@@ -160,6 +212,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             setState(() {
               _selectedTabIndex = index;
               _selectedGroup = null;
+              _selectedServiceId = null;
+              _showTransport = false;
+              _selectedTransportLineId = null;
             });
           },
           items: [
