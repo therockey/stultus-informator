@@ -15,7 +15,20 @@ import 'package:informator/screens/home/transport_line_details_screen.dart';
 import 'package:informator/widgets/create_group_dialog.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    this.initialTab,
+    this.initialGroupName,
+    this.initialServiceId,
+    this.initialTransport = false,
+    this.initialTransportLineId,
+  });
+
+  final String? initialTab;
+  final String? initialGroupName;
+  final String? initialServiceId;
+  final bool initialTransport;
+  final String? initialTransportLineId;
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -24,11 +37,25 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   static const int _defaultTabIndex = 1;
 
-  int _selectedTabIndex = _defaultTabIndex;
+  late int _selectedTabIndex;
   Group? _selectedGroup;
-  String? _selectedServiceId;
-  bool _showTransport = false;
-  String? _selectedTransportLineId;
+  late String? _selectedServiceId;
+  late String? _selectedTransportLineId;
+  late String? _initialGroupName;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTabIndex = switch (widget.initialTab) {
+      'groups' => 0,
+      'transport' => 2,
+      'settings' => 3,
+      _ => _defaultTabIndex,
+    };
+    _initialGroupName = widget.initialGroupName;
+    _selectedServiceId = widget.initialServiceId;
+    _selectedTransportLineId = widget.initialTransportLineId;
+  }
 
   Future<void> _showCreateGroupDialog(BuildContext context) async {
     final groupName = await showDialog<String>(
@@ -42,10 +69,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _openGroup(Group group) {
-    setState(() {
-      _selectedTabIndex = 0;
-      _selectedGroup = group;
-    });
+    Navigator.of(context)
+        .pushNamed('/groups/${Uri.encodeComponent(group.name)}');
   }
 
   void _closeGroupDetails() {
@@ -55,34 +80,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   void _openService(String serviceId) {
-    setState(() {
-      _selectedServiceId = serviceId;
-      _showTransport = false;
-      _selectedTransportLineId = null;
-    });
-  }
-
-  void _openTransport() {
-    setState(() {
-      _selectedServiceId = null;
-      _showTransport = true;
-      _selectedTransportLineId = null;
-    });
+    Navigator.of(context)
+        .pushNamed('/services/${Uri.encodeComponent(serviceId)}');
   }
 
   void _openTransportLine(String lineId) {
-    setState(() {
-      _selectedTransportLineId = lineId;
-    });
+    Navigator.of(context)
+        .pushNamed('/transport/line/${Uri.encodeComponent(lineId)}');
   }
 
   void _closeMiddleDetails() {
     ref.read(appBarTitleOverrideProvider.notifier).clear();
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+      return;
+    }
     setState(() {
       if (_selectedTransportLineId != null) {
         _selectedTransportLineId = null;
-      } else if (_showTransport) {
-        _showTransport = false;
       } else {
         _selectedServiceId = null;
       }
@@ -100,12 +115,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       data: (groups) {
         final selected = _selectedGroup;
 
-        if (selected == null) {
+        if (selected == null && _initialGroupName == null) {
           return null;
         }
 
         for (final group in groups) {
-          if (group.id == selected.id) {
+          if (selected != null && group.id == selected.id) {
+            return group;
+          }
+          if (selected == null &&
+              group.name.toLowerCase() == _initialGroupName?.toLowerCase()) {
             return group;
           }
         }
@@ -141,18 +160,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             : null,
       ),
       1: HomeTab(
-        body: _selectedTransportLineId != null
-            ? TransportLineDetailsScreen(lineId: _selectedTransportLineId!)
-            : _showTransport
-            ? TransportScreen(onLineTap: (line) => _openTransportLine(line.id))
-            : _selectedServiceId != null
+        body: _selectedServiceId != null
             ? ServiceDetailsScreen(serviceId: _selectedServiceId!)
             : ServicesScreen(
                 onServiceTap: (service) => _openService(service.id),
-                onTransportTap: _openTransport,
               ),
       ),
-      2: HomeTab(body: const SettingsScreen(), title: strings.settings),
+      2: HomeTab(
+        body: _selectedTransportLineId != null
+            ? TransportLineDetailsScreen(lineId: _selectedTransportLineId!)
+            : TransportScreen(onLineTap: (line) => _openTransportLine(line.id)),
+        title: strings.transport_title,
+      ),
+      3: HomeTab(body: const SettingsScreen(), title: strings.settings),
     };
 
     final selectedTab = tabs[_selectedTabIndex] ?? tabs[_defaultTabIndex]!;
@@ -167,8 +187,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               )
             : _selectedTabIndex == 1 &&
                   (_selectedServiceId != null ||
-                      _showTransport ||
                       _selectedTransportLineId != null)
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: _closeMiddleDetails,
+              )
+            : _selectedTabIndex == 2 && _selectedTransportLineId != null
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _closeMiddleDetails,
@@ -203,7 +227,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       bottomNavigationBar: SizedBox(
         height: 80,
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
           currentIndex: _selectedTabIndex,
+          selectedItemColor: theme.primary,
+          unselectedItemColor: theme.onSurfaceVariant,
           onTap: (index) {
             if (!tabs.containsKey(index)) {
               return;
@@ -213,8 +241,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               _selectedTabIndex = index;
               _selectedGroup = null;
               _selectedServiceId = null;
-              _showTransport = false;
               _selectedTransportLineId = null;
+              ref.read(appBarTitleOverrideProvider.notifier).clear();
             });
           },
           items: [
@@ -227,6 +255,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               icon: const Icon(Icons.search),
               activeIcon: selectedIcon(Icons.search),
               label: strings.services,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.directions_transit),
+              activeIcon: selectedIcon(Icons.directions_transit),
+              label: strings.transport_title,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.settings),

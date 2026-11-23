@@ -79,62 +79,65 @@ class _Body extends StatelessWidget {
     final statusColor = kServiceStatusColors[line.status]!;
     final currentDelay = line.delays.isEmpty ? null : line.delays.last.minutes;
 
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-      children: [
-        _StatusBanner(details: details),
-        const SizedBox(height: 20),
-        if (!line.hasOutage)
-          Text(
-            strings.service_operational_message,
-            style: TextStyle(color: theme.onSurface, fontSize: 16),
-          )
-        else ...[
-          if (!simplified && details.hasArea) ...[
-            _SectionTitle(strings.transport_affected_area),
-            const SizedBox(height: 8),
-            TransportMap(
-              lines: [line],
-              areaX: details.areaX,
-              areaY: details.areaY,
-              areaRadius: details.areaRadius,
-              height: 200,
-            ),
-            const SizedBox(height: 20),
-          ],
-          _Fact(label: strings.service_cause, value: details.cause ?? '—'),
-          if (details.startedAt != null)
-            _Fact(
-              label: strings.transport_started,
-              value: _formatDateTime(context, details.startedAt!),
-            ),
-          if (details.eta != null)
-            _Fact(
-              label: strings.service_eta,
-              value: _formatDateTime(context, details.eta!),
-            ),
-          if (currentDelay != null)
-            _Fact(
-              label: strings.transport_current_delay,
-              value: strings.transport_delay_minutes(currentDelay),
-            ),
-          if (details.source != null)
-            _Fact(
-              label: strings.service_source,
-              value: details.source == OutageSource.community
-                  ? strings.service_source_community
-                  : strings.service_source_official,
-            ),
-          const SizedBox(height: 10),
-          _DetoursCard(detours: details.detours),
-        ],
-        if (!simplified && line.delays.isNotEmpty) ...[
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+        children: [
+          _StatusBanner(details: details),
           const SizedBox(height: 20),
-          _SectionTitle(strings.transport_delay_chart_title),
-          const SizedBox(height: 8),
-          TransportDelayChart(points: line.delays, color: statusColor),
+          if (!line.hasOutage)
+            Text(
+              strings.service_operational_message,
+              style: TextStyle(color: theme.onSurface, fontSize: 16),
+            )
+          else ...[
+            if (!simplified && details.hasArea) ...[
+              _SectionTitle(strings.transport_affected_area),
+              const SizedBox(height: 8),
+              TransportMap(
+                lines: [line],
+                areaX: details.areaX,
+                areaY: details.areaY,
+                areaRadius: details.areaRadius,
+                height: 200,
+              ),
+              const SizedBox(height: 20),
+            ],
+            _Fact(label: strings.service_cause, value: details.cause ?? '—'),
+            if (details.startedAt != null)
+              _Fact(
+                label: strings.transport_started,
+                value: _formatDateTime(context, details.startedAt!),
+              ),
+            if (details.eta != null)
+              _Fact(
+                label: strings.service_eta,
+                value: _formatDateTime(context, details.eta!),
+              ),
+            if (currentDelay != null)
+              _Fact(
+                label: strings.transport_current_delay,
+                value: strings.transport_delay_minutes(currentDelay),
+              ),
+            if (details.source != null)
+              _Fact(
+                label: strings.service_source,
+                value: details.source == OutageSource.community
+                    ? strings.service_source_community
+                    : strings.service_source_official,
+              ),
+            const SizedBox(height: 10),
+            _DetoursCard(detours: details.detours),
+          ],
+          if (!simplified && line.delays.isNotEmpty) ...[
+            const SizedBox(height: 20),
+            _SectionTitle(strings.transport_delay_chart_title),
+            const SizedBox(height: 8),
+            TransportDelayChart(points: line.delays, color: statusColor),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

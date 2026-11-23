@@ -5,8 +5,6 @@ import 'package:informator/models/service.dart';
 import 'package:informator/providers/database_provider.dart';
 import 'package:informator/providers/groups_provider.dart';
 import 'package:informator/providers/services_provider.dart';
-import 'package:informator/screens/home/service_details_screen.dart';
-import 'package:informator/screens/home/transport_screen.dart';
 import 'package:informator/widgets/add_to_group_dialog.dart';
 import 'package:informator/widgets/report_issue_dialog.dart';
 import 'package:informator/widgets/service_card.dart';
@@ -15,10 +13,9 @@ import 'package:material_ui/material_ui.dart';
 
 /// Lists popular services and lets the user search the catalogue by name.
 class ServicesScreen extends ConsumerStatefulWidget {
-  const ServicesScreen({super.key, this.onServiceTap, this.onTransportTap});
+  const ServicesScreen({super.key, this.onServiceTap});
 
   final ValueChanged<Service>? onServiceTap;
-  final VoidCallback? onTransportTap;
 
   @override
   ConsumerState<ServicesScreen> createState() => _ServicesScreenState();
@@ -95,20 +92,8 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
       widget.onServiceTap!(service);
       return;
     }
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => ServiceDetailsScreen(serviceId: service.id),
-      ),
-    );
-  }
-
-  void _openTransport() {
-    if (widget.onTransportTap != null) {
-      widget.onTransportTap!();
-      return;
-    }
     Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (_) => const TransportScreen()));
+        .pushNamed('/services/${Uri.encodeComponent(service.id)}');
   }
 
   @override
@@ -140,66 +125,42 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
             onClear: _clearQuery,
           ),
         ),
-        if (!isSearching)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-            child: SizedBox(
-              width: double.infinity,
-              child: FilledButton.icon(
-                key: const Key('open-transport-button'),
-                onPressed: _openTransport,
-                style: FilledButton.styleFrom(
-                  backgroundColor: theme.tertiaryContainer,
-                  foregroundColor: theme.onTertiaryContainer,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                icon: const Icon(Icons.directions_transit),
-                label: Text(
-                  strings.transport_title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
-          ),
         Expanded(
           child: results.isEmpty
               ? _NoResults(message: strings.services_no_results)
-              : ListView(
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  children: [
-                    if (!isSearching)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Text(
-                          strings.services_popular,
-                          style: TextStyle(
-                            color: theme.onSurfaceVariant,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.5,
+              : Scrollbar(
+                  thumbVisibility: true,
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    children: [
+                      if (!isSearching)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            strings.services_popular,
+                            style: TextStyle(
+                              color: theme.onSurfaceVariant,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5,
+                            ),
                           ),
                         ),
-                      ),
-                    for (var index = 0; index < results.length; index++) ...[
-                      if (index > 0) const SizedBox(height: 12),
-                      ServiceCard(
-                        service: results[index],
-                        onOpen: () => _openDetails(results[index]),
-                        onReportOutage: () =>
-                            _showReportIssueDialog(results[index]),
-                        onAddToGroup: () =>
-                            _showAddToGroupDialog(results[index]),
-                      ),
+                      for (var index = 0; index < results.length; index++) ...[
+                        if (index > 0) const SizedBox(height: 12),
+                        ServiceCard(
+                          service: results[index],
+                          onOpen: () => _openDetails(results[index]),
+                          onReportOutage: () =>
+                              _showReportIssueDialog(results[index]),
+                          onAddToGroup: () =>
+                              _showAddToGroupDialog(results[index]),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
         ),
       ],

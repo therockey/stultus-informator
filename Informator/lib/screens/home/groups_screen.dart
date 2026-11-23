@@ -45,27 +45,37 @@ class GroupsScreen extends ConsumerWidget {
       );
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 96),
-      itemCount: groups.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
-        final group = groups[index];
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView.separated(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 96),
+        itemCount: groups.length,
+        separatorBuilder: (context, index) => const SizedBox(height: 12),
+        itemBuilder: (context, index) {
+          final group = groups[index];
 
-        return GroupCard(
-          key: ValueKey(group.id),
-          group: group,
-          onTap: () => onGroupTap?.call(group),
-          onNotificationsChanged: (enabled) {
-            ref
-                .read(groupsProvider.notifier)
-                .setNotificationsEnabled(group.id, enabled);
-          },
-          onRemove: () {
-            ref.read(groupsProvider.notifier).remove(group.id);
-          },
-        );
-      },
+          return GroupCard(
+            key: ValueKey(group.id),
+            group: group,
+            onTap: () {
+              if (onGroupTap != null) {
+                onGroupTap!(group);
+              } else {
+                Navigator.of(context)
+                    .pushNamed('/groups/${Uri.encodeComponent(group.name)}');
+              }
+            },
+            onNotificationsChanged: (enabled) {
+              ref
+                  .read(groupsProvider.notifier)
+                  .setNotificationsEnabled(group.id, enabled);
+            },
+            onRemove: () {
+              ref.read(groupsProvider.notifier).remove(group.id);
+            },
+          );
+        },
+      ),
     );
   }
 }

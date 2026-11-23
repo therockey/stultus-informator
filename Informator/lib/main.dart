@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_localizations/flutter_localizations.dart' as flutter_localizations;
+import 'package:flutter_localizations/flutter_localizations.dart'
+    as flutter_localizations;
 import 'package:informator/theme.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/providers/shared_preferences_provider.dart';
@@ -85,9 +86,8 @@ class _MyAppState extends ConsumerState<MyApp> {
       themeMode: themeNotifier.themeMode,
       builder: (context, child) {
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(userSettings.textScale),
-          ),
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: TextScaler.linear(userSettings.textScale)),
           child: child ?? const SizedBox.shrink(),
         );
       },
@@ -95,6 +95,45 @@ class _MyAppState extends ConsumerState<MyApp> {
         '/home': (context) => const HomeScreen(),
         '/license': (context) => const LicenseScreen(),
         '/error': (context) => const ErrorScreen(),
+        '/groups': (context) => const HomeScreen(initialTab: 'groups'),
+        '/services': (context) => const HomeScreen(initialTab: 'services'),
+        '/transport': (context) => const HomeScreen(initialTab: 'transport'),
+        '/settings': (context) => const HomeScreen(initialTab: 'settings'),
+      },
+      onGenerateRoute: (settings) {
+        final uri = Uri.parse(settings.name ?? '');
+        final segments = uri.pathSegments;
+
+        if (segments.length >= 2 && segments.first == 'groups') {
+          return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (_) => HomeScreen(
+              initialTab: 'groups',
+              initialGroupName: Uri.decodeComponent(segments[1]),
+            ),
+          );
+        }
+        if (segments.length >= 2 && segments.first == 'services') {
+          return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (_) => HomeScreen(
+              initialTab: 'services',
+              initialServiceId: Uri.decodeComponent(segments[1]),
+            ),
+          );
+        }
+        if (segments.length >= 3 &&
+            segments[0] == 'transport' &&
+            segments[1] == 'line') {
+          return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (_) => HomeScreen(
+              initialTab: 'transport',
+              initialTransportLineId: Uri.decodeComponent(segments[2]),
+            ),
+          );
+        }
+        return null;
       },
       home: FutureBuilder<Widget>(
         future: _getHome(ref),

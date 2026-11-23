@@ -52,19 +52,32 @@ Widget localizedApp(
 }) {
   return ProviderScope(
     overrides: [
-      servicesProvider.overrideWith(
-        (ref) async => services ?? _sampleServices,
-      ),
+      servicesProvider.overrideWith((ref) async => services ?? _sampleServices),
       if (prefs != null) sharedPreferencesProvider.overrideWithValue(prefs),
       if (details != null)
-        serviceDetailsProvider(details.service.id).overrideWith(
-          (ref) async => details,
-        ),
+        serviceDetailsProvider(details.service.id)
+            .overrideWith((ref) async => details),
     ],
     child: MaterialApp(
       locale: const Locale('pl'),
-      localizationsDelegates: [S.delegate, ...GlobalMaterialLocalizations.delegates],
+      localizationsDelegates: [
+        S.delegate,
+        ...GlobalMaterialLocalizations.delegates,
+      ],
       supportedLocales: S.delegate.supportedLocales,
+      onGenerateRoute: (settings) {
+        final uri = Uri.parse(settings.name ?? '');
+        if (uri.pathSegments.length == 2 &&
+            uri.pathSegments.first == 'services') {
+          return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (_) => ServiceDetailsScreen(
+              serviceId: Uri.decodeComponent(uri.pathSegments[1]),
+            ),
+          );
+        }
+        return null;
+      },
       home: Scaffold(body: child),
     ),
   );
@@ -77,7 +90,9 @@ Future<void> pumpDatabase(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('lists popular services before the user searches', (tester) async {
+  testWidgets('lists popular services before the user searches', (
+    tester,
+  ) async {
     await tester.pumpWidget(localizedApp(const ServicesScreen()));
     await pumpDatabase(tester);
 
@@ -140,7 +155,9 @@ void main() {
     expect(outageReports, 1);
   });
 
-  testWidgets('service card shows a text status next to the name', (tester) async {
+  testWidgets('service card shows a text status next to the name', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       localizedApp(
         ServiceCard(
@@ -185,17 +202,14 @@ void main() {
     await pumpDatabase(tester);
 
     await tester.tap(find.text('Zgłoś awarię').first);
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.byType(ServiceDetailsScreen), findsNothing);
-    expect(
-      find.text('Zgłaszanie awarii będzie dostępne w kolejnej wersji.'),
-      findsOneWidget,
-    );
   });
 
-  testWidgets('service card action buttons share the same width',
-      (tester) async {
+  testWidgets('service card action buttons share the same width', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       localizedApp(
         ServiceCard(

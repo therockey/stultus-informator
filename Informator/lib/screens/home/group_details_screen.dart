@@ -88,23 +88,26 @@ class GroupDetailsScreen extends ConsumerWidget {
       );
     }
 
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-      itemCount: groupServices.length,
-      separatorBuilder: (context, index) {
-        return const SizedBox(height: 14);
-      },
-      itemBuilder: (context, index) {
-        final service = groupServices[index];
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView.separated(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+        itemCount: groupServices.length,
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 14);
+        },
+        itemBuilder: (context, index) {
+          final service = groupServices[index];
 
-        return ServiceCard(
-          service: service,
-          onReportOutage: () {
-            _reportOutage(context, service, ref);
-          },
-          onAddToGroup: null,
-        );
-      },
+          return ServiceCard(
+            service: service,
+            onReportOutage: () {
+              _reportOutage(context, service, ref);
+            },
+            onAddToGroup: null,
+          );
+        },
+      ),
     );
   }
 }

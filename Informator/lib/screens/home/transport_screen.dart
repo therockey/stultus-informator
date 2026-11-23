@@ -3,7 +3,6 @@ import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/transport.dart';
 import 'package:informator/providers/transport_provider.dart';
 import 'package:informator/providers/app_bar_title_provider.dart';
-import 'package:informator/screens/home/transport_line_details_screen.dart';
 import 'package:informator/widgets/transport_line_card.dart';
 import 'package:informator/widgets/transport_map.dart';
 import 'package:material_ui/material_ui.dart';
@@ -26,11 +25,8 @@ class _TransportScreenState extends ConsumerState<TransportScreen> {
       widget.onLineTap!(line);
       return;
     }
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => TransportLineDetailsScreen(lineId: line.id),
-      ),
-    );
+    Navigator.of(context)
+        .pushNamed('/transport/line/${Uri.encodeComponent(line.id)}');
   }
 
   @override
@@ -60,29 +56,32 @@ class _TransportScreenState extends ConsumerState<TransportScreen> {
             ),
           ),
         ),
-        data: (lines) => ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          children: [
-            _SectionTitle(strings.transport_map_title),
-            const SizedBox(height: 8),
-            TransportMap(lines: lines, height: 200),
-            const SizedBox(height: 20),
-            _SectionTitle(strings.transport_lines_title),
-            const SizedBox(height: 8),
-            if (lines.isEmpty)
-              Text(
-                strings.transport_lines_empty,
-                style: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),
-              )
-            else
-              for (var index = 0; index < lines.length; index++) ...[
-                if (index > 0) const SizedBox(height: 12),
-                TransportLineCard(
-                  line: lines[index],
-                  onOpen: () => _openLine(context, lines[index]),
-                ),
-              ],
-          ],
+        data: (lines) => Scrollbar(
+          thumbVisibility: true,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+            children: [
+              _SectionTitle(strings.transport_map_title),
+              const SizedBox(height: 8),
+              TransportMap(lines: lines, height: 200),
+              const SizedBox(height: 20),
+              _SectionTitle(strings.transport_lines_title),
+              const SizedBox(height: 8),
+              if (lines.isEmpty)
+                Text(
+                  strings.transport_lines_empty,
+                  style: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),
+                )
+              else
+                for (var index = 0; index < lines.length; index++) ...[
+                  if (index > 0) const SizedBox(height: 12),
+                  TransportLineCard(
+                    line: lines[index],
+                    onOpen: () => _openLine(context, lines[index]),
+                  ),
+                ],
+            ],
+          ),
         ),
       ),
     );

@@ -127,25 +127,28 @@ class _SimplifiedBody extends StatelessWidget {
         _SimpleFact(icon: Icons.report_outlined, label: details.cause!),
     ].take(3).toList(growable: false);
 
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
-      children: [
-        Column(
-          key: const Key('simplified-info'),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            for (var index = 0; index < facts.length; index++) ...[
-              if (index > 0) const SizedBox(height: 24),
-              facts[index],
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+        children: [
+          Column(
+            key: const Key('simplified-info'),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (var index = 0; index < facts.length; index++) ...[
+                if (index > 0) const SizedBox(height: 24),
+                facts[index],
+              ],
             ],
-          ],
-        ),
-        const SizedBox(height: 32),
-        TextButton(
-          onPressed: () => showGlossarySheet(context),
-          child: Text(strings.service_open_glossary),
-        ),
-      ],
+          ),
+          const SizedBox(height: 32),
+          TextButton(
+            onPressed: () => showGlossarySheet(context),
+            child: Text(strings.service_open_glossary),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -214,214 +217,223 @@ class _FullBody extends StatelessWidget {
     final strings = S.of(context);
     final theme = Theme.of(context).colorScheme;
     final service = details.service;
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-      children: [
-        Row(
-          children: [
-            ServiceStatusBadge(status: service.status, size: 40),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    service.name,
-                    style: TextStyle(
-                      color: theme.onSurface,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Wrap(
-                    spacing: 8,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Text(
-                        serviceStatusLabel(strings, service.status),
-                        style: TextStyle(
-                          color: theme.onSurface,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () => showGlossarySheet(context),
-                        child: Text(strings.service_open_glossary),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        if (details.lastChecked != null) ...[
-          const SizedBox(height: 4),
-          Text(
-            strings.service_last_checked(
-              _formatDateTime(context, details.lastChecked!),
-            ),
-            style: TextStyle(color: theme.onSurfaceVariant, fontSize: 12),
-          ),
-        ],
-        const SizedBox(height: 16),
-        if (!details.hasOutage)
-          Text(
-            strings.service_operational_message,
-            style: TextStyle(color: theme.onSurface, fontSize: 16),
-          )
-        else ...[
-          _Fact(label: strings.service_cause, value: details.cause ?? '—'),
-          if (details.windowStart != null && details.windowEnd != null)
-            _Fact(
-              label: strings.service_window,
-              value: strings.service_window_value(
-                _formatDateTime(context, details.windowStart!),
-                _formatDateTime(context, details.windowEnd!),
-              ),
-            ),
-          if (details.eta != null)
-            _Fact(
-              label: strings.service_eta,
-              value: _formatDateTime(context, details.eta!),
-            ),
-          if (details.progress != null)
-            _Fact(
-              label: strings.service_progress,
-              value: strings.service_progress_value(details.progress!),
-            ),
-          _Fact(
-            label: strings.service_source,
-            value: details.source == OutageSource.community
-                ? strings.service_source_community
-                : strings.service_source_official,
-          ),
-          _Fact(
-            label: details.isPlanned
-                ? strings.service_type_planned
-                : strings.service_type_unplanned,
-            value: '',
-          ),
-          Text(
-            strings.service_reports_last_hour(details.nearbyReportsLastHour),
-            style: TextStyle(
-              color: theme.onSurface,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          if (details.officialUrl != null) ...[
-            const SizedBox(height: 8),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        strings.service_official_link_stub(
-                          details.officialUrl!,
-                        ),
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+        children: [
+          Row(
+            children: [
+              ServiceStatusBadge(status: service.status, size: 40),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      service.name,
+                      style: TextStyle(
+                        color: theme.onSurface,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                  );
-                },
-                child: Text(strings.service_official_link),
+                    const SizedBox(height: 4),
+                    Wrap(
+                      spacing: 8,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Text(
+                          serviceStatusLabel(strings, service.status),
+                          style: TextStyle(
+                            color: theme.onSurface,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => showGlossarySheet(context),
+                          child: Text(strings.service_open_glossary),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-          if (!hideDistressing && details.distressingNote != null) ...[
-            const SizedBox(height: 8),
-            Text(
-              details.distressingNote!,
-              style: TextStyle(color: theme.onSurfaceVariant, fontSize: 14),
-            ),
-          ],
-        ],
-        if (details.reportPoints.isNotEmpty) ...[
-          Text(
-            strings.service_chart_title,
-            style: TextStyle(
-              color: theme.onSurface,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 8),
-          SegmentedButton<ReportPeriod>(
-            segments: const [
-              ButtonSegment(value: ReportPeriod.sevenDays, label: Text('7d')),
-              ButtonSegment(value: ReportPeriod.thirtyDays, label: Text('30d')),
-              ButtonSegment(value: ReportPeriod.ninetyDays, label: Text('90d')),
             ],
-            selected: {reportPeriod},
-            showSelectedIcon: false,
-            onSelectionChanged: (selection) {
-              onReportPeriodChanged(selection.first);
-            },
+          ),
+          if (details.lastChecked != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              strings.service_last_checked(
+                _formatDateTime(context, details.lastChecked!),
+              ),
+              style: TextStyle(color: theme.onSurfaceVariant, fontSize: 12),
+            ),
+          ],
+          const SizedBox(height: 16),
+          if (!details.hasOutage)
+            Text(
+              strings.service_operational_message,
+              style: TextStyle(color: theme.onSurface, fontSize: 16),
+            )
+          else ...[
+            _Fact(label: strings.service_cause, value: details.cause ?? '—'),
+            if (details.windowStart != null && details.windowEnd != null)
+              _Fact(
+                label: strings.service_window,
+                value: strings.service_window_value(
+                  _formatDateTime(context, details.windowStart!),
+                  _formatDateTime(context, details.windowEnd!),
+                ),
+              ),
+            if (details.eta != null)
+              _Fact(
+                label: strings.service_eta,
+                value: _formatDateTime(context, details.eta!),
+              ),
+            if (details.progress != null)
+              _Fact(
+                label: strings.service_progress,
+                value: strings.service_progress_value(details.progress!),
+              ),
+            _Fact(
+              label: strings.service_source,
+              value: details.source == OutageSource.community
+                  ? strings.service_source_community
+                  : strings.service_source_official,
+            ),
+            _Fact(
+              label: details.isPlanned
+                  ? strings.service_type_planned
+                  : strings.service_type_unplanned,
+              value: '',
+            ),
+            Text(
+              strings.service_reports_last_hour(details.nearbyReportsLastHour),
+              style: TextStyle(
+                color: theme.onSurface,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            if (details.officialUrl != null) ...[
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          strings.service_official_link_stub(
+                            details.officialUrl!,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(strings.service_official_link),
+                ),
+              ),
+            ],
+            if (!hideDistressing && details.distressingNote != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                details.distressingNote!,
+                style: TextStyle(color: theme.onSurfaceVariant, fontSize: 14),
+              ),
+            ],
+          ],
+          if (details.reportPoints.isNotEmpty) ...[
+            Text(
+              strings.service_chart_title,
+              style: TextStyle(
+                color: theme.onSurface,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 8),
+            SegmentedButton<ReportPeriod>(
+              segments: const [
+                ButtonSegment(value: ReportPeriod.sevenDays, label: Text('7d')),
+                ButtonSegment(
+                  value: ReportPeriod.thirtyDays,
+                  label: Text('30d'),
+                ),
+                ButtonSegment(
+                  value: ReportPeriod.ninetyDays,
+                  label: Text('90d'),
+                ),
+              ],
+              selected: {reportPeriod},
+              showSelectedIcon: false,
+              onSelectionChanged: (selection) {
+                onReportPeriodChanged(selection.first);
+              },
+            ),
+            const SizedBox(height: 8),
+            OutageReportsChart(
+              points: details.reportPoints,
+              period: reportPeriod,
+            ),
+            const SizedBox(height: 20),
+          ],
+          SwitchListTile(
+            key: const Key('service-notifications-switch'),
+            contentPadding: EdgeInsets.zero,
+            title: Text(strings.service_notifications),
+            value: details.notifications.enabled,
+            onChanged: (value) => onNotificationsChanged(enabled: value),
           ),
           const SizedBox(height: 8),
-          OutageReportsChart(
-            points: details.reportPoints,
-            period: reportPeriod,
+          Text(
+            strings.service_rule,
+            style: TextStyle(color: theme.onSurfaceVariant, fontSize: 13),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 8),
+          Wrap(
+            key: const Key('service-notification-rule'),
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final option in NotificationRule.values)
+                ChoiceChip(
+                  label: Text(_ruleLabel(strings, option)),
+                  selected: details.notifications.rule == option,
+                  onSelected: (_) => onNotificationsChanged(rule: option),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            strings.service_lead_time,
+            style: TextStyle(color: theme.onSurfaceVariant, fontSize: 13),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            key: const Key('service-lead-time'),
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final option in NotificationLeadTime.values)
+                ChoiceChip(
+                  label: Text(_leadLabel(strings, option)),
+                  selected: details.notifications.leadTime == option,
+                  onSelected: (_) => onNotificationsChanged(leadTime: option),
+                ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: onReportOutage,
+            icon: const Icon(Icons.warning_amber_rounded),
+            label: Text(strings.service_report_outage),
+          ),
+          const SizedBox(height: 8),
         ],
-        SwitchListTile(
-          key: const Key('service-notifications-switch'),
-          contentPadding: EdgeInsets.zero,
-          title: Text(strings.service_notifications),
-          value: details.notifications.enabled,
-          onChanged: (value) => onNotificationsChanged(enabled: value),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          strings.service_rule,
-          style: TextStyle(color: theme.onSurfaceVariant, fontSize: 13),
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          key: const Key('service-notification-rule'),
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final option in NotificationRule.values)
-              ChoiceChip(
-                label: Text(_ruleLabel(strings, option)),
-                selected: details.notifications.rule == option,
-                onSelected: (_) => onNotificationsChanged(rule: option),
-              ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Text(
-          strings.service_lead_time,
-          style: TextStyle(color: theme.onSurfaceVariant, fontSize: 13),
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          key: const Key('service-lead-time'),
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final option in NotificationLeadTime.values)
-              ChoiceChip(
-                label: Text(_leadLabel(strings, option)),
-                selected: details.notifications.leadTime == option,
-                onSelected: (_) => onNotificationsChanged(leadTime: option),
-              ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        FilledButton.icon(
-          onPressed: onReportOutage,
-          icon: const Icon(Icons.warning_amber_rounded),
-          label: Text(strings.service_report_outage),
-        ),
-        const SizedBox(height: 8),
-      ],
+      ),
     );
   }
 }
