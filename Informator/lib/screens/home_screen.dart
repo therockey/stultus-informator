@@ -5,6 +5,7 @@ import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
 import 'package:informator/providers/app_bar_title_provider.dart';
 import 'package:informator/providers/groups_provider.dart';
+import 'package:informator/providers/home_tab_provider.dart';
 import 'package:informator/screens/home/groups_screen.dart';
 import 'package:informator/screens/home/home_tab.dart';
 import 'package:informator/screens/home/services_screen.dart';
@@ -37,7 +38,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   static const int _defaultTabIndex = 1;
 
-  late int _selectedTabIndex;
   Group? _selectedGroup;
   late String? _selectedServiceId;
   late String? _selectedTransportLineId;
@@ -46,12 +46,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedTabIndex = switch (widget.initialTab) {
+    final initialIndex = switch (widget.initialTab) {
       'groups' => 0,
       'transport' => 2,
       'settings' => 3,
-      _ => _defaultTabIndex,
+      _ => null,
     };
+    if (initialIndex != null) {
+      ref.read(homeTabIndexProvider.notifier).setIndex(initialIndex);
+    }
     _initialGroupName = widget.initialGroupName;
     _selectedServiceId = widget.initialServiceId;
     _selectedTransportLineId = widget.initialTransportLineId;
@@ -110,6 +113,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final strings = S.of(context);
     final titleOverride = ref.watch(appBarTitleOverrideProvider);
     final groupsState = ref.watch(groupsProvider);
+    final selectedTabIndex = ref.watch(homeTabIndexProvider);
 
     final Group? currentGroup = groupsState.when(
       data: (groups) {
@@ -175,24 +179,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       3: HomeTab(body: const SettingsScreen(), title: strings.settings),
     };
 
-    final selectedTab = tabs[_selectedTabIndex] ?? tabs[_defaultTabIndex]!;
+    final selectedTab = tabs[selectedTabIndex] ?? tabs[_defaultTabIndex]!;
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: _selectedTabIndex == 0 && currentGroup != null
+        leading: selectedTabIndex == 0 && currentGroup != null
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _closeGroupDetails,
               )
-            : _selectedTabIndex == 1 &&
+            : selectedTabIndex == 1 &&
                   (_selectedServiceId != null ||
                       _selectedTransportLineId != null)
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _closeMiddleDetails,
               )
-            : _selectedTabIndex == 2 && _selectedTransportLineId != null
+            : selectedTabIndex == 2 && _selectedTransportLineId != null
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _closeMiddleDetails,
@@ -229,7 +233,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           elevation: 0,
-          currentIndex: _selectedTabIndex,
+          currentIndex: selectedTabIndex,
           selectedItemColor: theme.primary,
           unselectedItemColor: theme.onSurfaceVariant,
           onTap: (index) {
@@ -237,8 +241,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               return;
             }
 
+            ref.read(homeTabIndexProvider.notifier).setIndex(index);
             setState(() {
-              _selectedTabIndex = index;
               _selectedGroup = null;
               _selectedServiceId = null;
               _selectedTransportLineId = null;
