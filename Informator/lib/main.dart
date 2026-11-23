@@ -95,6 +95,9 @@ class _MyAppState extends ConsumerState<MyApp> {
         '/home': (context) => const HomeScreen(),
         '/license': (context) => const LicenseScreen(),
         '/error': (context) => const ErrorScreen(),
+        '/groups': (context) => const HomeScreen("groups"),
+        '/services': (context) => const HomeScreen("services"),
+        '/settings': (context) => const HomeScreen("settings"),
       },
       home: FutureBuilder<Widget>(
         future: _getHome(ref),

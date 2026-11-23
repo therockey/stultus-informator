@@ -1,10 +1,12 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:informator/screens/intro/page1.dart';
 import 'package:informator/screens/intro/page2.dart';
 import 'package:informator/screens/intro/page3.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:informator/generated/l10n.dart';
+
 
 class IntroScreen extends ConsumerWidget {
   const IntroScreen({super.key});
@@ -30,7 +32,7 @@ class IntroScreen extends ConsumerWidget {
         pages: introPages,
         showDoneButton: true,
         showSkipButton: true,
-        skip: const Text('Pomiń'),
+        skip: Text(S.of(context).intro_skip),
         done: const Icon(Icons.arrow_forward),
         onSkip: () => _finishIntro(context),
         onDone: () => _finishIntro(context),
