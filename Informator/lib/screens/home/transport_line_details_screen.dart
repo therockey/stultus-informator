@@ -3,6 +3,7 @@ import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/service_details.dart';
 import 'package:informator/models/transport.dart';
 import 'package:informator/providers/transport_provider.dart';
+import 'package:informator/providers/app_bar_title_provider.dart';
 import 'package:informator/providers/user_settings_provider.dart';
 import 'package:informator/widgets/service_status.dart';
 import 'package:informator/widgets/transport_delay_chart.dart';
@@ -12,29 +13,39 @@ import 'package:material_ui/material_ui.dart';
 
 /// Warning details for one transport line: status, cause, detours, affected
 /// area on the map and the delay history.
-class TransportLineDetailsScreen extends ConsumerWidget {
+class TransportLineDetailsScreen extends ConsumerStatefulWidget {
   const TransportLineDetailsScreen({super.key, required this.lineId});
 
   final String lineId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final details = ref.watch(transportLineDetailsProvider(lineId));
+  ConsumerState<TransportLineDetailsScreen> createState() =>
+      _TransportLineDetailsScreenState();
+}
+
+class _TransportLineDetailsScreenState
+    extends ConsumerState<TransportLineDetailsScreen> {
+  String? _title;
+
+  @override
+  Widget build(BuildContext context) {
+    final details = ref.watch(transportLineDetailsProvider(widget.lineId));
     final settings = ref.watch(userSettingsProvider).settings;
-    final theme = Theme.of(context).colorScheme;
     final strings = S.of(context);
+    final title = details.maybeWhen(
+      data: (value) => value.line.name,
+      orElse: () => strings.transport_title,
+    );
+    if (_title != title) {
+      _title = title;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          ref.read(appBarTitleOverrideProvider.notifier).setTitle(title);
+        }
+      });
+    }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          details.maybeWhen(
-            data: (value) => value.line.name,
-            orElse: () => strings.transport_title,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: theme.primaryContainer,
-      ),
       body: details.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(
@@ -46,10 +57,8 @@ class TransportLineDetailsScreen extends ConsumerWidget {
             ),
           ),
         ),
-        data: (value) => _Body(
-          details: value,
-          simplified: settings.simplifiedMode,
-        ),
+        data: (value) =>
+            _Body(details: value, simplified: settings.simplifiedMode),
       ),
     );
   }
@@ -68,8 +77,7 @@ class _Body extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
     final line = details.line;
     final statusColor = kServiceStatusColors[line.status]!;
-    final currentDelay =
-        line.delays.isEmpty ? null : line.delays.last.minutes;
+    final currentDelay = line.delays.isEmpty ? null : line.delays.last.minutes;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),

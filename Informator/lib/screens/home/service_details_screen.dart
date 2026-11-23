@@ -3,6 +3,7 @@ import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/notification_preferences.dart';
 import 'package:informator/models/service_details.dart';
 import 'package:informator/providers/database_provider.dart';
+import 'package:informator/providers/app_bar_title_provider.dart';
 import 'package:informator/providers/service_details_provider.dart';
 import 'package:informator/providers/user_settings_provider.dart';
 import 'package:informator/widgets/glossary_sheet.dart';
@@ -24,24 +25,27 @@ class ServiceDetailsScreen extends ConsumerStatefulWidget {
 
 class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
   bool _localView = true;
+  String? _title;
 
   @override
   Widget build(BuildContext context) {
     final details = ref.watch(serviceDetailsProvider(widget.serviceId));
     final settings = ref.watch(userSettingsProvider).settings;
-    final theme = Theme.of(context).colorScheme;
     final strings = S.of(context);
+    final title = details.maybeWhen(
+      data: (value) => value.service.name,
+      orElse: () => strings.services,
+    );
+    if (_title != title) {
+      _title = title;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          ref.read(appBarTitleOverrideProvider.notifier).setTitle(title);
+        }
+      });
+    }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          details.maybeWhen(
-            data: (value) => value.service.name,
-            orElse: () => strings.services,
-          ),
-        ),
-        backgroundColor: theme.primaryContainer,
-      ),
       body: details.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(child: Text(error.toString())),
@@ -51,7 +55,8 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
                 details: value,
                 hideDistressing: settings.hideDistressing,
                 localView: _localView,
-                onLocalViewChanged: (local) => setState(() => _localView = local),
+                onLocalViewChanged: (local) =>
+                    setState(() => _localView = local),
                 onNotificationsChanged: _updateNotifications,
               ),
       ),
@@ -63,12 +68,14 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen> {
     NotificationRule? rule,
     NotificationLeadTime? leadTime,
   }) async {
-    await ref.read(informatorRepositoryProvider).updateServiceNotifications(
-      serviceId: widget.serviceId,
-      enabled: enabled,
-      rule: rule,
-      leadTime: leadTime,
-    );
+    await ref
+        .read(informatorRepositoryProvider)
+        .updateServiceNotifications(
+          serviceId: widget.serviceId,
+          enabled: enabled,
+          rule: rule,
+          leadTime: leadTime,
+        );
     ref.invalidate(serviceDetailsProvider(widget.serviceId));
   }
 }
@@ -176,7 +183,8 @@ class _FullBody extends StatelessWidget {
     bool? enabled,
     NotificationRule? rule,
     NotificationLeadTime? leadTime,
-  }) onNotificationsChanged;
+  })
+  onNotificationsChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -244,10 +252,7 @@ class _FullBody extends StatelessWidget {
             style: TextStyle(color: theme.onSurface, fontSize: 16),
           )
         else ...[
-          _Fact(
-            label: strings.service_cause,
-            value: details.cause ?? '—',
-          ),
+          _Fact(label: strings.service_cause, value: details.cause ?? '—'),
           if (details.windowStart != null && details.windowEnd != null)
             _Fact(
               label: strings.service_window,
@@ -295,7 +300,9 @@ class _FullBody extends StatelessWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        strings.service_official_link_stub(details.officialUrl!),
+                        strings.service_official_link_stub(
+                          details.officialUrl!,
+                        ),
                       ),
                     ),
                   );
@@ -424,7 +431,6 @@ class _FullBody extends StatelessWidget {
       ],
     );
   }
-
 }
 
 class _Fact extends StatelessWidget {
@@ -453,10 +459,7 @@ class _Fact extends StatelessWidget {
           ),
           if (value.isNotEmpty) ...[
             const SizedBox(height: 2),
-            Text(
-              value,
-              style: TextStyle(color: theme.onSurface, fontSize: 16),
-            ),
+            Text(value, style: TextStyle(color: theme.onSurface, fontSize: 16)),
           ],
         ],
       ),

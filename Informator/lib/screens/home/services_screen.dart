@@ -1,4 +1,3 @@
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:informator/generated/l10n.dart';
 import 'package:informator/models/group.dart';
@@ -16,7 +15,10 @@ import 'package:material_ui/material_ui.dart';
 
 /// Lists popular services and lets the user search the catalogue by name.
 class ServicesScreen extends ConsumerStatefulWidget {
-  const ServicesScreen({super.key});
+  const ServicesScreen({super.key, this.onServiceTap, this.onTransportTap});
+
+  final ValueChanged<Service>? onServiceTap;
+  final VoidCallback? onTransportTap;
 
   @override
   ConsumerState<ServicesScreen> createState() => _ServicesScreenState();
@@ -35,9 +37,7 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
 
       final selectedGroup = await showDialog<Group>(
         context: context,
-        builder: (context) => AddToGroupDialog(
-          groups: groups,
-        ),
+        builder: (context) => AddToGroupDialog(groups: groups),
       );
 
       if (selectedGroup == null || !mounted) return;
@@ -52,8 +52,9 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(S.of(context).services_add_to_group_error(error.toString()),
-),
+          content: Text(
+            S.of(context).services_add_to_group_error(error.toString()),
+          ),
         ),
       );
     }
@@ -90,6 +91,10 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
   }
 
   void _openDetails(Service service) {
+    if (widget.onServiceTap != null) {
+      widget.onServiceTap!(service);
+      return;
+    }
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => ServiceDetailsScreen(serviceId: service.id),
@@ -98,9 +103,12 @@ class _ServicesScreenState extends ConsumerState<ServicesScreen> {
   }
 
   void _openTransport() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => const TransportScreen()),
-    );
+    if (widget.onTransportTap != null) {
+      widget.onTransportTap!();
+      return;
+    }
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const TransportScreen()));
   }
 
   @override
@@ -209,7 +217,7 @@ class _SearchField extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  
+
   final String hintText;
 
   final bool showClearButton;
@@ -230,7 +238,7 @@ class _SearchField extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       textInputAction: TextInputAction.search,
-       style: TextStyle(color: theme.onSurface, fontSize: 16),
+      style: TextStyle(color: theme.onSurface, fontSize: 16),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: theme.onSurfaceVariant, fontSize: 16),
