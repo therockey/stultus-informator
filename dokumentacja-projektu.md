@@ -604,8 +604,49 @@ Po ósme, widok komunikacji kończy się na mapie i jednej linii. Alternatywne p
 Analiza TLM nie wskazuje na nadmiar kroków w ścieżkach, które makieta już realizuje (katalog, karta, grupy, wyciszenie, zatwierdzenie zgłoszenia). Poprawki powinny więc dodawać brakujące cele z GOMS i etykiety z przeglądu kognitywnego, a nie skracać istniejących sekwencji tapnięć.
 
 ## 5. Badania użyteczności
+### 5.1 Raport z testów UI
+Badanie użyteczności przeprowadzono z X uczestnikami (oznaczeni U1–UX) według siedmiu scenariuszy z punktu 4.1, obejmujących łącznie 36 zadań, czyli 180 prób wykonania zadania. Dla każdego zadania odnotowano miary M1–M6 zdefiniowane w punkcie 4.3 (ukończenie, błędy, błędy krytyczne, czas wykonania, liczba kroków i czas wskazania elementu), a po każdym scenariuszu uczestnik oceniał jego łatwość w skali 1–7 (M7, SEQ).
+| Numer uczestnika | charakterystyka uczestników |
+|---|---|
+| U1 | 45 lat, osoba pracująca z komputerami |
+| U2 | 42 lat, osoba pracująca z komputerami |
+| U3 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
+| U4 | 21 lat, student uniwersytetu wrocławskiego (Biotechnologia)|
+| U5 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
 
-*TODO.*
+#### Wyniki ogólne
+ 
+Uczestnicy ukończyli 177 z 180 prób zadań (98,3%). Odnotowano łącznie 10 błędów (M2), z czego jeden był błędem krytycznym (M3). Średnia ocena łatwości (M7) ze wszystkich scenariuszy wynosi 5,6. Cztery scenariusze (1, 2, 4 i 7) spełniają kryteria z punktu 4.3, natomiast scenariusze 3, 5 i 6 wymagają poprawy interfejsu. Wszystkie nieukończone zadania, jedyny błąd krytyczny, dziewięć z dziesięciu błędów i wszystkie oceny SEQ poniżej 5,5 dotyczą grup usług.
+ 
+**Tabela 5.1. Wyniki scenariuszy (n = 5)**
+ 
+| Scenariusz | Ukończenie scenariusza (M1) | Błędy, średnio na uczestnika (M2) | Błędy krytyczne (M3) | Mediana czasu scenariusza, s (M4) | Ocena SEQ, średnia (M7) | Ocena względem kryteriów |
+|---|---|---|---|---|---|---|
+| 1 (CU-01) | 5 z 5 (100%) | 0,2 | 0 | 10 | 6,2 | zaakceptowany |
+| 2 (CU-02) | 5 z 5 (100%) | 0,0 | 0 | 12 | 6,0 | zaakceptowany |
+| 3 (CU-03) | 3 z 5 (60%) | 1,2 | 0 | 8 (n = 3) | 4,4 | wymaga poprawy |
+| 4 (CU-04) | 5 z 5 (100%) | 0,0 | 0 | 12 | 5,6 | zaakceptowany |
+| 5 (CU-05) | 4 z 5 (80%) | 0,0 | 0 | 14 (n = 4) | 5,2 | wymaga poprawy |
+| 6 (CU-06) | 5 z 5 (100%) | 0,6 | 1 | 18 | 5,4 | wymaga poprawy |
+| 7 (CU-07) | 5 z 5 (100%) | 0,0 | 0 | 10 | 6,6 | zaakceptowany |
+ 
+Scenariusz uznano za ukończony przez uczestnika, gdy ukończył on wszystkie jego zadania. Czas scenariusza jest sumą czasów jego zadań, a mediana dotyczy wyłącznie uczestników, którzy go ukończyli, zgodnie z definicją M4.
+
+###5.2 Zgodność z Heurestykami Nielsena
+Skala ważności problemów (Nielsen): 0 – brak problemu, 1 – kosmetyczny, 2 – drobny, 3 – poważny (priorytet), 4 – katastrofalny (napraw przed wydaniem).
+
+| # | Heurystyka | Ocena | Najpoważniejszy problem |
+|---|---|:---:|---|
+| 1 | Widoczność stanu systemu | 3 | Brak odświeżania i informacji o ładowaniu/błędzie z opcją ponowienia, po dodaniu usługi do grupy nie ma potwierdzenia |
+| 2 | Zgodność systemu z rzeczywistością |  2 | Język jest zrozumiały, ale pojawiają się niespójne pojęcia (awaria / problem / przerwa) i skróty `7d/30d/90d` |
+| 3 | Kontrola i swoboda użytkownika |  4 | Usunięcie grupy jest natychmiastowe: bez potwierdzenia i bez cofnięcia |
+| 4 | Spójność i standardy |  0 | Brak zauważalnych błędów  |
+| 5 | Zapobieganie błędom |  3 | Brak walidacji unikalności nazw grup (grupy są powiązane z usługami przez nazwę)|
+| 6 | Rozpoznawanie zamiast przypominania |  0 | Ikony i etykiety w większości czytelne; ten sam znaczek „i” dla wszystkich statusów |
+| 7 | Elastyczność i efektywność |  3 | Skala tekstu nadpisuje ustawienia systemu; brak skrótów dla zaawansowanych |
+| 8 | Estetyka i minimalizm |  0 | Czytelny układ |
+| 9 | Diagnozowanie i naprawa błędów |  4 | Komunikaty błędów pokazują surowy `error.toString()`, ekran błędu nie ma żadnej akcji |
+| 10 | Pomoc i dokumentacja |  2 | Słownik pojęć, ale brak pomocy ogólnej i ujednoliconego miejsca na „jak to działa” poza onboardingiem |
 
 ## 6. Poprawa interfejsu
 
