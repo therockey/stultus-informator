@@ -149,11 +149,11 @@ Cechą wspólną wszystkich profili jest ograniczona uwaga poświęcana usługom
 W badaniach wyróżniono cztery profile użytkowników:
 
 * **Dziecko**: (10–19 lat, uczeń, miasto lub wieś) spędza wolny czas w internecie i w grach, wysoko ocenia własną biegłość w aplikacjach mobilnych, ale nisko w obsłudze oprogramowania. Chce sprawdzać informacje szybko i bez nudy, chce znać czas trwania i powód przerwy, nie chce widzieć treści, które mogą je zaniepokoić, i oczekuje prostej nawigacji opartej na symbolach.  
-    
+
 * **Student**: (19–25 lat, akademik lub wynajmowane mieszkanie, praca na pół etatu) przebywa poza domem w różnych porach i potrzebuje informacji o kilku miejscach jednocześnie, wczesnych powiadomień o przerwach planowanych, dostępu do mniej popularnych usług, takich jak strona uczelni, oraz alternatyw dla komunikacji miejskiej.  
-    
+
 * **Młody dorosły**: (25–35 lat, wynajmowane mieszkanie w mieście, praca projektowa) oczekuje informacji natychmiastowej i dokładnej, personalizacji powiadomień, przejrzystości przyczyn i czasu przywrócenia usług oraz potwierdzenia społecznościowego; ceni szybkość i prostotę, a obawia się dezinformacji.  
-    
+
 * **Dorosły**:(30–60 lat, duże miasto, praca w marketingu cyfrowym) chce jednego miejsca, w którym sprawdzi status, powiadomień bez spamu, rozróżnienia problemu lokalnego od powszechnego, potwierdzenia, że informacja pochodzi z oficjalnego źródła, oraz wcześniejszych informacji o wyłączeniach planowanych.
 
 ### 3.2 Zadania realizowane przez użytkowników
@@ -171,11 +171,11 @@ Potrzeby wspólne ujęto w pięciu historyjkach: natychmiastowe powiadomienia pu
 Przypadki użycia uporządkowano w cztery grupy i oznaczono identyfikatorami CU-01 do CU-07, używanymi dalej w całym dokumencie.
 
 * **Sprawdzanie awarii** obejmuje trzy przypadki. CU-01 to sprawdzenie usługi lub serwisu: użytkownik otwiera aplikację, wpisuje nazwę albo wybiera usługę z listy, a system zwraca status (brak problemów, awaria, przerwa techniczna, inny problem) oraz liczbę zgłoszeń z ostatniej godziny; gdy status jest inny niż „brak problemów”, system podaje szacowany czas powrotu do sprawności i oficjalne stanowisko dostawcy, a przy ustalonej lokalizacji porównuje stan ogólny ze stanem w tym miejscu. CU-02 to sprawdzenie usług publicznych, na przykład linii komunikacji miejskiej: użytkownik wpisuje numer linii lub nazwę usługi, a system zwraca status, opóźnienie i mapę przystanków, a po wskazaniu przystanku proponuje alternatywny dojazd wraz z porównaniem czasu. CU-03 to sprawdzenie „swoich” usług: użytkownik wchodzi w zakładkę z grupą oznaczoną jako główna i widzi zbiorczy status usług w tej grupie.  
-    
+
 * **Sprawdzanie historii awarii** (CU-04, aktorzy: młody dorosły i student) polega na wybraniu usługi i wejściu w zakładkę historii, gdzie system zwraca listę znanych przerw z czasem trwania i przyczyną oraz wykres liczby zgłoszeń w okresie ostatniego tygodnia, miesiąca lub trzech miesięcy.  
-    
+
 * **Ustalanie powiadomień** obejmuje dwa przypadki. CU-05 to konfiguracja powiadomień: użytkownik wchodzi w zakładkę powiadomień, wybiera usługę, zaznacza chęć otrzymywania powiadomień i przypisuje usługę do grupy. CU-06 to zarządzanie grupą jako scenariusz alternatywny: użytkownik wchodzi w widok grup, wybiera grupę i może wyłączyć powiadomienia wszystkich usług w grupie, zmienić jej lokalizację, usunąć grupę lub usunąć z niej pojedynczą usługę.  
-    
+
 * **Zgłaszanie awarii** (CU-07, aktorzy: dorosły i młody dorosły) polega na wypełnieniu formularza: użytkownik wyszukuje usługę, podaje czas trwania awarii w formie przedziału („od 30 minut”, „od godziny”), opcjonalnie dodaje lokalizację i wysyła zgłoszenie, które trafia do puli zgłoszeń danej usługi.
 
 #### 3.2.3 Scenariusze
@@ -376,7 +376,6 @@ Zadania dla uczestnika:
 3. Otwórz szczegóły awarii.
 4. Odszukaj informację o przyczynie i przewidywanym czasie zakończenia problemu.
 5. Sprawdź, jaki obszar obejmuje awaria i ile osób zgłosiło podobny problem.
-
 Oczekiwany rezultat: użytkownik samodzielnie odnajduje usługę, rozpoznaje jej status oraz potrafi wskazać przyczynę, przewidywany czas naprawy i zasięg awarii.
 
 **Scenariusz 2: CU-02 - Sprawdzenie usług publicznych**
@@ -391,7 +390,6 @@ Zadania dla uczestnika:
 4. Wybierz przystanek docelowy.
 5. Znajdź alternatywne połączenie.
 6. Porównaj proponowane rozwiązania pod względem czasu podróży i liczby przesiadek.
-
 Oczekiwany rezultat: użytkownik odnajduje linię, sprawdza jej status i potrafi wybrać alternatywne połączenie odpowiadające jego potrzebom.
 
 **Scenariusz 3: CU-03 - Sprawdzenie własnych usług**
@@ -404,7 +402,6 @@ Zadania dla uczestnika:
 2. Odszukaj grupę oznaczoną jako główna.
 3. Sprawdź zbiorczy status usług znajdujących się w tej grupie.
 4. Wskaż usługę, której działanie jest nieprawidłowe.
-
 Oczekiwany rezultat: użytkownik bez problemu odnajduje główną grupę i potrafi rozpoznać status poszczególnych usług.
 
 **Scenariusz 4: CU-04 - Sprawdzanie historii awarii**
@@ -419,7 +416,6 @@ Zadania dla uczestnika:
 4. Zmień zakres czasowy na ostatni miesiąc, a następnie na ostatnie trzy miesiące.
 5. Sprawdź, jakie awarie występowały w tym okresie oraz jak długo trwały.
 6. Zapoznaj się z wykresem liczby zgłoszeń i oceń częstotliwość występowania problemów.
-
 Oczekiwany rezultat: użytkownik odnajduje historię awarii i potrafi odczytać informacje dotyczące częstotliwości, czasu trwania oraz przyczyn występujących problemów.
 
 **Scenariusz 5: CU-05 - Konfiguracja powiadomień**
@@ -433,7 +429,6 @@ Zadania dla uczestnika:
 3. Skonfiguruj alerty dotyczące wyłącznie planowanych przerw.
 4. Ustaw jednodniowe wyprzedzenie.
 5. Przypisz wybraną usługę do odpowiedniej grupy.
-
 Oczekiwany rezultat: użytkownik samodzielnie włącza powiadomienia i ustawia reguły odpowiadające przedstawionym wymaganiom.
 
 **Scenariusz 6: CU-06 - Zarządzanie grupą usług**
@@ -447,7 +442,6 @@ Zadania dla uczestnika:
 3. Zaktualizuj przypisaną lokalizację.
 4. Wyłącz powiadomienia dla całej grupy.
 5. Sprawdź, czy usługi nadal znajdują się w grupie.
-
 Oczekiwany rezultat: użytkownik zmienia lokalizację i wyłącza powiadomienia bez przypadkowego usunięcia grupy lub należących do niej usług.
 
 **Scenariusz 7: CU-07 - Zgłaszanie awarii**
@@ -461,7 +455,6 @@ Zadania dla uczestnika:
 3. Określ przybliżony czas trwania awarii.
 4. Opcjonalnie wskaż lokalizację.
 5. Wyślij zgłoszenie.
-
 Oczekiwany rezultat: użytkownik samodzielnie odnajduje formularz i uzupełnia wymagane informacje.
 
 ### 4.2 Ocena aplikacji
@@ -528,42 +521,35 @@ Porównanie obu metod w scenariuszu 3 pokazuje - analogicznie do przykładu Desi
 
 ### 4.3 Miary i kryteria oceny użyteczności
 
-Miary użyteczności zdefiniowano zgodnie z ISO 9241-11, w której użyteczność opisują skuteczność, efektywność i satysfakcja użytkownika w określonym kontekście użycia, w procesie projektowania zorientowanego na człowieka opisanym w ISO 9241-210. Skuteczność oznacza, czy użytkownik osiąga cel zadania i czy robi to poprawnie, efektywność – jakim nakładem czasu i kroków, a satysfakcja – jak użytkownik subiektywnie ocenia łatwość korzystania z aplikacji. Do tych trzech wymiarów, jako rozszerzenie względem normy, dodano czwarty, wynikający z drugiego celu redesignu opisanego w punkcie 2.2 oraz z funkcjonalności F8: dostępność i zrozumiałość interfejsu dla dzieci i osób o niskim zaznajomieniu z technologią. Każda miara ma jedną definicję obowiązującą we wszystkich scenariuszach z punktu 4.1, a progi zależne od scenariusza zebrano w osobnej tabeli kryteriów. Kryteria operacjonalizują „oczekiwany rezultat” podany przy każdym scenariuszu.
+Miary użyteczności zdefiniowano zgodnie z ISO 9241-11, w której użyteczność opisują skuteczność, efektywność i satysfakcja użytkownika w określonym kontekście użycia, w procesie projektowania zorientowanego na człowieka opisanym w ISO 9241-210. Skuteczność oznacza, czy użytkownik osiąga cel zadania i czy robi to poprawnie, efektywność – jakim nakładem czasu i kroków, a satysfakcja – jak użytkownik subiektywnie ocenia łatwość korzystania z aplikacji. Każda miara ma jedną definicję obowiązującą we wszystkich scenariuszach z punktu 4.1, a progi zależne od scenariusza zebrano w osobnej tabeli kryteriów. Kryteria operacjonalizują „oczekiwany rezultat” podany przy każdym scenariuszu.
 
 **Miary użyteczności**
 
 | ID | Miara | Wymiar | Definicja i sposób pomiaru | Jednostka |
 |---|---|---|---|---|
-| M1 | Wskaźnik ukończenia zadania | skuteczność | Odsetek uczestników, którzy osiągnęli cel zadania samodzielnie i z poprawnym efektem końcowym (na przykład z ustawioną właściwą regułą powiadomień). Liczony dla scenariusza jako całości oraz dla zadań, które kryterium wskazuje osobno. Zadanie ukończone po podpowiedzi moderatora, porzucone lub zakończone niewłaściwym efektem liczy się jako nieukończone. | % oraz liczebność (np. 4 z 5) |
-| M2 | Liczba błędów na zadanie | skuteczność | Liczba akcji, które wymagały cofnięcia lub zaprowadziły uczestnika na ekran niezwiązany ze ścieżką do celu, z podziałem na kategorie (na przykład pomylenie grupy z usługą, kliknięcie w blok usługi zamiast w przycisk szczegółów). Zliczana na podstawie obserwacji i nagrania sesji; kodują dwie osoby niezależnie, rozbieżności są uzgadniane. Miara diagnostyczna. | liczba, średnia na uczestnika |
-| M3 | Liczba błędów krytycznych | skuteczność | Liczba działań prowadzących do utraty danych użytkownika lub skutku niezgodnego z jego zamiarem, na przykład przypadkowego usunięcia grupy albo usługi z grupy lub wysłania zgłoszenia dla niewłaściwej usługi. | liczba |
-| M4 | Poprawność odczytu informacji | skuteczność | Odsetek uczestników, którzy w zadaniu odczytowym poprawnie wskazują żądane informacje (status, przyczynę, szacowany czas naprawy, zasięg i liczbę zgłoszeń albo czas trwania i częstotliwość awarii). | % oraz liczebność |
-| M5 | Czas wykonania zadania | efektywność | Czas od zakończenia czytania polecenia do osiągnięcia celu, liczony wyłącznie dla zadań ukończonych. Jeżeli kryterium wskazuje inny punkt początkowy (scenariusz 7: otwarcie funkcji zgłaszania), czas liczy się od niego. Interpretowany łącznie z M1. | s, mediana |
-| M6 | Liczba kroków | efektywność | Liczba dotknięć ekranu potrzebnych do osiągnięcia celu, zestawiana z liczbą kroków ścieżki optymalnej, czyli najkrótszej ścieżki w prototypie po redesignie, ustalonej przed badaniem. Kryteria podają liczbę kroków bezwzględnie; iloraz służy diagnozie. | liczba, iloraz do ścieżki optymalnej |
-| M7 | Czas wskazania elementu | efektywność | Czas od polecenia do pierwszego trafnego wskazania właściwego elementu interfejsu, na przykład przełącznika powiadomień albo wejścia do zgłoszenia awarii. | s |
-| M8 | Ocena łatwości zadania (SEQ) | satysfakcja | Jedno pytanie zadawane po każdym zadaniu: jak łatwe lub trudne było jego wykonanie. | skala 1–7, średnia |
-| M9 | Wynik SUS | satysfakcja | Kwestionariusz System Usability Scale, dziesięć pytań wypełnianych po zakończeniu sesji. | 0–100 |
-| M10 | Nasilenie problemu użyteczności | wszystkie | Ocena każdego zaobserwowanego problemu w skali Nielsena, uwzględniająca częstość problemu, jego wpływ na wykonanie zadania i trwałość: 0 – brak problemu, 1 – kosmetyczny, 2 – drobny, 3 – poważny, 4 – katastrofalny. Oceniają dwie osoby niezależnie, rozbieżności są uzgadniane. | 0–4 |
-| M11 | Zgodność z wymaganiami dostępności | dostępność | Audyt ekranów trybu uproszczonego: liczba informacji na ekranie (informacja to odrębna jednostka treści niosąca osobny komunikat, na przykład status, czas zakończenia lub przyczyna; elementy nawigacji nie są liczone), odsetek celów dotykowych o rozmiarze co najmniej 48 dp oraz kontrast tekstu co najmniej 4,5:1. | liczba, % |
-| M12 | Zrozumiałość komunikatów | dostępność | Odsetek uczestników z profilu dziecka lub osoby o niskim zaznajomieniu z technologią, którzy po wykonaniu zadania własnymi słowami poprawnie wyjaśniają status usługi oraz różnicę między awarią a konserwacją. | % oraz liczebność |
+| M1 | Wskaźnik ukończenia zadania | skuteczność | Odsetek uczestników, którzy osiągnęli cel zadania samodzielnie i z poprawnym efektem końcowym (na przykład z ustawioną właściwą regułą powiadomień, a w zadaniach odczytowych – z poprawnie wskazaną żądaną informacją, taką jak przyczyna przerwy czy szacowany czas zakończenia). Zadanie ukończone po podpowiedzi moderatora, porzucone lub zakończone niewłaściwym efektem liczy się jako nieukończone. | % oraz liczebność (np. 4 z 5) |
+| M2 | Liczba błędów na zadanie | skuteczność | Liczba dotknięć elementów niepowiązanych z celem zadania oraz wejść na niewłaściwy ekran, zliczana na podstawie obserwacji i nagrania sesji, z podziałem na kategorie (na przykład pomylenie grupy z usługą). Miara diagnostyczna. | liczba, średnia na uczestnika |
+| M3 | Liczba błędów krytycznych | skuteczność | Liczba działań prowadzących do utraty danych użytkownika lub skutku niezgodnego z jego zamiarem, na przykład przypadkowego usunięcia grupy albo usługi z grupy. | liczba |
+| M4 | Czas wykonania zadania | efektywność | Czas od zakończenia czytania polecenia do osiągnięcia celu, liczony wyłącznie dla zadań ukończonych. Interpretowany łącznie z M1. | s, mediana |
+| M5 | Liczba kroków | efektywność | Liczba dotknięć ekranu potrzebnych do osiągnięcia celu, zestawiana z liczbą kroków ścieżki optymalnej, czyli najkrótszej ścieżki w prototypie po redesignie, ustalonej przed badaniem. Kryteria podają liczbę kroków bezwzględnie; iloraz służy diagnozie. | liczba, iloraz do ścieżki optymalnej |
+| M6 | Czas wskazania elementu | efektywność | Czas od polecenia do pierwszego trafnego wskazania właściwego elementu interfejsu, na przykład przełącznika powiadomień. | s |
+| M7 | Ocena łatwości zadania (SEQ) | satysfakcja | Jedno pytanie zadawane po każdym scenariuszu: jak łatwe lub trudne było jego wykonanie. | skala 1–7, średnia |
 
-Ponieważ badania z użytkownikami obejmują niewielką liczbę uczestników, odsetki podawane są zawsze razem z liczebnościami, a czasy jako mediany, odporne na pojedyncze wyniki odstające. Wyniki mają charakter formatywny: służą wykrywaniu problemów i wskazywaniu poprawek, a nie wnioskowaniu statystycznemu. Miary M1–M7, M10 i M12 pochodzą z obserwacji sesji, miary M8 i M9 z kwestionariuszy, a miara M11 z audytu projektu interfejsu, niezależnego od udziału użytkowników. Próg 48 dp odpowiada zaleceniom Material Design dla celów dotykowych i leży powyżej minimów WCAG 2.2.
+Ponieważ badania z użytkownikami obejmują niewielką liczbę uczestników, odsetki podawane są zawsze razem z liczebnościami, a wartości czasu jako mediany, odporne na pojedyncze wyniki odstające. Wyniki mają charakter formatywny: służą wykrywaniu problemów i wskazywaniu poprawek, a nie wnioskowaniu statystycznemu. Miary M1–M6 pochodzą z obserwacji sesji, a miara M7 z kwestionariusza wypełnianego przez uczestnika po scenariuszu.
 
 **Progi ogólne**
 
 | Miara | Kryterium spełnione, gdy | Uzasadnienie progu |
 |---|---|---|
-| M1, M4, M12 | co najmniej 90% uczestników; przy mniej niż dziesięciu uczestnikach oznacza to wszystkich | wartość 90% przyjęta w kryteriach akceptacji F1 i F5, rozszerzona przez zespół na wszystkie scenariusze |
+| M1 | co najmniej 90% uczestników; przy mniej niż dziesięciu uczestnikach oznacza to wszystkich | wartość 90% przyjęta w kryteriach akceptacji F1 i F5, rozszerzona przez zespół na wszystkie scenariusze |
 | M3 | brak błędów krytycznych w każdym scenariuszu | skutki są nieodwracalne (utrata grupy lub usług), przyjęcie zespołu |
-| M8 | średnia ocena ze wszystkich zadań scenariusza wynosi co najmniej 5,5 | przeciętna wartość SEQ podawana w literaturze (Sauro i Lewis, 2016) |
-| M9 | wynik SUS wynosi co najmniej 68 | przeciętny wynik SUS podawany w literaturze (Sauro i Lewis, 2016) |
-| M10 | po poprawkach interfejsu i ponownym badaniu nie pozostaje żaden nierozwiązany problem o nasileniu 3 lub 4 | problemy poważne i katastrofalne wymagają naprawy przed wdrożeniem, przyjęcie zespołu |
+| M7 | średnia ocena scenariusza wynosi co najmniej 5,5 | przeciętna wartość SEQ podawana w literaturze (Sauro i Lewis, 2016) |
 | M2 | bez progu ogólnego | miara diagnostyczna; próg występuje tylko tam, gdzie wskazuje go tabela scenariuszy |
-| M5, M6, M7, M11 | progi szczegółowe w tabeli scenariuszy | wynikają z charakterystyk technicznych H1–H9 |
+| M4, M5, M6 | progi szczegółowe w tabeli scenariuszy | wynikają z charakterystyk technicznych H1–H9 |
 
-Progi czasowe dotyczą mediany z wyjątkiem progu M7 w scenariuszu 5, który dotyczy wszystkich uczestników, zgodnie z kryterium akceptacji F3.
+Progi czasowe dotyczą mediany, z wyjątkiem progu M6 w scenariuszu 5, który dotyczy wszystkich uczestników, zgodnie z kryterium akceptacji F3.
 
-Scenariusz uznaje się za zaakceptowany, gdy spełnia kryteria z tabeli scenariuszy, nie wystąpił w nim żaden błąd krytyczny (M3) i spełniony jest próg M8; w przeciwnym razie wymaga poprawy interfejsu. Zadania o średniej ocenie SEQ poniżej 5,5 wskazuje się jako kandydatów do poprawy. Całą aplikację ocenia się łącznie, na podstawie progów M9 i M10, tak aby dobre wyniki pojedynczych scenariuszy nie przesłaniały ogólnego odbioru produktu. Przy kilku uczestnikach wynik SUS jest niestabilny i traktuje się go orientacyjnie.
+Scenariusz uznaje się za zaakceptowany, gdy spełnia kryteria z tabeli scenariuszy, nie wystąpił w nim żaden błąd krytyczny (M3) i spełniony jest próg M7; w przeciwnym razie wymaga poprawy interfejsu. Scenariusze o średniej ocenie SEQ poniżej 5,5 wskazuje się jako kandydatów do poprawy.
 
 **Kryteria dla scenariuszy badań**
 
@@ -571,16 +557,16 @@ Numery zadań odnoszą się do list zadań dla uczestnika w punkcie 4.1.
 
 | Scenariusz | Funkcjonalności | Miary główne | Kryterium |
 |---|---|---|---|
-| Scenariusz 1 (CU-01) | F1, F2, F5 | M1, M4, M5, M6 | usługa znaleziona w czasie do 15 s (zadanie 1); przejście od listy do szczegółów w jednym kroku (zadanie 3); poprawny odczyt przyczyny, szacowanego czasu zakończenia, zasięgu i liczby zgłoszeń (zadania 4–5); M1 i M4 co najmniej 90% |
-| Scenariusz 2 (CU-02) | F7, F2 | M1, M4, M6 | alternatywne połączenie znalezione w najwyżej dwóch krokach od statusu linii (zadanie 5); poprawne porównanie czasu podróży i liczby przesiadek (zadanie 6); M1 i M4 co najmniej 90% |
-| Scenariusz 3 (CU-03) | F4, F2 | M1, M2, M4 | główna grupa odnaleziona (zadanie 2) i poprawnie wskazana usługa o nieprawidłowym działaniu (zadanie 4); M1 i M4 co najmniej 90%; brak błędów M2 w kategorii „pomylenie grupy z usługą” |
-| Scenariusz 4 (CU-04) | F6 | M1, M4 | poprawna zmiana zakresu na tydzień, miesiąc i trzy miesiące (zadania 3–4); poprawny odczyt liczby awarii, czasu trwania i przyczyn oraz ocena częstotliwości problemów (zadania 5–6); M1 i M4 co najmniej 90% |
-| Scenariusz 5 (CU-05) | F3, F4 | M1, M5, M7 | przełącznik powiadomień wskazany w czasie do 5 s przez wszystkich uczestników (zadanie 2); konfiguracja reguły w czasie do 90 s (zadania 2–5); efekt końcowy zgodny z sytuacją: powiadomienia włączone, tylko przerwy planowane, wyprzedzenie jednodniowe, usługa przypisana do grupy; M1 co najmniej 90% |
-| Scenariusz 6 (CU-06) | F4, F3 | M1, M3, M4 | lokalizacja grupy zmieniona, powiadomienia grupy wyłączone, a usługi nadal w grupie (zadania 3–5); M3 równe 0; M1 i M4 co najmniej 90% |
-| Scenariusz 7 (CU-07) | F5 | M1, M3, M5, M7 | funkcja zgłaszania znaleziona samodzielnie przez co najmniej 90% uczestników (zadanie 1; M7 raportowany bez progu); zgłoszenie wysłane w czasie do 20 s od otwarcia funkcji do wysłania (zadania 2–5); zgłoszenie dotyczy właściwej usługi (M3 równe 0); M1 co najmniej 90% |
-| Tryb uproszczony | F8 | M11, M12 | audyt: co najwyżej trzy informacje na ekranie, wszystkie cele dotykowe co najmniej 48 dp, kontrast co najmniej 4,5:1; badanie: zadania 1–4 scenariusza 1 wykonane w trybie uproszczonym, M12 co najmniej 90% |
+| Scenariusz 1 (CU-01) | F1, F2 | M1, M4, M5 | usługa „Netia” znaleziona w czasie do 15 s (zadanie 1; M4); przejście od listy do szczegółów w jednym kroku (zadanie 3; M5); poprawny odczyt przyczyny, szacowanego czasu zakończenia i liczby zgłoszeń (zadania 4–5); M1 co najmniej 90% |
+| Scenariusz 2 (CU-02) | F7, F2 | M1, M5 | zakładka „Transport publiczny” odnaleziona, poprawnie odczytany status linii 12 i opóźnienie (zadania 1–2); poprawnie wskazany obszar utrudnień na mapie (zadanie 3); objazdy znalezione w najwyżej dwóch krokach od statusu linii (zadanie 4; M5); poprawnie odnaleziona historia opóźnienia i wskazana przyczyna awarii (zadania 5–6); M1 co najmniej 90% |
+| Scenariusz 3 (CU-03) | F4, F3 | M1, M2 | grupa „Dom” odnaleziona (zadanie 2), powiadomienia grupy wyłączone (zadanie 3), usługa dodana do grupy (zadanie 4); M1 co najmniej 90%; brak błędów M2 w kategorii „pomylenie grupy z usługą” |
+| Scenariusz 4 (CU-04) | F6 | M1 | poprawna zmiana zakresu na tydzień, miesiąc i trzy miesiące (zadania 3–4); poprawny odczyt liczby awarii, czasu trwania i przyczyn oraz ocena częstotliwości problemów (zadania 5–6); M1 co najmniej 90% |
+| Scenariusz 5 (CU-05) | F3, F4 | M1, M4, M6 | przełącznik powiadomień wskazany w czasie do 5 s przez wszystkich uczestników (zadanie 2; M6); konfiguracja reguły w czasie do 90 s (zadania 2–5; M4); efekt końcowy zgodny z sytuacją: powiadomienia włączone, tylko przerwy planowane, wyprzedzenie jednodniowe, usługa przypisana do grupy; M1 co najmniej 90% |
+| Scenariusz 6 (CU-06) | F4, F3 | M1, M3 | nowa grupa utworzona (zadanie 2), dwie usługi dodane (zadanie 3), powiadomienia całej grupy wyłączone (zadanie 4), a usługi nadal w grupie (zadanie 5); M3 równe 0; M1 co najmniej 90% |
+| Scenariusz 7 (CU-07) | F8, F3 | M1 | ustawienia odnalezione (zadanie 1), a następnie zmieniony motyw, rozmiar tekstu, ciche godziny i język aplikacji (zadania 2–5); M1 co najmniej 90%; brak progów czasowych i liczby kroków |
 
-Progi liczbowe wynikają z kryteriów akceptacji funkcjonalności i charakterystyk technicznych z punktów 3.3 i 3.4.2: scenariusz 1 z F1 oraz H1–H2, scenariusz 2 z F7 i H8, scenariusz 5 z F3 i H4, scenariusz 7 z F5 i H6, a tryb uproszczony z F8 i H9. Kryteria scenariuszy 3 i 6 odnoszą się do błędów zaobserwowanych w testach makiety (pomylenie grupy z usługą, dodawanie usług obok grupy) oraz do oczekiwanego rezultatu scenariusza 6, a kryteria scenariusza 4 wynikają z zakresu F6. Czasy oszacowane modelem KLM/TLM w punkcie 4.2.3 opisują biegłego użytkownika i stanowią dolne ograniczenie czasów mierzonych u uczestników.
+Progi liczbowe wynikają z kryteriów akceptacji funkcjonalności i charakterystyk technicznych z punktów 3.3 i 3.4.2: scenariusz 1 z F1 oraz H1–H2, scenariusz 2 z F7 i H8, a scenariusz 5 z F3 i H4. Kryteria scenariuszy 3 i 6 odnoszą się do błędów zaobserwowanych w testach makiety (pomylenie grupy z usługą, dodawanie usług obok grupy) oraz do oczekiwanego rezultatu scenariusza 6, kryteria scenariusza 4 wynikają z zakresu F6, a kryteria scenariusza 7 z zakresu ustawień dostępności i cichych godzin w F8 i F3. Czasy oszacowane modelem KLM/TLM w punkcie 4.2.3 opisują biegłego użytkownika i stanowią dolne ograniczenie czasów mierzonych u uczestników.
+
 ### 4.4 Potencjalne problemy użyteczności, analiza wyników, propozycje poprawek
 
 Przegląd kognitywny, modele GOMS i oszacowania TLM wskazują, że wąskim gardłem makiety nie jest długość ścieżek, lecz brak elementów wymaganych przez scenariusze oraz niejednoznaczne oznaczenie statusu. Poniżej zebrano problemy i propozycje poprawek.
@@ -615,11 +601,11 @@ Badanie użyteczności przeprowadzono z X uczestnikami (oznaczeni U1–UX) wedł
 | U5 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
 
 #### Wyniki ogólne
- 
+
 Uczestnicy ukończyli 177 z 180 prób zadań (98,3%). Odnotowano łącznie 10 błędów (M2), z czego jeden był błędem krytycznym (M3). Średnia ocena łatwości (M7) ze wszystkich scenariuszy wynosi 5,6. Cztery scenariusze (1, 2, 4 i 7) spełniają kryteria z punktu 4.3, natomiast scenariusze 3, 5 i 6 wymagają poprawy interfejsu. Wszystkie nieukończone zadania, jedyny błąd krytyczny, dziewięć z dziesięciu błędów i wszystkie oceny SEQ poniżej 5,5 dotyczą grup usług.
- 
+
 **Tabela 5.1. Wyniki scenariuszy (n = 5)**
- 
+
 | Scenariusz | Ukończenie scenariusza (M1) | Błędy, średnio na uczestnika (M2) | Błędy krytyczne (M3) | Mediana czasu scenariusza, s (M4) | Ocena SEQ, średnia (M7) | Ocena względem kryteriów |
 |---|---|---|---|---|---|---|
 | 1 (CU-01) | 5 z 5 (100%) | 0,2 | 0 | 10 | 6,2 | zaakceptowany |
@@ -629,7 +615,7 @@ Uczestnicy ukończyli 177 z 180 prób zadań (98,3%). Odnotowano łącznie 10 b�
 | 5 (CU-05) | 4 z 5 (80%) | 0,0 | 0 | 14 (n = 4) | 5,2 | wymaga poprawy |
 | 6 (CU-06) | 5 z 5 (100%) | 0,6 | 1 | 18 | 5,4 | wymaga poprawy |
 | 7 (CU-07) | 5 z 5 (100%) | 0,0 | 0 | 10 | 6,6 | zaakceptowany |
- 
+
 Scenariusz uznano za ukończony przez uczestnika, gdy ukończył on wszystkie jego zadania. Czas scenariusza jest sumą czasów jego zadań, a mediana dotyczy wyłącznie uczestników, którzy go ukończyli, zgodnie z definicją M4.
 
 ###5.2 Zgodność z Heurestykami Nielsena
