@@ -591,7 +591,7 @@ Analiza TLM nie wskazuje na nadmiar kroków w ścieżkach, które makieta już r
 
 ## 5. Badania użyteczności
 ### 5.1 Raport z testów UI
-Badanie użyteczności przeprowadzono z X uczestnikami (oznaczeni U1–UX) według siedmiu scenariuszy z punktu 4.1, obejmujących łącznie 36 zadań, czyli 180 prób wykonania zadania. Dla każdego zadania odnotowano miary M1–M6 zdefiniowane w punkcie 4.3 (ukończenie, błędy, błędy krytyczne, czas wykonania, liczba kroków i czas wskazania elementu), a po każdym scenariuszu uczestnik oceniał jego łatwość w skali 1–7 (M7, SEQ).
+Badanie użyteczności przeprowadzono z 7 uczestnikami (oznaczeni U1–U7) według siedmiu scenariuszy z punktu 4.1, obejmujących łącznie 36 zadań, czyli 252 próby wykonania zadania. Dla każdego zadania odnotowano miary M1–M6 zdefiniowane w punkcie 4.3 (ukończenie, błędy, błędy krytyczne, czas wykonania, liczba kroków i czas wskazania elementu), a po każdym scenariuszu uczestnik oceniał jego łatwość w skali 1–7 (M7, SEQ).
 | Numer uczestnika | charakterystyka uczestników |
 |---|---|
 | U1 | 45 lat, osoba pracująca z komputerami |
@@ -599,26 +599,36 @@ Badanie użyteczności przeprowadzono z X uczestnikami (oznaczeni U1–UX) wedł
 | U3 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
 | U4 | 21 lat, student uniwersytetu wrocławskiego (Biotechnologia)|
 | U5 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
+| U6 | 22 lata, Absolwentka studiów informatycznych |
+| U7 | 22 lata, studentka geodezji |
 
 #### Wyniki ogólne
 
-Uczestnicy ukończyli 177 z 180 prób zadań (98,3%). Odnotowano łącznie 10 błędów (M2), z czego jeden był błędem krytycznym (M3). Średnia ocena łatwości (M7) ze wszystkich scenariuszy wynosi 5,6. Cztery scenariusze (1, 2, 4 i 7) spełniają kryteria z punktu 4.3, natomiast scenariusze 3, 5 i 6 wymagają poprawy interfejsu. Wszystkie nieukończone zadania, jedyny błąd krytyczny, dziewięć z dziesięciu błędów i wszystkie oceny SEQ poniżej 5,5 dotyczą grup usług.
+Uczestnicy ukończyli 245 z 252 prób zadań (97,2%). Odnotowano łącznie 23 błędy (M2), z czego jeden był błędem krytycznym (M3). Średnia ocena łatwości (M7) ze wszystkich scenariuszy wynosi 5,6. Dwa scenariusze (1 i 7) spełniają kryteria z punktu 4.3, natomiast scenariusze 2, 3, 4, 5 i 6 wymagają poprawy interfejsu. Jedyny błąd krytyczny i dziesięć z 23 błędów dotyczą grup usług. Nieukończone zadania wystąpiły w scenariuszach 2, 3, 4 i 5, a oceny SEQ poniżej 5,5 w scenariuszach 2, 3 i 4.
 
-**Tabela 5.1. Wyniki scenariuszy (n = 5)**
+**Tabela 5.1. Wyniki scenariuszy (n = 7)**
 
 | Scenariusz | Ukończenie scenariusza (M1) | Błędy, średnio na uczestnika (M2) | Błędy krytyczne (M3) | Mediana czasu scenariusza, s (M4) | Ocena SEQ, średnia (M7) | Ocena względem kryteriów |
 |---|---|---|---|---|---|---|
-| 1 (CU-01) | 5 z 5 (100%) | 0,2 | 0 | 10 | 6,2 | zaakceptowany |
-| 2 (CU-02) | 5 z 5 (100%) | 0,0 | 0 | 12 | 6,0 | zaakceptowany |
-| 3 (CU-03) | 3 z 5 (60%) | 1,2 | 0 | 8 (n = 3) | 4,4 | wymaga poprawy |
-| 4 (CU-04) | 5 z 5 (100%) | 0,0 | 0 | 12 | 5,6 | zaakceptowany |
-| 5 (CU-05) | 4 z 5 (80%) | 0,0 | 0 | 14 (n = 4) | 5,2 | wymaga poprawy |
-| 6 (CU-06) | 5 z 5 (100%) | 0,6 | 1 | 18 | 5,4 | wymaga poprawy |
-| 7 (CU-07) | 5 z 5 (100%) | 0,0 | 0 | 10 | 6,6 | zaakceptowany |
+| 1 (CU-01) | 7 z 7 (100%) | 0,3 | 0 | 8 | 6,3 | zaakceptowany |
+| 2 (CU-02) | 6 z 7 (86%) | 0,1 | 0 | 12 (n = 6) | 5,4 | wymaga poprawy |
+| 3 (CU-03) | 5 z 7 (71%) | 1,0 | 0 | 8 (n = 5) | 4,4 | wymaga poprawy |
+| 4 (CU-04) | 6 z 7 (86%) | 0,3 | 0 | 16,5 (n = 6) | 5,4 | wymaga poprawy |
+| 5 (CU-05) | 6 z 7 (86%) | 0,4 | 0 | 12,5 (n = 6) | 5,6 | wymaga poprawy |
+| 6 (CU-06) | 7 z 7 (100%) | 0,4 | 1 | 18 | 5,6 | wymaga poprawy |
+| 7 (CU-07) | 7 z 7 (100%) | 0,7 | 0 | 18 | 6,6 | zaakceptowany |
 
-Scenariusz uznano za ukończony przez uczestnika, gdy ukończył on wszystkie jego zadania. Czas scenariusza jest sumą czasów jego zadań, a mediana dotyczy wyłącznie uczestników, którzy go ukończyli, zgodnie z definicją M4.
+Ocenę względem kryteriów oparto na progach ogólnych z punktu 4.3: scenariusz uznano za zaakceptowany, gdy ukończyli go wszyscy uczestnicy (M1; przy mniej niż dziesięciu uczestnikach próg 90% oznacza wszystkich), nie wystąpił w nim błąd krytyczny (M3 równe 0), a średnia ocena łatwości wynosi co najmniej 5,5 (M7). Niespełnienie któregokolwiek z tych warunków oznacza, że scenariusz wymaga poprawy interfejsu. Czas scenariusza jest sumą czasów jego zadań, a mediana dotyczy wyłącznie uczestników, którzy go ukończyli, zgodnie z definicją M4. W scenariuszu 2 uczestnik U6 nie ma zarejestrowanego czasu jednego zadania; suma pozostałych jego czasów (15 s) przekracza medianę, więc brak ten nie zmienia jej wartości.
 
-###5.2 Zgodność z Heurestykami Nielsena
+#### Wnioski z badania
+
+Kryteria z punktu 4.3 spełniają scenariusze 1 i 7: wszyscy uczestnicy osiągnęli cel, a oceny łatwości wyniosły 6,3 i 6,6. W scenariuszu 7 odnotowano jednak pięć błędów, dotyczących wejścia w ustawienia i zmiany rozmiaru tekstu.
+
+Najwięcej problemów dotyczy grup usług. Scenariusze 3 i 6 odpowiadają za dziesięć z 23 błędów, w scenariuszu 6 wystąpił jedyny błąd krytyczny (tworzenie nowej grupy), a scenariusz 3 ma najniższą ocenę łatwości (4,4). Zadanie „Dodaj usługę do grupy” nie zostało ukończone przez dwóch uczestników, a jedyne nieukończone zadanie scenariusza 5 polegało na przypisaniu usługi do grupy; poza tym konfiguracja powiadomień nie sprawiała trudności (czasy 10–38 s przy progu 90 s). Uczestnik U6 odnotował, że usługi nie można dodać z widoku grupy oraz że przycisk strzałki wstecz przy wyjściu z tego widoku nie działał.
+
+W scenariuszach 2 i 4 wszystkie nieukończone zadania (cztery) pochodzą od jednego uczestnika, U7, a obniżona ocena scenariusza 2 (5,4) wynika z jego oceny 2; przyczyny należy sprawdzić na nagraniu sesji. W scenariuszu 4 U6 odnotował brak dedykowanego widoku historii awarii. Priorytetem poprawek powinno być zarządzanie grupami, a w następnej kolejności historia awarii i transport publiczny.
+
+### 5.2 Zgodność z Heurestykami Nielsena
 Skala ważności problemów (Nielsen): 0 – brak problemu, 1 – kosmetyczny, 2 – drobny, 3 – poważny (priorytet), 4 – katastrofalny (napraw przed wydaniem).
 
 | # | Heurystyka | Ocena | Najpoważniejszy problem |
