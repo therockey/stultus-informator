@@ -601,8 +601,8 @@ Badanie użyteczności przeprowadzono z 9 uczestnikami (oznaczeni U1–U9) wedł
 | U5 | 20 lat, student uniwersytetu wrocławskiego (Fizyka)|
 | U6 | 22 lata, studentka geodezji |
 | U7 | 22 lata, Absolwentka studiów informatycznych |
-| U8 | 23 lata, |
-| U9 | 20 lat, absolwent technikum elektrycznego |
+| U8 | 47 lat, osoba z niskim doświadczeniem technologicznym |
+| U9 | 53 lat, osoba pracująca z komputerami |
 
 #### Wyniki ogólne
 
